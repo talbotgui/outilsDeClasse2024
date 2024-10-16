@@ -29,6 +29,10 @@ export class MaClasseService {
                 if (donnees) {
                     // recompléter les données si des attributs sont manquants
                     this.completerDonneeSiManquante(donnees);
+                    // validation des données
+                    if (!this.validerDonnees(donnees)) {
+                        return false;
+                    }
                     // sauvegarde des données dans le contexte
                     this.contexteService.sauvegarderDonnesDeClasseChargee(donnees);
                     // message de succès
@@ -45,6 +49,69 @@ export class MaClasseService {
                 }
             })
         );
+    }
+
+    /** Validation des références de données (FK au sein du JSON). */
+    private validerDonnees(donnees: Annee): boolean {
+
+        // Déclaration des listes d'ID des objets référencés dans d'autres objets
+        const listeIdCompetences = donnees.competences.map(c => c.id);
+        const listeIdPeriodes = donnees.periodes.map(p => p.id);
+        const listeIdEleves = donnees.eleves.map(e => e.id);
+
+        // Init de la liste des messages d'erreur
+        const listeErreurs: string[] = [];
+
+        // Validation des données
+        donnees.journal.forEach(j => {
+            j.temps.forEach(t => {
+                t.groupes.forEach(g => {
+                    g.eleves.forEach(e => {
+                        if (e && !listeIdEleves.includes(e)) {
+                            listeErreurs.push('Eleve "' + e + '" inconnu dans les données mais référencée dans la journal "' + j.id + '"');
+                        }
+                    });
+                    g.competences.forEach(c => {
+                        if (c && !listeIdCompetences.includes(c)) {
+                            listeErreurs.push('Compétence "' + c + '" inconnue dans les données mais référencée dans la journal "' + j.id + '"');
+                        }
+                    });
+                });
+            });
+        });
+        donnees.notes.forEach(n => {
+            if (n.idPeriode && !listeIdPeriodes.includes(n.idPeriode)) {
+                listeErreurs.push('Periode "' + n.idPeriode + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
+            }
+            if (n.idEleve && !listeIdEleves.includes(n.idEleve)) {
+                listeErreurs.push('Eleve "' + n.idEleve + '" inconnu dans les données mais référencée dans la note "' + n.id + '"');
+            }
+            if (n.idItem && !listeIdCompetences.includes(n.idItem)) {
+                listeErreurs.push('Compétence "' + n.idItem + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
+            }
+            if (n.valeurEvaluation && !donnees.mapLibelleNotes[n.valeurEvaluation]) {
+                listeErreurs.push('Valeur "' + n.valeurEvaluation + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
+            }
+        });
+        donnees.projets.forEach(p => {
+            p.sousProjetParPeriode.forEach(sp => {
+                if (sp.idPeriode && !listeIdPeriodes.includes(sp.idPeriode)) {
+                    listeErreurs.push('Periode "' + sp.idPeriode + '" inconnue dans les données mais référencée dans le projet "' + p.nom + '"');
+                }
+                sp.idCompetences.forEach(c => {
+                    if (c && !listeIdCompetences.includes(c)) {
+                        listeErreurs.push('Compétence "' + c + '" inconnue dans les données mais référencée dans le projet "' + p.nom + '"');
+                    }
+                });
+            });
+        });
+
+        // Gestion de la liste des messages
+        if (listeErreurs.length > 0) {
+            const message = listeErreurs.length + ' erreurs dans les données chargées :<ul class="maclasse-texteagauche"><li>' + listeErreurs.join('</li><li>') + '</li></ul>';
+            this.contexteService.afficherUnMessageGeneral(new MessageAafficher("validerDonnees", TypeMessageAafficher.Erreur, message));
+        }
+        return listeErreurs.length == 0;
     }
 
     /** Fonction de manipulation de données */
@@ -71,6 +138,7 @@ export class MaClasseService {
 
     /** Ajout /completion d'attributs/membres vides. */
     private completerDonneeSiManquante(donnees: Annee): void {
+
         // Initialisation des listes et map si null ou undefined
         donnees.competences = donnees.competences ?? [];
         donnees.eleves = donnees.eleves ?? [];
@@ -84,6 +152,7 @@ export class MaClasseService {
         donnees.periodes = donnees.periodes ?? [];
         donnees.projets = donnees.projets ?? [];
         donnees.taches = donnees.taches ?? [];
+
         // Initialisation des ID si manquant
         donnees.competences.forEach(c => c.id = c.id ?? ModelUtil.getUID());
         donnees.eleves.forEach(e => {
@@ -92,6 +161,7 @@ export class MaClasseService {
             e.contacts = e.contacts ?? [];
             e.absences = e.absences ?? [];
             e.cursus = e.cursus ?? [];
+            e.inclusion.id = e.inclusion.id ?? ModelUtil.getUID();
             e.contacts.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.cursus.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.absences.forEach(a => a.id = a.id ?? ModelUtil.getUID());
@@ -103,15 +173,20 @@ export class MaClasseService {
             j.temps.forEach(t => {
                 t.id = t.id ?? ModelUtil.getUID();
                 t.groupes = t.groupes ?? [];
-                t.groupes.forEach(g => {
-                    g.id = g.id ?? ModelUtil.getUID();
-                });
+                t.groupes.forEach(g => g.id = g.id ?? ModelUtil.getUID());
                 t.type = (t.type) ? t.type : 'classe';
             });
         });
         donnees.notes.forEach(n => n.id = n.id ?? ModelUtil.getUID());
         donnees.periodes.forEach(p => p.id = p.id ?? ModelUtil.getUID());
-        donnees.projets.forEach(p => p.id = p.id ?? ModelUtil.getUID());
+        donnees.projets.forEach(p => {
+            p.id = p.id ?? ModelUtil.getUID();
+            p.sousProjetParPeriode = p.sousProjetParPeriode ?? [];
+            p.sousProjetParPeriode.forEach(sp => {
+                sp.id = sp.id ?? ModelUtil.getUID();
+                sp.idCompetences = sp.idCompetences ?? [];
+            });
+        });
         donnees.taches.forEach(t => {
             t.id = t.id ?? ModelUtil.getUID();
             t.echeances = t.echeances ?? [];
