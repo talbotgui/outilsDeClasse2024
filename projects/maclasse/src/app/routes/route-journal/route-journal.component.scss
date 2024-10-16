@@ -1,4 +1,6 @@
-/* Pour créer un style d'onglet au niveau des fieldset - DEBUT */
+/************************************************************
+Pour créer un style d'onglet au niveau des fieldset - DEBUT 
+************************************************************/
 fieldset.tempsDeJournal {
     border: none;
     padding-top: 0px;
@@ -7,22 +9,42 @@ fieldset.tempsDeJournal {
 fieldset.tempsDeJournal>legend {
     line-height: 40px;
     border-radius: 10px 10px 0px 0px;
-    background-color: yellowgreen;
+    /* pour que la couleur de fond soit celle du thème Angular*/
+    background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+    /*pour que le texte soit lisible sur le fond bleu et aussi grand que les icônes*/
+    color: white;
+    font-size: 20px;
+}
+
+fieldset.tempsDeJournal>legend>button {
+    color: white;
 }
 
 fieldset.tempsDeJournal>div {
     padding-top: 0.35em;
-    border: 1px solid yellowgreen;
+    border: 1px solid var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
 }
 
-/* Pour créer un style d'onglet au niveau des fieldset - FIN */
+/************************************************************
+ Pour créer un style d'onglet au niveau des fieldset - FIN 
+************************************************************/
+
+/* Pour masquer le cadre sous les listes déroulantes des heures dans les legend et éliminer le décalage */
+fieldset.tempsDeJournal>legend .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
 
 /* Pour les temps de type RECREATION et TRANSPORT. */
 fieldset.maclasse-transportOuRecreation>legend {
-    background-color: lightgray;
+    background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
 }
 
 /* Pour créer une liste d'élèves sans ponctuation. */
 span.eleve {
     margin-left: 15px;
+}
+
+/** Pour rendre scrollable la case contenant l'éditeur. */
+.maclasse-caseEditeur {
+    overflow: auto;
 }

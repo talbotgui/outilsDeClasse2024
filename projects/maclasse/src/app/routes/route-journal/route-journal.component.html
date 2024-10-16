@@ -36,7 +36,7 @@
     <legend>
         Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}} (semaine {{dateJournal | date:'ww'}})
         @if (journal) {
-        <button type="button" (click)="dupliquerJournal()" matTooltip="Dupliquer ce journal à une autre date" aria-label="Dupliquer ce journal à une autre date">
+        <button type="button" mat-icon-button (click)="dupliquerJournal()" matTooltip="Dupliquer ce journal à une autre date" aria-label="Dupliquer ce journal à une autre date">
             <em class="maclasse-fa fa fa-clipboard"></em>
         </button>
         }
@@ -45,7 +45,8 @@
     <!-- Si aucun journal ne correspond -->
     @if (!journal) {
     <p>Aucun journal à cette date. Voulez-vous en créer un ? </p>
-    <button type="button" (click)="creerJournal()" mat-raised-button matTooltip="Créer un journal pour la date sélectionnée" aria-label="Créer un journal pour la date sélectionnée">OUI</button>
+    <button type="button" mat-icon-button (click)="creerJournal()" mat-raised-button matTooltip="Créer un journal pour la date sélectionnée"
+        aria-label="Créer un journal pour la date sélectionnée">OUI</button>
     }
 
     <!-- Si un journal correspond -->
@@ -56,11 +57,11 @@
         <legend>
             Remarques :
             @if (!remarqueEnEdition) {
-            <button type="button" (click)="remarqueEnEdition=true" matTooltip="Modifier les remarques" aria-label="Modifier les remarques">
+            <button type="button" mat-icon-button (click)="remarqueEnEdition=true" matTooltip="Modifier les remarques" aria-label="Modifier les remarques">
                 <em class="maclasse-fa fa fa-pencil"></em>
             </button>
             } @else {
-            <button type="button" (click)="remarqueEnEdition=false" matTooltip="Valider les remarques" aria-label="Valider les remarques">
+            <button type="button" mat-icon-button (click)="remarqueEnEdition=false" matTooltip="Valider les remarques" aria-label="Valider les remarques">
                 <em class="maclasse-fa fa fa-check"></em>
             </button>
             }
@@ -103,40 +104,47 @@
             }
             @if (temps.type === 'classe') {
             @if (tempsEnEdition !== idx) {
-            <button type="button" (click)="editerTemps(idx)" matTooltip="Modifier ce temps" aria-label="Modifier ce temps">
+            <button type="button" mat-icon-button (click)="editerTemps(idx)" matTooltip="Modifier ce temps" aria-label="Modifier ce temps">
                 <em class="maclasse-fa fa fa-pencil"></em>
             </button>
             } @else {
-            <button type="button" (click)="validerTemps()" matTooltip="Valider ce temps" aria-label="Valider ce temps">
+            <button type="button" mat-icon-button (click)="validerTemps()" matTooltip="Valider ce temps" aria-label="Valider ce temps">
                 <em class="maclasse-fa fa fa-check"></em>
             </button>
             }
+            &nbsp;|&nbsp;
             }
             @if (idx !== journal.temps.length-1) {
-            <button type="button" (click)="descendreTemps(idx)" matTooltip="Descendre ce temps" aria-label="Descendre ce temps">
+            <button type="button" mat-icon-button (click)="descendreTemps(idx)" matTooltip="Descendre ce temps" aria-label="Descendre ce temps">
                 <em class="maclasse-fa fa fa-chevron-circle-down"></em>
             </button>
             }
-            <button type="button" (click)="dupliquerTemps(idx)" matTooltip="Dupliquer ce temps à une autre date" aria-label="Dupliquer ce temps à une autre date">
-                <em class="maclasse-fa fa fa-clipboard"></em>
-            </button>
-            <button type="button" (click)="ajouterTempsApres(idx, 'classe')" matTooltip="Ajouter un temps en dessous" aria-label="Ajouter un temps en dessous">
-                <em class="maclasse-fa fa fa-clock-o"></em>
-            </button>
-            <button type="button" (click)="ajouterTempsApres(idx,'recreation')" matTooltip="Ajouter une récréation en dessous" aria-label="Ajouter une récréation en dessous">
-                <em class="maclasse-fa fa fa-child"></em>
-            </button>
-            <button type="button" (click)="ajouterTempsApres(idx, 'transport')" matTooltip="Ajouter un temps de transport en dessous" aria-label="Ajouter un temps de transport en dessous">
-                <em class="maclasse-fa fa fa-bus"></em>
-            </button>
-            <button type="button" (click)="supprimerTemps(idx)" matTooltip="Supprimer ce temps" aria-label="Supprimer ce temps">
-                <em class="maclasse-fa fa fa-trash"></em>
-            </button>
             @if (idx !== 0) {
-            <button type="button" (click)="monterTemps(idx)" matTooltip="Monter ce temps" aria-label="Monter ce temps">
+            <button type="button" mat-icon-button (click)="monterTemps(idx)" matTooltip="Monter ce temps" aria-label="Monter ce temps">
                 <em class="maclasse-fa fa fa-chevron-circle-up"></em>
             </button>
             }
+            @if (temps.type === 'classe') {
+            &nbsp;|&nbsp;
+            <button type="button" mat-icon-button (click)="dupliquerTemps(idx)" matTooltip="Dupliquer ce temps à une autre date" aria-label="Dupliquer ce temps à une autre date">
+                <em class="maclasse-fa fa fa-clipboard"></em>
+            </button>
+            }
+            &nbsp;|&nbsp;
+            <button type="button" mat-icon-button (click)="ajouterTempsApres(idx, 'classe')" matTooltip="Ajouter un temps en dessous" aria-label="Ajouter un temps en dessous">
+                <em class="maclasse-fa fa fa-clock-o"></em>
+            </button>
+            <button type="button" mat-icon-button (click)="ajouterTempsApres(idx,'recreation')" matTooltip="Ajouter une récréation en dessous" aria-label="Ajouter une récréation en dessous">
+                <em class="maclasse-fa fa fa-child"></em>
+            </button>
+            <button type="button" mat-icon-button (click)="ajouterTempsApres(idx, 'transport')" matTooltip="Ajouter un temps de transport en dessous"
+                aria-label="Ajouter un temps de transport en dessous">
+                <em class="maclasse-fa fa fa-bus"></em>
+            </button>
+            &nbsp;|&nbsp;
+            <button type="button" mat-icon-button (click)="supprimerTemps(idx)" matTooltip="Supprimer ce temps" aria-label="Supprimer ce temps">
+                <em class="maclasse-fa fa fa-trash"></em>
+            </button>
         </legend>
         @if (temps.type === 'classe') {
         <div>
@@ -155,8 +163,8 @@
                     <h2 class="maclasse-h2">Bilan / notes</h2>
                 </mat-grid-tile>
                 <mat-grid-tile colspan="8">
+                    <span>Elèves : </span>
                     @if (tempsEnEdition !== idx) {
-                    Elèves :
                     @for (eleve of eleves; track eleve.id) {
                     @if (temps.eleves && temps.eleves.includes(eleve.id)){
                     <span class="eleve">{{eleve.prenom}}</span>
@@ -172,7 +180,7 @@
                     </mat-chip-listbox>
                     }
                 </mat-grid-tile>
-                <mat-grid-tile colspan="4" rowspan="4">
+                <mat-grid-tile colspan="4" rowspan="4" class="maclasse-caseEditeur">
                     @if (tempsEnEdition !== idx) {
                     <div [innerHTML]="temps.commentaire | html"></div>
                     } @else {

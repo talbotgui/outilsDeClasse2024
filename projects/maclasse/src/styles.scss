@@ -31,3 +31,8 @@ mat-form-field.maclasse-pleinelargeur {
 mat-form-field.maclasse-petitelargeur {
     width: 100px;
 }
+
+// Les boutons d'action sous forme d'icône ont une couleur bleue
+button.mat-mdc-icon-button {
+    color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+}
