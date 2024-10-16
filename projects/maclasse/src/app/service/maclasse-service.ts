@@ -99,10 +99,12 @@ export class MaClasseService {
         donnees.historique.forEach(h => h.id = h.id ?? ModelUtil.getUID());
         donnees.journal.forEach(j => {
             j.id = j.id ?? ModelUtil.getUID();
+            j.temps = j.temps ?? [];
             j.temps.forEach(t => {
                 t.id = t.id ?? ModelUtil.getUID();
+                t.groupes = t.groupes ?? [];
                 t.groupes.forEach(g => {
-
+                    g.id = g.id ?? ModelUtil.getUID();
                 });
                 t.type = (t.type) ? t.type : 'classe';
             });
