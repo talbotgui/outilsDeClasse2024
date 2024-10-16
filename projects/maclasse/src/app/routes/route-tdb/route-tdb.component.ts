@@ -105,12 +105,16 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             id = competence?.parent;
         }
 
-        return ascendance;
+        return ascendance.reverse();
     }
 
     /** Calcul (ou usage du cache) d'un libellé complet de compétence */
-    private calculerLibelleDeCompetence(competence: Competence): string {
-        return this.calculerAscendance(competence.id).map(c => c.text).join(' > ');
+    private calculerLibelleDeCompetence(competence: Competence, aPartirDe: number = 0): string {
+        let ascendance = this.calculerAscendance(competence.id);
+        if (aPartirDe) {
+            ascendance.splice(0, aPartirDe);
+        }
+        return ascendance.map(c => c.text).join(' > ');
     }
 
     /** Création des lignes à partir des notes */
@@ -137,6 +141,8 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 }
             }
         }
+
+        console.log('lignes=', this.lignes);
     }
 
     /** Création des lignes pour la période fournie */
@@ -175,7 +181,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                         sousLigne = new SousLigneDeTableauDeBord();
                         sousLigne.competence = this.rechercherCompetence(n.idItem);
                         if (sousLigne.competence) {
-                            sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence);
+                            sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence, 3);
                         }
                         ligne.sousLignes.push(sousLigne);
                     }
@@ -218,10 +224,8 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         const ascendance = this.calculerAscendance(idItem);
 
         // Renvoi du niveau 3 (ou lenght-1 à défaut)
-        if (ascendance.length > 3) {
-            return ascendance[ascendance.length - 3];
-        } else if (ascendance.length != 0) {
-            return ascendance[ascendance.length - 1];
+        if (ascendance.length >= 3) {
+            return ascendance[2];
         } else {
             return undefined;
         }

@@ -1,5 +1,5 @@
 @if (periodes.length>0 && eleves.length>0) {
-<fieldset class="maclasse-masquerEnModePrint">
+<fieldset class="maclasse-masquerEnModePrint maclasse-filtres">
     <legend>Sélection des filtres</legend>
     <mat-form-field>
         <mat-label>Mode d'affichage</mat-label>
@@ -54,9 +54,37 @@
         @for (ligne of lignes ; track ligne.id ; let idx = $index) {
         <fieldset class="maclasse-formulaire">
             <legend>{{ligne.libelleCompetenceParente}}</legend>
-            <div>
+            <div class="maclasse-table">
+                <div class="maclasse-table-ligne maclasse-table-entete">
+                    <div class="maclasse-table-case maclasse-table-case-w40"></div>
+                    <div class="maclasse-table-case maclasse-table-case-w30">Période évaluée</div>
+                    <div class="maclasse-table-case maclasse-table-case-w30">Période préparée</div>
+                </div>
+                <div class="maclasse-table-ligne maclasse-table-entete">
+                    <div class="maclasse-table-case maclasse-table-case-w40">Compétence</div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">Note</div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">Constat</div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">Proposition</div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">Outil</div>
+                </div>
                 @for (sousLigne of ligne.sousLignes ; track sousLigne.id ; let idy = $index) {
-                <p>{{sousLigne.libelleCompetence}}</p>
+                <div class="maclasse-table-ligne">
+                    <div class="maclasse-table-case maclasse-table-case-w40">
+                        <p>{{sousLigne.libelleCompetence}}</p>
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        <p>{{sousLigne.notePeriodePrecedente?.valeur}}</p>
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        <p>{{sousLigne.notePeriodePrecedente?.constat}}</p>
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        <p>{{sousLigne.notePeriodeSuivante?.proposition}}</p>
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        <p>{{sousLigne.notePeriodeSuivante?.outil}}</p>
+                    </div>
+                </div>
                 }
             </div>
         </fieldset>
