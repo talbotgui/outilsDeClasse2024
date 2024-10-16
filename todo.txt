@@ -5,7 +5,6 @@ TODO :
  - arbre des compétences
  - sélection des compétences dans le journal
  - détection de changement pour inhiber la sauvegarde ?
- - mode édition/lecture d'un élève
  - édition de l'élève
  - édition du journal
  - compétences dans le journal

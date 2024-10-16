@@ -18,6 +18,7 @@ import { tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { AbsenceEleve, ContactEleve, CursusEleve, Eleve } from '../../model/eleve-model';
 import { ModelUtil } from '../../model/model-utils';
+import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 
 
@@ -31,7 +32,9 @@ import { ContexteService } from '../../service/contexte-service';
         // FontAwesome
         FontAwesomeModule,
         // Pour l'éditeur WYSIWYG
-        HttpClientModule, AngularEditorModule
+        HttpClientModule, AngularEditorModule,
+        // Pipes
+        HtmlPipe
     ]
 })
 export class RouteEleveComponent extends AbstractComponent implements OnInit {
@@ -47,10 +50,15 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     public mapTypeContact: any | undefined;
     /** Liste des raisons d'absence pour la liste déroulante */
     public mapRaisonAbsence: any | undefined;
+    /** Fréquences disponibles pour une absence. */
+    public mapFrequenceAbsence = { '0': 'Semaine paire', '1': 'Semaine impaire', '2': 'Chaque semaine' };
     /**  Liste des heures pour la sélection de l'heure de début et de fin des temps*/
     public tempsDisponibles: string[] = ModelUtil.creerListeHoraires();
     /**  Liste des jours de la semaine*/
     public joursDeLaSemaine: Map<string, string> = ModelUtil.creerMapJoursDeLaSemaine();
+
+    /** Flag du mode édition. */
+    public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
     public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }

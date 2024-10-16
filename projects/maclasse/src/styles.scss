@@ -58,3 +58,32 @@ legend {
 .mat-grid-tile-content {
     justify-content: start !important;
 }
+
+/************************************************************
+Pour créer un style d'onglet au niveau des fieldset - DEBUT 
+************************************************************/
+fieldset.maclasse-formulaire {
+    border: none;
+    padding-top: 0px;
+}
+
+fieldset.maclasse-formulaire>legend {
+    border-radius: 10px 10px 0px 0px;
+    /* pour que la couleur de fond soit celle du thème Angular*/
+    background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+    /*pour que le texte soit lisible sur le fond bleu et aussi grand que les icônes*/
+    color: white;
+}
+
+fieldset.maclasse-formulaire>legend>button {
+    color: white;
+}
+
+fieldset.maclasse-formulaire>div {
+    padding-top: 0.35em;
+    border: 1px solid var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+}
+
+/************************************************************
+ Pour créer un style d'onglet au niveau des fieldset - FIN 
+************************************************************/

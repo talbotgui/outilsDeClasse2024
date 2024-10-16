@@ -50,7 +50,7 @@
     @if (journal) {
 
     <!-- Remarque de ce journal -->
-    <fieldset class="maclasse-tempsDeJournal" (keyup)="onKeyUpSurRemarqueDeJournal($event)">
+    <fieldset class="maclasse-formulaire" (keyup)="onKeyUpSurRemarqueDeJournal($event)">
         <legend>
             Remarques
             @if (!remarqueEnEdition) {
@@ -73,7 +73,7 @@
     <!-- les temps -->
     @for (temps of journal.temps ; track temps.id ; let idx = $index) {
 
-    <fieldset class="maclasse-tempsDeJournal" [class.maclasse-transportOuRecreation]="temps.type==='transport' || temps.type==='recreation'" (keyup)="onKeyUpSurTempsDeJournal($event)">
+    <fieldset class="maclasse-formulaire" [class.maclasse-transportOuRecreation]="temps.type==='transport' || temps.type==='recreation'" (keyup)="onKeyUpSurTempsDeJournal($event)">
         <legend class="maclasse-legendFlex">
             @if (temps.type === 'recreation') {
             <div class="maclasse-titreDeTemps">Récréation</div>
