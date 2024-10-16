@@ -1,0 +1,24 @@
+<div>
+
+  <!-- Menu -->
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-accueil">Accueil</a>
+    @if (donneesDeClasseChargee) {
+    <!-- l'attribut 'routerLinkActive' permet d'afficher le titre d'onglet avec le style de Material quand il est actif -->
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-competence">Compétences</a>
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-eleve">Elèves</a>
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-tableaudebord">Tableau de bord</a>
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-journal">Cahier journal</a>
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-projet">Projets</a>
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-taches">Tâches</a>
+    }
+    @else {
+    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/route-chargerdonnees">Charger mon année</a>
+    }
+  </nav>
+
+  <!-- Routeur avec le contenu -->
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+  </mat-tab-nav-panel>
+</div>

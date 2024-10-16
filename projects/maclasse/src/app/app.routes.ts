@@ -1,26 +1,26 @@
 import { Routes } from '@angular/router';
-import { TabAccueilComponent } from './tab-accueil/tab-accueil.component';
-import { TabAideComponent } from './tab-aide/tab-aide.component';
+import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.component';
+import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
+
 
 export const routes: Routes = [
-
     // pour rediriger par défaut sur le dashboard
-    { path: '', redirectTo: '/tab-accueil-route', pathMatch: 'full' },
-    { path: 'tab-accueil-route', component: TabAccueilComponent },
-    { path: 'tab-aide-route', component: TabAideComponent },
-    { path: 'tab-competence-route', component: TabAccueilComponent },
-    { path: 'tab-eleve-route', component: TabAccueilComponent },
-    { path: 'tab-journal-route', component: TabAideComponent },
-    { path: 'tab-projet-route', component: TabAideComponent },
-    { path: 'tab-tableaudebord-route', component: TabAideComponent },
-    { path: 'tab-taches-route', component: TabAideComponent }
-    // { path: 'tab-editioneleve-route/:idEleve', component: TabAccueilComponent },
-    // { path: 'tab-editionlisteeleve-route', component: TabAccueilComponent },
-    // { path: 'tab-editionjournal-route/:timeJournal', component: TabAccueilComponent },
-    // { path: 'tab-editionppi-route/:idEleve/:idPeriode', component: TabAccueilComponent },
-    // { path: 'tab-editionbilan-route/:idEleve/:idPeriode', component: TabAccueilComponent },
-    // { path: 'tab-eleve-route/:idEleve', component: TabAccueilComponent },
-    // { path: 'tab-tableaudebord-route/:idEleve/:idPeriode', component: TabAccueilComponent },
-    // { path: 'tab-journal-route/:timeJournal', component: TabAideComponent },
-    // { path: 'tab-nouvelleAnnee-route', component: TabAideComponent },
+    { path: '', redirectTo: '/route-accueil', pathMatch: 'full' },
+    { path: 'route-accueil', component: RouteAccueilComponent },
+    { path: 'route-chargerdonnees', component: RouteChargerDonneesComponent },
+    { path: 'route-competence', component: RouteAccueilComponent },
+    { path: 'route-eleve', component: RouteAccueilComponent },
+    { path: 'route-journal', component: RouteAccueilComponent },
+    { path: 'route-projet', component: RouteAccueilComponent },
+    { path: 'route-tableaudebord', component: RouteAccueilComponent },
+    { path: 'route-taches', component: RouteAccueilComponent }
+    // { path: 'tab-editioneleve/:idEleve', component: RouteAccueilComponent },
+    // { path: 'tab-editionlisteeleve', component: RouteAccueilComponent },
+    // { path: 'tab-editionjournal/:timeJournal', component: RouteAccueilComponent },
+    // { path: 'tab-editionppi/:idEleve/:idPeriode', component: RouteAccueilComponent },
+    // { path: 'tab-editionbilan/:idEleve/:idPeriode', component: RouteAccueilComponent },
+    // { path: 'tab-eleve/:idEleve', component: RouteAccueilComponent },
+    // { path: 'tab-tableaudebord/:idEleve/:idPeriode', component: RouteAccueilComponent },
+    // { path: 'tab-journal/:timeJournal', component: RouteAccueilComponent },
+    // { path: 'tab-nouvelleAnnee', component: RouteAccueilComponent },
 ];

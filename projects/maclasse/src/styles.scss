@@ -1,4 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+// CSS par défaut d'Angular
+html,
+body {
+    height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// CSS par défaut d'Angular
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Revu des tailles de titre - H1
+h1.maclasse-h1 {
+    font-size: 2em;
+}
+
+// Revu des tailles de titre - H2
+h2.maclasse-h2 {
+    font-size: 1.5em;
+}
+
+// Revu des tailles de titre - H3
+h3.maclasse-h3 {
+    font-size: 1.2em;
+}

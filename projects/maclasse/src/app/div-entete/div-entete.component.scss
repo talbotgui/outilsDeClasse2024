@@ -1,16 +1,15 @@
 // Pour que l'image reste à gauche en alignement avec le titre
-img.logo {
+img.maclasse-logo {
     float: left;
 }
 
 // Pour que l'entête fasse la hauteur de l'image
-div.entete {
+div.maclasse-entete {
     height: 90px;
 }
 
 // Pour centrer le titre de l'application
-h1.titreApplication {
-    font-size: 2em;
+h1.maclasse-titreApplication {
     text-align: center;
     line-height: 90px;
 }

@@ -4,25 +4,30 @@
   <div div-entete>
   </div>
 
-  <!-- Menu -->
-  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
-    @if (!!menuCompletAffiche) {
-    <!-- l'attribut 'routerLinkActive' permet d'afficher le titre d'onglet avec le style de Material quand il est actif -->
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-competence-route">Compétences</a>
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-eleve-route">Elèves</a>
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-tableaudebord-route">Tableau de bord</a>
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-journal-route">Cahier journal</a>
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-projet-route">Projets</a>
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-taches-route">Tâches</a>
-    }
-    @else {
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-accueil-route">Accueil</a>
-    }
-    <a mat-tab-link routerLinkActive="mdc-tab--active mdc-tab-indicator--active" routerLink="/tab-aide-route">Aide</a>
-  </nav>
+  <!-- Sous l'entête, un sideNav avec le contenu au milieu et l'aide sur le côté-->
+  <mat-sidenav-container>
 
-  <!-- Routeur avec le contenu -->
-  <mat-tab-nav-panel #tabPanel>
-    <router-outlet></router-outlet>
-  </mat-tab-nav-panel>
+    <!-- Ouverture de l'aide-->
+    <div class="afficherAide">
+      <em class="fa fa-question-circle" matTooltip="Afficher l'aide" mat-button (click)="sidenav.open()"></em>
+    </div>
+
+    <!-- L'aide sur le côté -->
+    <mat-sidenav #sidenav autoFocus="true" position="end">
+      <!-- Fermeture de l'aide-->
+      <div class="afficherAide">
+        <em class="fa fa-question-circle" matTooltip="Masquer l'aide" mat-button (click)="sidenav.close()"></em>
+      </div>
+
+      <!-- Div d'aide-->
+      <div div-aide></div>
+    </mat-sidenav>
+
+    <!-- Le contenu en milieu de page-->
+    <div div-message></div>
+
+    <!-- Le contenu en milieu de page-->
+    <div div-contenu></div>
+
+  </mat-sidenav-container>
 </div>
