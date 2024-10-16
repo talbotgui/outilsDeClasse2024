@@ -10,6 +10,11 @@
     </mat-chip-listbox>
 </fieldset>
 }
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <i>Charger mon année</i></p>
+}
 
 @if (eleveSelectionne){
 <!-- Formulaire - données élève -->
@@ -228,9 +233,5 @@
     <angular-editor placeholder="Bilans de cet élève" name="bilans" [(ngModel)]="eleveSelectionne.bilans"></angular-editor>
 </fieldset>
 }
-@else {
-<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
-</p>
-<p>Vous êtes invité à cliquer sur l'onglet <i>Charger mon année</i></p>
-}
+
 <br />
