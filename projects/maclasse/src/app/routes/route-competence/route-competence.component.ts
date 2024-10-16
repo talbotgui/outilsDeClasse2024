@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
+import { ComposantSelectionCompetenceComponent } from '../../composants/composant-selectioncompetence/composant-selectioncompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { NoeudCompetence } from '../../model/arbre-model';
 import { ContexteService } from '../../service/contexte-service';
@@ -22,6 +23,8 @@ import { ContexteService } from '../../service/contexte-service';
         ReactiveFormsModule, MatButtonModule, MatTooltipModule, MatTreeModule,
         // FontAwesome
         FontAwesomeModule,
+        // Composant de l'application
+        ComposantSelectionCompetenceComponent
     ]
 })
 export class RouteCompetenceComponent extends AbstractComponent implements OnInit {

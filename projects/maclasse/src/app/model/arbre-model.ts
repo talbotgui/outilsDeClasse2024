@@ -1,3 +1,5 @@
+import { Competence } from "./note-model";
+
 /** Modèle de données utilisé pour l'arbre de compétence. */
 export class NoeudCompetence {
 
@@ -20,4 +22,10 @@ export class NoeudCompetence {
     this.noeudParent = noeud;
     this.niveau = this.noeudParent.niveau + 1;
   }
+}
+
+/** Option de compétence dans l'autocompletion de recherche textuelle d'une compétence. */
+export class OptionCompetence {
+  /** Constructeur pour les données obligatoires. */
+  constructor(public competence: Competence, public textComplet: string) { }
 }
