@@ -5,12 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
@@ -20,6 +20,8 @@ import { Journal, Temps } from '../../model/journal-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
+import { MaClasseService } from '../../service/maclasse-service';
+import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplication.component';
 
 @Component({
     selector: 'route-journal', templateUrl: './route-journal.component.html', styleUrl: './route-journal.component.scss',
@@ -27,7 +29,7 @@ import { ContexteService } from '../../service/contexte-service';
         // Angular
         CommonModule, FormsModule,
         // Matérial
-        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule,
+        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule, MatDialogModule,
         // Pour l'éditeur WYSIWYG
         HttpClientModule, AngularEditorModule,
         // Pipes
@@ -57,7 +59,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     public eleves: Eleve[] = []
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private sanitizer: DomSanitizer) { super(); }
+    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private maclasseService: MaClasseService, private dialog: MatDialog) { super(); }
 
     /** Au chargement du composant */
     public ngOnInit(): void {
@@ -100,28 +102,22 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
 
     /** Création d'un journal pour la date sélectionnée */
     public creerJournal(): void {
-        if (this.dateJournal) {
-
-            // Ajout d'un nouveau journal pour la date sélectionnée
-            const nouveauJournal = new Journal();
-            nouveauJournal.date = this.dateJournal;
-            this.journaux?.push(nouveauJournal);
+        if (this.journaux && this.dateJournal) {
+            this.maclasseService.rechercherOuCreerJournal(this.journaux, this.dateJournal);
         }
     }
 
     /** Au changement de date, on recherche le journal. */
     public onChangementDateJournal(): void {
-        if (this.dateJournal) {
+        if (this.journaux && this.dateJournal) {
             // Recherche du journal
-            const time = this.dateJournal?.getTime();
-            this.journal = this.journaux?.find(j => j.date?.getTime() == time);
+            this.journal = this.maclasseService.rechercherJournal(this.journaux, this.dateJournal);
 
             // MaJ de l'URL avec la date
-            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { time: time } }).toString();
+            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { time: this.dateJournal.getTime() } }).toString();
             this.location.go(url);
         }
     }
-
 
     public validerTemps(): void {
         this.tempsEnEdition = undefined;
@@ -139,6 +135,9 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             const temps = this.journal.temps[i];
             this.journal.temps[i] = this.journal.temps[i + 1];
             this.journal.temps[i + 1] = temps;
+            if (this.tempsEnEdition == i && i < this.journal.temps.length - 1) {
+                this.tempsEnEdition = i + 1;
+            }
         }
     }
     public monterTemps(i: number): void {
@@ -146,6 +145,9 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             const temps = this.journal.temps[i];
             this.journal.temps[i] = this.journal.temps[i - 1];
             this.journal.temps[i - 1] = temps;
+            if (this.tempsEnEdition == i && i > 0) {
+                this.tempsEnEdition = i - 1;
+            }
         }
     }
     public ajouterTempsApres(i: number, type: string): void {
@@ -183,6 +185,24 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     public onKeyUpSurRemarqueDeJournal(event: KeyboardEvent): void {
         if (!!event.ctrlKey && event.key == "Enter") {
             this.remarqueEnEdition = false;
+        }
+    }
+
+    /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
+    public dupliquerJournal(): void {
+        const dialog = this.dialog.open(DialogDuplicationComponent, { height: '300px', width: '500px' }).componentInstance;
+        dialog.journaux = this.journaux;
+        dialog.journal = this.journal;
+        dialog.dateCible = this.journal?.date;
+    }
+
+    /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
+    public dupliquerTemps(indexTemps: number): void {
+        if (indexTemps > -1 && this.journal && this.journal.temps && indexTemps < this.journal.temps.length) {
+            const dialog = this.dialog.open(DialogDuplicationComponent, { height: '300px', width: '500px' }).componentInstance;
+            dialog.journaux = this.journaux;
+            dialog.temps = this.journal.temps[indexTemps];
+            dialog.dateCible = this.journal?.date;
         }
     }
 }
