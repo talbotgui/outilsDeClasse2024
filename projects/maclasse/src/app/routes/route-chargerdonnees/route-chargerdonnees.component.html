@@ -1,6 +1,5 @@
-<div>
-
-    <h3 class="maclasse-h3">Sélectionner un fichier de l'application MaClasse pour en charger les données.</h3>
+<fieldset>
+    <legend>Sélectionner un fichier de l'application MaClasse pour en charger les données.</legend>
 
     <!-- Selecteur de fichier de données -->
     <!-- L'input FILE est en dehors du mat-form-field car Material ne les supporte pas-->
@@ -11,4 +10,4 @@
 
     <!-- Bouton de validation-->
     <button mat-stroked-button (click)="onClickValiderChargementFichierLocal(inputFichierLocal)">Charger le fichier {{nomFichierLocal}}</button>
-</div>
+</fieldset>
