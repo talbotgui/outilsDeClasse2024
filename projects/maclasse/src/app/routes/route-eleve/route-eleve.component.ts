@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,11 +10,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { AbsenceEleve, ContactEleve, CursusEleve, Eleve } from '../../model/eleve-model';
 import { ModelUtil } from '../../model/model-utils';
 import { ContexteService } from '../../service/contexte-service';
+
 
 @Component({
     selector: 'route-eleve', templateUrl: './route-eleve.component.html', styleUrl: './route-eleve.component.scss',
@@ -21,7 +24,10 @@ import { ContexteService } from '../../service/contexte-service';
         // Angular
         CommonModule, FormsModule,
         // Matérial
-        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule
+        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule,
+        // Pour l'éditeur WYSIWYG
+        HttpClientModule, AngularEditorModule
+
     ]
 })
 export class RouteEleveComponent extends AbstractComponent implements OnInit {

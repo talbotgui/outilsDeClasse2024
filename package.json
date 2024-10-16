@@ -32,6 +32,7 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.0",
+    "@wfpena/angular-wysiwyg": "^2.0.0",
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
     "font-awesome-animation": "^1.1.1",

@@ -223,9 +223,7 @@
 <!-- Formulaire - Bilans -->
 <fieldset>
     <legend>Bilans</legend>
-    <!-- <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-        <ngx-editor [editor]="editor" [ngModel]="eleveSelectionne.bilans" [disabled]="false" [placeholder]="'Bilan'"></ngx-editor>
-    </div> -->
+    <angular-editor placeholder="Bilans de cet élève" name="bilans" [(ngModel)]="eleveSelectionne.bilans"></angular-editor>
 </fieldset>
 }
+<br />
