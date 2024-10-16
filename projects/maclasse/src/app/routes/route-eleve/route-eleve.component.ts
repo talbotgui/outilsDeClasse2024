@@ -112,7 +112,7 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     private recupererAnneeSuivante(eleve: Eleve): number {
 
         // par défaut
-        let anneeSuivante = 0;
+        let anneeSuivante = 1;
 
         // si un cursus existe, on en récupère l'année
         if (eleve.cursus && eleve.cursus.length > 0) {

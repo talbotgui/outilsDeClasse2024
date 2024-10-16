@@ -9,14 +9,18 @@
 
     <!-- Ouverture de l'aide-->
     <div class="maclasse-afficherAide">
-      <em class="fa fa-question-circle" matTooltip="Afficher l'aide" mat-button (click)="sidenav.open()"></em>
+      <button type="button" mat-icon-button (click)="sidenav.open()" matTooltip="Afficher l'aide" aria-label="Afficher l'aide">
+        <em class="maclasse-fa fa fa-question-circle"></em>
+      </button>
     </div>
 
     <!-- L'aide sur le côté -->
     <mat-sidenav #sidenav autoFocus="true" position="end">
       <!-- Fermeture de l'aide-->
       <div class="maclasse-afficherAide">
-        <em class="fa fa-question-circle" matTooltip="Masquer l'aide" mat-button (click)="sidenav.close()"></em>
+        <button type="button" mat-icon-button (click)="sidenav.close()" matTooltip="Masquer l'aide" aria-label="Masquer l'aide">
+          <em class="maclasse-fa fa fa-question-circle"></em>
+        </button>
       </div>
 
       <!-- Div d'aide-->

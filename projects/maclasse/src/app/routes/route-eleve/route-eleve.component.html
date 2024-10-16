@@ -7,7 +7,9 @@
         @for (eleve of eleves; track eleve.id) {
         <mat-chip-option (click)="onSelectionEleve(eleve)">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
         }
-        <mat-chip-option selectable="false" (click)="ajouterUnEleve()"><em class="fa fa-plus"></em></mat-chip-option>
+        <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
+            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><em class="maclasse-fa fa fa-plus"></em></button>
+        </mat-chip-option>
     </mat-chip-listbox>
 </fieldset>
 }
@@ -54,7 +56,12 @@
 
 <!-- Formulaire - contacts -->
 <fieldset>
-    <legend>Contacts <em class="fa fa-plus" (click)="ajouterUnContact()"></em></legend>
+    <legend>
+        <span>Contacts</span>
+        <button type="button" mat-icon-button (click)="ajouterUnContact()" matTooltip="Ajouter un contact" aria-label="Ajouter un contact">
+            <em class="maclasse-fa fa fa-plus"></em>
+        </button>
+    </legend>
     @for (contact of eleveSelectionne.contacts ; track contact.id) {
     <fieldset>
         <legend>{{contact.nom}} </legend>
@@ -142,7 +149,12 @@
 
 <!-- Formulaire - inclusions -->
 <fieldset>
-    <legend>Temps d'accompagnement et d'inclusion <em class="fa fa-plus" (click)="ajouterUneAbsence()"></em></legend>
+    <legend>
+        <span>Temps d'accompagnement et d'inclusion </span>
+        <button type="button" mat-icon-button (click)="ajouterUneAbsence()" matTooltip="Ajouter un temps" aria-label="Ajouter un temps">
+            <em class="maclasse-fa fa fa-plus"></em>
+        </button>
+    </legend>
     @for (absence of eleveSelectionne.absences ; track absence.id ; let idx = $index) {
     <fieldset>
         <legend>N°{{idx}}</legend>
@@ -198,7 +210,11 @@
         <mat-grid-tile colspan="3">Niveau</mat-grid-tile>
         <mat-grid-tile colspan="4">Etablissement</mat-grid-tile>
         <mat-grid-tile colspan="4">Accompagnement</mat-grid-tile>
-        <mat-grid-tile><em class="fa fa-plus" matTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em></mat-grid-tile>
+        <mat-grid-tile>
+            <button type="button" mat-icon-button (click)="ajouterCursus()" matTooltip="Ajouter une ligne dans le cursus" aria-label="Ajouter une ligne dans le cursus">
+                <em class="maclasse-fa fa fa-plus"></em>
+            </button>
+        </mat-grid-tile>
 
         <!-- Pour chaque lignes -->
         @for (cur of eleveSelectionne.cursus ; track cur.id ; let idx = $index) {
@@ -221,7 +237,9 @@
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-            <em class="fa fa-remove" matTooltip="Supprimer cette ligne du cursus" (click)="retirerCursus(cur)"></em>
+            <button type="button" mat-icon-button (click)="retirerCursus(cur)" matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
+                <em class="maclasse-fa fa fa-remove"></em>
+            </button>
         </mat-grid-tile>
         }
     </mat-grid-list>
