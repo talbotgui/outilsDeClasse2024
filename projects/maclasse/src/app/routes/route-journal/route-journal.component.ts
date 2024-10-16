@@ -12,7 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
+import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
@@ -42,6 +42,12 @@ import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplic
     ]
 })
 export class RouteJournalComponent extends AbstractComponent implements OnInit {
+
+    public configurationWysiwyg: AngularEditorConfig = {
+        "defaultFontSize": "2",
+        "height": "auto",
+        "minHeight": "250px",
+    }
 
     /** Date du journal saisie dans le filtre. */
     public dateJournal: Date | undefined;

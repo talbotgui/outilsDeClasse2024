@@ -10,7 +10,7 @@ import { Competence } from '../../model/note-model';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({
-    selector: '[composant-affichagecompetence]', templateUrl: './composant-affichagecompetence.component.html',
+    selector: '[composant-affichagecompetence]', templateUrl: './composant-affichagecompetence.component.html', styleUrl: 'composant-affichagecompetence.component.scss',
     standalone: true, imports: [
         // Pour les composants Material
         MatButtonModule, MatTooltipModule,
