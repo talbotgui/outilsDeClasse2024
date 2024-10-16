@@ -14,7 +14,6 @@ export class Eleve extends AvecIdentifiant {
   public dateAdmission: Date | undefined;
   public accueil?: string;
   public datesPPA?: string;
-  public datesPAP?: string;
   public datesESS?: string;
   public droitImage?: string;
   public autorisationBaignade?: string;

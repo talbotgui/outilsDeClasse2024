@@ -133,7 +133,6 @@ export class Jdd {
                 dateAdmission: new Date('2015-09-01T00:00:00.000Z'),
                 accueil: 'acc',
                 datesPPA: 'ppa',
-                datesPAP: 'pap',
                 datesESS: 'ess'
             },
             {
@@ -182,7 +181,6 @@ export class Jdd {
                 dateAdmission: new Date('2015-09-01T00:00:00.000Z'),
                 accueil: '',
                 datesPPA: '',
-                datesPAP: '',
                 datesESS: '',
                 absences: [],
                 inclusion: { id: 'bouchon-10' }
@@ -233,7 +231,6 @@ export class Jdd {
                 dateAdmission: new Date('2015-09-01T00:00:00.000Z'),
                 accueil: '',
                 datesPPA: '',
-                datesPAP: '',
                 datesESS: '',
                 absences: [],
                 inclusion: { id: 'bouchon-13' }
@@ -284,7 +281,6 @@ export class Jdd {
                 dateAdmission: new Date('2015-09-01T00:00:00.000Z'),
                 accueil: '',
                 datesPPA: '',
-                datesPAP: '',
                 datesESS: '',
                 absences: [],
                 inclusion: { id: 'bouchon-16', }
