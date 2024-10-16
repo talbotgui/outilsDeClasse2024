@@ -2,7 +2,6 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,11 +11,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
+import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
 import { Periode } from '../../model/model';
 import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/model-tdb';
 import { Competence, Note } from '../../model/note-model';
 import { ContexteService } from '../../service/contexte-service';
-import { MaClasseService } from '../../service/maclasse-service';
 
 @Component({
     selector: 'route-tdb', templateUrl: './route-tdb.component.html', styleUrl: './route-tdb.component.scss',
@@ -58,7 +57,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     public indexEnEdition: number | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private maclasseService: MaClasseService, private dialog: MatDialog) {
+    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) {
         super();
     }
 
@@ -145,6 +144,21 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                     this.creerLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, notesDeLeleve);
                 }
             }
+
+            // Tri des lignes et sous-lignes
+            const fonctionTri = (libelle1: string, libelle2: string) => {
+                if (libelle1 < libelle2) {
+                    return -1;
+                } else if (libelle1 > libelle2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+            this.lignes.sort((l1, l2) => fonctionTri(l1.libelleCompetenceParente.toUpperCase(), l2.libelleCompetenceParente.toUpperCase()));
+            this.lignes.forEach(l => l.sousLignes.sort((l1, l2) => fonctionTri(l1.libelleCompetence.toUpperCase(), l2.libelleCompetence.toUpperCase())))
+
+            console.log('lignes :', this.lignes);
         }
     }
 
@@ -190,10 +204,14 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                     }
 
                     // Alimentation des champs en fonction du type de période (évaluée ou préparéek)
-                    if (periodePreparee) {
+                    if (periodePreparee && !sousLigne.notePeriodeSuivante) {
                         sousLigne.notePeriodeSuivante = n;
-                    } else {
+                    } else if (!periodePreparee && !sousLigne.notePeriodePrecedente) {
                         sousLigne.notePeriodePrecedente = n;
+                    } else {
+                        // message de succès
+                        const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + n.idEleve + '")');
+                        this.contexteService.afficherUnMessageGeneral(message);
                     }
                 });
         }
