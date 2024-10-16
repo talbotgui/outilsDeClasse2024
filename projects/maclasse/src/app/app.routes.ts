@@ -14,6 +14,7 @@ export const routes: Routes = [
     { path: 'route-creerdonnees', component: RouteAccueilComponent },
     { path: 'route-competence', component: RouteCompetenceComponent },
     { path: 'route-eleve', component: RouteEleveComponent },
+    { path: 'route-emploiDuTemps', component: RouteAccueilComponent },
     { path: 'route-journal', component: RouteJournalComponent },
     { path: 'route-projet', component: RouteAccueilComponent },
     { path: 'route-tableaudebord', component: RouteAccueilComponent },

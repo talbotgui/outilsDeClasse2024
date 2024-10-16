@@ -1,7 +1,10 @@
 BUG :
  - afficher l'application sur la pleine hauteur de la fenêtre 
+ - l'icône de copie du libellé d'une compétence reste dans une impression
 
 TODO : 
+ - tableau de bord
+ - emploi du temps
  - détection de changement pour inhiber la sauvegarde ?
  - projets
  - tâches
