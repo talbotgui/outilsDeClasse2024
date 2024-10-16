@@ -7,8 +7,14 @@
 <span>{{c.text}}</span>
 }
 }
-<button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone" [cdkCopyToClipboard]="recupererLibelleComplet()" matTooltip="Copier le libellé complet"
+<button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone maclasse-masquerEnModePrint" [cdkCopyToClipboard]="recupererLibelleComplet()" matTooltip="Copier le libellé complet"
     aria-label="Copier le libellé complet">
     <fa-icon icon="copy"></fa-icon>
 </button>
+@if (iconeAction) {
+<button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone maclasse-masquerEnModePrint" [matTooltip]="libelleAction" [attr.aria-label]="libelleAction"
+    (click)="declencherAction()">
+    <fa-icon [icon]="iconeAction"></fa-icon>
+</button>
+}
 }

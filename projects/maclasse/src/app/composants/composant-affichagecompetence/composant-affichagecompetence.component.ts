@@ -1,5 +1,5 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -10,7 +10,7 @@ import { Competence } from '../../model/note-model';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({
-    selector: '[composant-affichagecompetence]', templateUrl: './composant-affichagecompetence.component.html', styleUrl: 'composant-affichagecompetence.component.scss',
+    selector: '[composant-affichagecompetence]', templateUrl: './composant-affichagecompetence.component.html',
     standalone: true, imports: [
         // Pour les composants Material
         MatButtonModule, MatTooltipModule,
@@ -36,6 +36,18 @@ export class ComposantAffichageCompetenceComponent extends AbstractComponent imp
 
     /** Abroresence sélectionnée. */
     public competencesSelectionnees: Competence[] = [];
+
+    /** Icone d'action ajouté à la fin */
+    @Input()
+    public iconeAction: string | undefined;
+
+    /** Libellé de l'action ajouté à la fin */
+    @Input()
+    public libelleAction: string | undefined;
+
+    /** Sortie au clic. */
+    @Output()
+    public onAction = new EventEmitter();
 
     /** Constructeur pour injection des dépendances. */
     public constructor(private contexteService: ContexteService) { super(); }
@@ -78,6 +90,11 @@ export class ComposantAffichageCompetenceComponent extends AbstractComponent imp
 
         // Inversion du tableau
         this.competencesSelectionnees = this.competencesSelectionnees.reverse();
+    }
+
+    /** Déclencher l'action */
+    public declencherAction(): void {
+        this.onAction.emit();
     }
 
     /** Récupération du libellé complet pour copier/coller */

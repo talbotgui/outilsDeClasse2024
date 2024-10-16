@@ -91,10 +91,35 @@ fieldset.maclasse-formulaire>div {
 /** Au moment de l'impression. */
 @media print {
 
-    /** masque les contrôles. */
+    /** Pour ne pas couper un fieldset à l'impression. */
+    fieldset {
+        page-break-inside: avoid;
+    }
+
+    /** Pour autoriser le découpage du fieldset sur plusieurs pages s'il est trop grand. */
+    fieldset.maclasse-couperEnModePrint {
+        page-break-inside: auto;
+    }
+
+    /** masque l'élément. */
     .maclasse-masquerEnModePrint {
         display: none !important;
     }
+
+    /** force l'affichage de l'élément. */
+    .maclasse-afficherEnModePrint {
+        display: block !important;
+    }
+
+    /** Pour le rendu en impression des legend.*/
+    fieldset.maclasse-formulaire>legend {
+        border-radius: 10px 10px 0px 0px;
+        border-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+        color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+        border: solid thin;
+        border-bottom: none;
+    }
+
 }
 
 /* Pour séparer correctement les compétences sélectionnées. */
@@ -102,4 +127,31 @@ fieldset.maclasse-formulaire>div {
     color: blue;
     font-size: 28px;
     margin-right: 10px;
+}
+
+/* Pour réduire énormément la taille des boutons avec icône et ne pas influer sur la hauteur de la ligne. */
+// Source : https://stackoverflow.com/questions/46531743/change-size-of-mat-icon-button
+.maclasse-petiteicone {
+    width: 24px !important;
+    height: 24px !important;
+    padding: 0px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    &>*[role=img] {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .mat-mdc-button-touch-target {
+        width: 24px !important;
+        height: 24px !important;
+    }
 }

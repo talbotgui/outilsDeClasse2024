@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
+import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { GroupeSurUnTemps, Journal, Temps } from '../../model/journal-model';
@@ -38,7 +39,7 @@ import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplic
         // Pipes
         HtmlPipe,
         // Composant applicatif
-        ComposantAffichageCompetenceComponent
+        ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
     ]
 })
 export class RouteJournalComponent extends AbstractComponent implements OnInit {
@@ -99,6 +100,23 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             })
         ).subscribe();
         super.declarerSouscription(sub);
+    }
+
+    /** Ajout d'une compétence via le composant dédié dans un dialog. */
+    public ajouterCompetence(groupe: GroupeSurUnTemps): void {
+
+        // Ouverture du dialog avec le composant de sélection de compétence
+        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { height: '500px', width: '1000px' });
+
+        // A la fermeture, ajout de la compétence (si sélectionnée)
+        dialog.afterClosed().subscribe(competence => {
+            if (competence !== undefined) {
+                if (!groupe.competences) {
+                    groupe.competences = [];
+                }
+                groupe.competences.push(competence.id);
+            }
+        });
     }
 
     /** Ajout d'un nouveau groupe dans le temps pointé avec les élèves non sélectionnés dans les autres groupes du temps. */
@@ -278,6 +296,14 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     public onKeyUpSurRemarqueDeJournal(event: KeyboardEvent): void {
         if (!!event.ctrlKey && event.key == "Enter") {
             this.remarqueEnEdition = false;
+        }
+    }
+
+    /** Suppression d'une compétence. */
+    public supprimerCompetence(groupe: GroupeSurUnTemps, idCompetence: string): void {
+        if (groupe && idCompetence) {
+            const index = groupe.competences.indexOf(idCompetence);
+            groupe.competences.splice(index, 1);
         }
     }
 

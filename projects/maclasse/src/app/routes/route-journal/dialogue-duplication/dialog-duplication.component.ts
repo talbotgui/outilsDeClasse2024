@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AbstractComponent } from '../../../directives/abstract.component';
 import { Journal, Temps } from '../../../model/journal-model';
-import { ContexteService } from '../../../service/contexte-service';
 import { MaClasseService } from '../../../service/maclasse-service';
 
 @Component({
@@ -38,7 +37,7 @@ export class DialogDuplicationComponent extends AbstractComponent {
   public dateCible: Date | undefined;
 
   /** Un constructeur pour se faire injecter les dépendances. */
-  constructor(private contexteService: ContexteService, private maclasseService: MaClasseService, private dialogRef: MatDialogRef<DialogDuplicationComponent>) { super(); }
+  constructor(private maclasseService: MaClasseService, private dialogRef: MatDialogRef<DialogDuplicationComponent>) { super(); }
 
   /** Fermeture de la popup */
   public annuler(): void {
