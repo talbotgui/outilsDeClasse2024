@@ -24,18 +24,18 @@ export class ModelUtil {
   public static creerListeHoraires(): string[] {
     const tempsDisponibles = [];
     for (let i = 8; i < 18; i++) {
-      tempsDisponibles.push(i + 'h00');
-      tempsDisponibles.push(i + 'h05');
-      tempsDisponibles.push(i + 'h10');
-      tempsDisponibles.push(i + 'h15');
-      tempsDisponibles.push(i + 'h20');
-      tempsDisponibles.push(i + 'h25');
-      tempsDisponibles.push(i + 'h30');
-      tempsDisponibles.push(i + 'h35');
-      tempsDisponibles.push(i + 'h40');
-      tempsDisponibles.push(i + 'h45');
-      tempsDisponibles.push(i + 'h50');
-      tempsDisponibles.push(i + 'h55');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h00');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h05');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h10');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h15');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h20');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h25');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h30');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h35');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h40');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h45');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h50');
+      tempsDisponibles.push((i < 10 ? '0' : '') + i + 'h55');
     }
     return tempsDisponibles;
   }
