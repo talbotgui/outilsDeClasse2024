@@ -1,13 +1,16 @@
-créer des groupes dans un temps du journal
-arbre des compétences
-sélection des compétences dans le journal
-détection de changement pour inhiber la sauvegarde ?
-mode édition/lecture d'un élève
-édition de l'élève
-édition du journal
-compétences dans le journal
-compétences dans l'édition du journal
+BUG :
+ - bug à l'ajout d'un groupe sur la liste des élèves déjà sélectionnés
+ - bug affichage groupe en readOnly
 
-projets
-tâches
+TODO : 
+ - arbre des compétences
+ - sélection des compétences dans le journal
+ - détection de changement pour inhiber la sauvegarde ?
+ - mode édition/lecture d'un élève
+ - édition de l'élève
+ - édition du journal
+ - compétences dans le journal
+ - compétences dans l'édition du journal
+ - projets
+ - tâches
 ...
