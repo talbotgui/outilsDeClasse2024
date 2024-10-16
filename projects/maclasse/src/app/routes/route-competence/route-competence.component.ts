@@ -29,8 +29,9 @@ import { ContexteService } from '../../service/contexte-service';
 })
 export class RouteCompetenceComponent extends AbstractComponent implements OnInit {
 
-    /** Source de données de l'arbre. */
+    /** Source de données de l'arbre (mode "nested nodes" car moins de code TS et donc plus simple). */
     public dataSource = new MatTreeNestedDataSource<NoeudCompetence>();
+
     /** Competences chargées. */
     public flagCompetencesChargees = false;
 
@@ -69,7 +70,7 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
                             } else {
                                 const noeudParent = mapNoeuds.get(c.parent);
                                 if (noeudParent) {
-                                    nouvelleCompetence.setNoeudParent(noeudParent);
+                                    nouvelleCompetence.noeudParent = noeudParent;
                                     noeudParent.noeudsEnfant.push(nouvelleCompetence);
                                 }
                             }
