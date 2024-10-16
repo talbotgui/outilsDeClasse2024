@@ -7,7 +7,6 @@ fieldset.maclasse-tempsDeJournal {
 }
 
 fieldset.maclasse-tempsDeJournal>legend {
-    line-height: 40px;
     border-radius: 10px 10px 0px 0px;
     /* pour que la couleur de fond soit celle du thème Angular*/
     background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));

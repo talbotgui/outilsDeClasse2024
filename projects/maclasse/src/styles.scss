@@ -42,3 +42,14 @@ button.mat-mdc-icon-button {
     height: 16px;
     width: 16px;
 }
+
+// Gain de place sous les champs de saisie
+.mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
+
+// Pour que toutes les légendes (avec ou sans un bouton) ne bouge pas
+legend {
+    height: 48px;
+    line-height: 48px;
+}
