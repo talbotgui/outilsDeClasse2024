@@ -8,6 +8,9 @@ import { MaClasseService } from "./maclasse-service";
 @Injectable({ providedIn: 'root' })
 export class BouchonService extends AbstractComponent {
 
+    /** Flag public */
+    public unJeuDeDonneesBouchonneEstCharge = false;
+
     /** Constructeur pour injection des dépendances. */
     constructor(private maclasseService: MaClasseService, private contexteService: ContexteService) {
         super();
@@ -22,6 +25,8 @@ export class BouchonService extends AbstractComponent {
 
     /** Charger un jeu de données de bouchon. */
     public chargerUnBouchon(): void {
+        // Initialisation du flag avant le chargement réel (pour que le flag soit true avant le déclenchement de l'évènement dans le contexte)
+        this.unJeuDeDonneesBouchonneEstCharge = true
 
         // un jeu de données est chargé par défaut
         const sub = this.maclasseService.chargerDonneesDeClasse(JSON.stringify(Jdd.JDD_RICHE)).subscribe();
