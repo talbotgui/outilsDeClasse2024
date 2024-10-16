@@ -1,3 +1,4 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -23,6 +24,8 @@ import { ContexteService } from '../../service/contexte-service';
         ReactiveFormsModule, MatButtonModule, MatTooltipModule, MatTreeModule,
         // FontAwesome
         FontAwesomeModule,
+        // Pour le copier/coller
+        ClipboardModule,
         // Composant de l'application
         ComposantSelectionCompetenceComponent
     ]
