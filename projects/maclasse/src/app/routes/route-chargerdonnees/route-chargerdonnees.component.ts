@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AbstractComponent } from '../../directives/abstract.component';
@@ -12,7 +11,7 @@ import { MaClasseService } from '../../service/maclasse-service';
     selector: 'route-chargerdonnees', templateUrl: './route-chargerdonnees.component.html',
     standalone: true, imports: [
         // Matérial
-        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTooltipModule
+        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule
     ]
 })
 export class RouteChargerDonneesComponent extends AbstractComponent {

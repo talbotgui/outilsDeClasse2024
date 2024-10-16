@@ -1,22 +1,26 @@
-<h2 class="maclasse-h2">Aide contextuelle</h2>
+<h2 class="maclasse-h2">Aide contextuelle pour la page '{{routeActive}}'</h2>
 
 <!-- Routes communes -->
 @if (routeActive==='/route-accueil'){
-<p>Depuis l'onglet <i>Acceuil</i>, seules quelques informations essentielles sont accessibles.</p>
+<p>Depuis l'onglet <b>Acceuil</b>, seules quelques informations essentielles sont accessibles.</p>
 @if (donneesChargees){
 <p>Depuis que vous avez chargé les données de votre classe, vous avez accès à tous les onglets permettant de consulter et modifier vos données.</p>
 }
 @else {
-<p>La première chose à faire est de créer ou charger vos données de classe depuis, respectivement, les onglets <i>Créer mon année</i> et <i>Charger mon année</i>.</p>
+<p>La première chose à faire est de créer ou charger vos données de classe depuis, respectivement, les onglets <b>Créer mon année</b> et <b>Charger mon année</b>.</p>
 }
 }
 @else if (routeActive==='/route-chargerdonnees'){
-<p>Vous pouvez, dans cet onglet, charger les données de votre classe en cliquant sur le bouton <mat-icon>description</mat-icon> puis sur le bouton <i>Charger le fichier</i>. Apparaitront alors les
+<p>Vous pouvez, dans cet onglet, charger les données de votre classe en cliquant sur le bouton <em class="fa fa-file-code-o"></em> puis sur le bouton <b>Charger le fichier</b>. Apparaitront alors les
     onglets de consultation et modification des données de votre classe.</p>
+}
+@else if (routeActive==='/route-creerdonnees'){
 }
 
 
+
 <!-- Routes affichées si les données sont chargées-->
+@else{
 @if (donneesChargees){
 @if (routeActive==='/route-competence'){
 }
@@ -34,5 +38,6 @@
 }
 @else{
 <p>Vous avez accéder à l'application via un lien vous amenant sur une page de consultation ou de modification des données de votre classe avant d'avoir chargées les données de votre classe. Cliquez
-    sur l'onglet <i>Charger mon année</i> pour charger un fichier contenant les données de votre classe.</p>
+    sur l'onglet <b>Charger mon année</b> pour charger un fichier contenant les données de votre classe.</p>
+}
 }

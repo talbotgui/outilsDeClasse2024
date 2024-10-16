@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../directives/abstract.component';
@@ -7,7 +6,7 @@ import { ContexteService } from '../service/contexte-service';
 
 @Component({
     selector: '[div-aide]', templateUrl: './div-aide.component.html',
-    standalone: true, imports: [MatIconModule]
+    standalone: true, imports: []
 })
 export class DivAideComponent extends AbstractComponent implements OnInit {
 
@@ -24,7 +23,7 @@ export class DivAideComponent extends AbstractComponent implements OnInit {
     public ngOnInit(): void {
         // Mise en place d'une écoute des évènements du ROUTER d'Angular
         const sub = this.router.events.pipe(
-            tap(this.traiterEvenement)
+            tap(this.traiterEvenement.bind(this))
         ).subscribe();
         super.declarerSouscription(sub);
 
