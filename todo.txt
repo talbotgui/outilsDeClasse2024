@@ -4,7 +4,6 @@ BUG :
 
 TODO : 
  - tableau de bord
- - emploi du temps
  - détection de changement pour inhiber la sauvegarde ?
  - projets
  - tâches
