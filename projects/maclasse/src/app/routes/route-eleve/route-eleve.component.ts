@@ -79,6 +79,15 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         }
     }
 
+    /** Ajouter une ligne de cursus */
+    public ajouterCursus(): void {
+        if (this.eleveSelectionne) {
+            const nouveauCursus = new CursusEleve();
+            nouveauCursus.annee = this.recupererAnneeSuivante(this.eleveSelectionne);
+            this.eleveSelectionne.cursus.push(nouveauCursus);
+        }
+    }
+
     /** Ajout d'une absence  à la liste des absences de l'élève sélectionné */
     public ajouterUneAbsence(): void {
         if (this.eleveSelectionne) {
@@ -92,17 +101,6 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     /** Ajout d'un élève et sélection automatique. */
     public ajouterUnEleve(): void {
         this.eleves?.push(new Eleve());
-    }
-
-    /** Suppression de l'élève sélectionné */
-    public supprimerEleveSelectionne(): void {
-        if (this.eleves && this.eleveSelectionne) {
-            const index = this.eleves.indexOf(this.eleveSelectionne);
-            if (index !== -1) {
-                this.eleves.splice(index, 1);
-            }
-            this.eleveSelectionne = undefined;
-        }
     }
 
     /** Au clic sur un élève, on le sélectionne/désélectionne */
@@ -119,15 +117,6 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         // MaJ de l'URL avec le bon ID d'élève
         const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.eleveSelectionne?.id } }).toString();
         this.location.go(url);
-    }
-
-    /** Ajouter une ligne de cursus */
-    public ajouterCursus(): void {
-        if (this.eleveSelectionne) {
-            const nouveauCursus = new CursusEleve();
-            nouveauCursus.annee = this.recupererAnneeSuivante(this.eleveSelectionne);
-            this.eleveSelectionne.cursus.push(nouveauCursus);
-        }
     }
 
     /** Extraction de l'année suivante des données de l'élève. */
@@ -154,13 +143,35 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         return anneeSuivante;
     }
 
+    /** Retrait du contact de la liste. */
+    public supprimerContact(noContact: number): void {
+        if (this.eleveSelectionne && this.eleveSelectionne.contacts && this.eleveSelectionne.contacts.length > noContact) {
+            this.eleveSelectionne.contacts.splice(noContact, 1);
+        }
+    }
+
+    /** Retrait de l'absence de la liste. */
+    public supprimerAbsence(noAbsence: number): void {
+        if (this.eleveSelectionne && this.eleveSelectionne.absences && this.eleveSelectionne.absences.length > noAbsence) {
+            this.eleveSelectionne.absences.splice(noAbsence, 1);
+        }
+    }
+
     /** Retrait du cursus de la liste. */
-    public retirerCursus(cursus: CursusEleve): void {
-        if (this.eleveSelectionne) {
-            const index = this.eleveSelectionne.cursus.indexOf(cursus);
-            if (0 <= index && index < this.eleveSelectionne.cursus.length) {
-                this.eleveSelectionne.cursus.splice(index, 1);
+    public supprimerCursus(noCursus: number): void {
+        if (this.eleveSelectionne && this.eleveSelectionne.cursus && this.eleveSelectionne.cursus.length > noCursus) {
+            this.eleveSelectionne.cursus.splice(noCursus, 1);
+        }
+    }
+
+    /** Suppression de l'élève sélectionné */
+    public supprimerEleveSelectionne(): void {
+        if (this.eleves && this.eleveSelectionne) {
+            const index = this.eleves.indexOf(this.eleveSelectionne);
+            if (index !== -1) {
+                this.eleves.splice(index, 1);
             }
+            this.eleveSelectionne = undefined;
         }
     }
 }

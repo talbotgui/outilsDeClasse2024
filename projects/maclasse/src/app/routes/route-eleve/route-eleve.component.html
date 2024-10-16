@@ -52,7 +52,6 @@
             }
         </mat-select>
     </mat-form-field>
-    <br />
     <button type="button" (click)="supprimerEleveSelectionne()" mat-raised-button matTooltip="Supprimer cet élève" aria-label="Supprimer cet élève">
         <em class="maclasse-fa fa fa-minus"></em> Supprimer cet élève
     </button>
@@ -66,7 +65,7 @@
             <em class="maclasse-fa fa fa-plus"></em>
         </button>
     </legend>
-    @for (contact of eleveSelectionne.contacts ; track contact.id) {
+    @for (contact of eleveSelectionne.contacts ; track contact.id ; let idx = $index) {
     <fieldset>
         <legend>{{contact.nom}} </legend>
         <mat-form-field>
@@ -93,6 +92,9 @@
             <mat-label>Adresse postale</mat-label>
             <input matInput type="adressePostale" name="adressePostale" [(ngModel)]="contact.adressePostale">
         </mat-form-field>
+        <button type="button" (click)="supprimerContact(idx)" mat-raised-button matTooltip="Supprimer ce contact" aria-label="Supprimer ce contact">
+            <em class="maclasse-fa fa fa-minus"></em> Supprimer ce contact
+        </button>
     </fieldset>
     }
 </fieldset>
@@ -151,7 +153,7 @@
     </mat-form-field>
 </fieldset>
 
-<!-- Formulaire - inclusions -->
+<!-- Formulaire - absences -->
 <fieldset>
     <legend>
         <span>Temps d'accompagnement et d'inclusion </span>
@@ -202,6 +204,9 @@
                 }
             </mat-select>
         </mat-form-field>
+        <button type="button" (click)="supprimerAbsence(idx)" mat-raised-button matTooltip="Supprimer cette absence" aria-label="Supprimer cette absence">
+            <em class="maclasse-fa fa fa-minus"></em> Supprimer cette absence
+        </button>
     </fieldset>
     }
 </fieldset>
@@ -241,7 +246,7 @@
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-            <button type="button" mat-icon-button (click)="retirerCursus(cur)" matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
+            <button type="button" mat-icon-button (click)="supprimerCursus(idx)" matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
                 <em class="maclasse-fa fa fa-remove"></em>
             </button>
         </mat-grid-tile>
