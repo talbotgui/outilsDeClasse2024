@@ -45,7 +45,7 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     /** Liste des raisons d'absence pour la liste déroulante */
     public mapRaisonAbsence: any | undefined;
     /**  Liste des heures pour la sélection de l'heure de début et de fin des temps*/
-    public tempsDisponibles: string[] = ModelUtil.creerListeHoraires();;
+    public tempsDisponibles: string[] = ModelUtil.creerListeHoraires();
     /**  Liste des jours de la semaine*/
     public joursDeLaSemaine: Map<string, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
@@ -68,8 +68,6 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
             })
         ).subscribe();
         super.declarerSouscription(sub);
-
-        this.activatedRoute.queryParams.subscribe(params => console.log('params=', params));
     }
 
     /** Ajout d'un contact à la liste des contacts de l'élève sélectionné */

@@ -1,0 +1,37 @@
+@if (journaux){
+<fieldset>
+    <legend>Sélection de la date du journal</legend>
+
+    <button type="button" (click)="changerDate(-7)" mat-raised-button matTooltip="Reculer d'une semaine" aria-label="Reculer d'une semaine">
+        <em class="maclasse-fa fa fa-fast-backward"></em>
+    </button>
+    <button type="button" (click)="changerDate(-1)" mat-raised-button matTooltip="Reculer d'une journée" aria-label="Reculer d'une journée">
+        <em class="maclasse-fa fa fa-backward"></em>
+    </button>
+
+    <mat-form-field>
+        <mat-label>Date du journal</mat-label>
+        <input matInput [matDatepicker]="pickerDateJournal" #inputDateJournal="ngModel" [(ngModel)]="dateJournal" (ngModelChange)="onChangementDateJournal()">
+        <mat-datepicker-toggle matIconSuffix [for]="pickerDateJournal"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateJournal></mat-datepicker>
+    </mat-form-field>
+
+    <button type="button" (click)="changerDate(1)" mat-raised-button matTooltip="Avancer d'une journée" aria-label="Avancer d'une journée">
+        <em class="maclasse-fa fa fa-forward"></em>
+    </button>
+    <button type="button" (click)="changerDate(7)" mat-raised-button matTooltip="Avancer d'une semaine" aria-label="Avancer d'une semaine">
+        <em class="maclasse-fa fa fa-fast-forward"></em>
+    </button>
+</fieldset>
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}
+
+@if (journal){
+<fieldset>
+    <legend>Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</legend>
+</fieldset>
+}

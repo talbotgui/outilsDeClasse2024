@@ -7295,7 +7295,7 @@ export class Jdd {
         ],
         journal: [
             {
-                id: 'bouchon-30', date: new Date('2021-09-01T22:00:00.000Z'),
+                id: 'bouchon-30', date: new Date('2024-09-01T22:00:00.000Z'),
                 remarque: 'cahier journal du 2 septembre 2021 : une belle journée studieuse',
                 temps: [
                     {
@@ -7321,7 +7321,7 @@ export class Jdd {
                 ]
             },
             {
-                id: 'bouchon-31', date: new Date('2021-09-02T22:00:00.000Z'),
+                id: 'bouchon-31', date: new Date('2024-09-02T22:00:00.000Z'),
                 remarque: 'Cahier journal du 3/09/21',
                 temps: [
                     {

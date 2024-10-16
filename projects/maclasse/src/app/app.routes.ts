@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.component';
 import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
 import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
+import { RouteJournalComponent } from './routes/route-journal/route-journal.component';
 
 /** Liste des routes possibles dans l'application.  */
 export const routes: Routes = [
@@ -12,7 +13,7 @@ export const routes: Routes = [
     { path: 'route-creerdonnees', component: RouteAccueilComponent },
     { path: 'route-competence', component: RouteAccueilComponent },
     { path: 'route-eleve', component: RouteEleveComponent },
-    { path: 'route-journal', component: RouteAccueilComponent },
+    { path: 'route-journal', component: RouteJournalComponent },
     { path: 'route-projet', component: RouteAccueilComponent },
     { path: 'route-tableaudebord', component: RouteAccueilComponent },
     { path: 'route-taches', component: RouteAccueilComponent }

@@ -9,6 +9,8 @@ import { ContexteService } from "./contexte-service";
 @Injectable({ providedIn: 'root' })
 export class MaClasseService {
 
+    private static readonly FORMAT_DATE_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d*)?Z$/;
+
     /** Constructeur pour injection des dépendances. */
     constructor(private contexteService: ContexteService) { }
 
@@ -85,9 +87,18 @@ export class MaClasseService {
 
     /** Parse du fichier. */
     private parserFichierJson(json: string): Observable<Annee | undefined> {
+
+        // Fonction traitant les dates dans le JSON
+        const parseIsoDateStrToDate = (key: string, value: any) => {
+            if (typeof value === "string" && MaClasseService.FORMAT_DATE_ISO.test(value)) {
+                return new Date(value);
+            }
+            return value
+        }
+
         // Parse du JSON
         try {
-            return of(JSON.parse(json))
+            return of(JSON.parse(json, parseIsoDateStrToDate))
         } catch (error) {
             console.error(error);
             return of(undefined);
