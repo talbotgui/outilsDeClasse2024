@@ -5,12 +5,11 @@ export class Competence {
 }
 export class Note {
   public id?: string;
-  public valeur?: string;
+  public date?: Date;
   public idEleve?: string;
   public idItem?: string;
-  public date?: Date;
-  public proposition?: string;
-  public constat?: string;
-  public commentaire?: string;
-  public outil?: string;
+  public valeurEvaluation?: string;
+  public commentaireEvaluationPublic?: string;
+  public commentaireEvaluationPrive?: string;
+  public constatEnPreparation?: string;
 }

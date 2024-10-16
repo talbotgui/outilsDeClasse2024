@@ -45,11 +45,11 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     public eleveSelectionne: Eleve | undefined;
 
     /** Liste des statuts d'élève pour la liste déroulante */
-    public mapLibelleStatutEleve: any | undefined;
+    public mapLibelleStatutEleve: { [key: string]: string } = {};
     /** Liste des types de contact pour la liste déroulante */
-    public mapTypeContact: any | undefined;
+    public mapTypeContact: { [key: string]: string } = {};
     /** Liste des raisons d'absence pour la liste déroulante */
-    public mapRaisonAbsence: any | undefined;
+    public mapRaisonAbsence: { [key: string]: string } = {};
     /** Fréquences disponibles pour une absence. */
     public mapFrequenceAbsence = { '0': 'Semaine paire', '1': 'Semaine impaire', '2': 'Chaque semaine' };
     /**  Liste des heures pour la sélection de l'heure de début et de fin des temps*/
@@ -69,9 +69,9 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
                 this.eleves = donnees?.eleves;
-                this.mapLibelleStatutEleve = donnees?.mapLibelleStatutEleve;
-                this.mapTypeContact = donnees?.mapTypeContact;
-                this.mapRaisonAbsence = donnees?.mapRaisonAbsence;
+                this.mapLibelleStatutEleve = donnees?.mapLibelleStatutEleve || {};
+                this.mapTypeContact = donnees?.mapTypeContact || {};
+                this.mapRaisonAbsence = donnees?.mapRaisonAbsence || {};
                 const idEleveSelectionne = this.activatedRoute.snapshot.queryParams['id'];
                 if (idEleveSelectionne) {
                     this.eleveSelectionne = this.eleves?.find(e => e.id === idEleveSelectionne);

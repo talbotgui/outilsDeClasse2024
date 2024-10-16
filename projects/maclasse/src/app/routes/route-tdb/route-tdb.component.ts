@@ -37,8 +37,10 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     public periodes: Periode[] = [];
     /** Donnees de référence : liste des périodes. */
     private competences: Competence[] = [];
-    /** Donnees de référence : liste des périodes sous forme de MAP. */
+    /** Donnees de référence : liste des compétences sous forme de MAP. */
     private mapCompetences = new Map<string, Competence>();
+    /** Donnees de référence : libellés de note. */
+    public mapLibelleNotes: { [key: string]: string } = {};
 
 
     /** Donnees manipulées : liste des notes. */
@@ -75,6 +77,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 this.notes = donnees?.notes || [];
                 this.competences = donnees?.competences || [];
                 this.competences.forEach(c => this.mapCompetences.set(c.id || '', c));
+                this.mapLibelleNotes = donnees?.mapLibelleNotes || {};
 
                 // Initialisation des filtres à partir des données de l'URL (si présentes)
                 if (eleveEnParametreUrl && periodeEnParametreUrl && periodeEnParametreUrl) {

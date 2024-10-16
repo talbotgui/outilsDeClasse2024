@@ -7114,126 +7114,125 @@ export class Jdd {
         ],
         notes: [
             {
-                commentaire: 'commentaire 1',
+                commentaireEvaluationPublic: 'commentaire 1',
                 date: new Date('2016-09-15T00:00:00.000Z'),
                 id: 'bouchon-rqwkrpew',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-j1_263',
-                valeur: '1'
+                valeurEvaluation: '1'
             },
             {
-                commentaire: 'commentaire 2',
+                commentaireEvaluationPublic: 'commentaire 2',
                 date: new Date('2016-09-16T00:00:00.000Z'),
                 id: 'bouchon-80vebly5',
                 idEleve: 'bouchon-rvns1q6a',
                 idItem: 'bouchon-j1_263',
-                valeur: 'n',
-                proposition: 'aide proposée',
-                constat: 'etat de fait'
+                valeurEvaluation: 'n'
             },
             {
-                commentaire: 'commentaire seconde competence sur le domaine',
+                commentaireEvaluationPublic: 'commentaire seconde competence sur le domaine',
                 date: new Date('2016-09-17T00:00:00.000Z'),
                 id: 'bouchon-80vebla3',
                 idEleve: 'bouchon-rvns1q6a',
                 idItem: 'bouchon-j1_266',
-                valeur: '2'
+                valeurEvaluation: '2'
             },
             {
-                commentaire: 'commentaireAA',
+                commentaireEvaluationPublic: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-8xi2pi2f',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W111',
-                valeur: '3'
+                valeurEvaluation: '3'
             },
             {
-                commentaire: 'commentaireAA',
+                commentaireEvaluationPublic: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-mlmqmsiz',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W113',
-                valeur: '3'
+                valeurEvaluation: '3'
             },
             {
-                commentaire: 'commentaireAA',
+                commentaireEvaluationPublic: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-bhiek0vk',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W132',
-                valeur: '3'
+                valeurEvaluation: '3'
             },
             {
-                commentaire: 'commentaireAA',
+                commentaireEvaluationPublic: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-sjg60c0c',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W143',
-                valeur: '1'
+                valeurEvaluation: '1'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-2fej8g43',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W611',
-                valeur: 'a'
+                valeurEvaluation: 'a'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-gs0sa58n',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W612',
-                valeur: 'a'
+                valeurEvaluation: 'a'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-rfxtldvg',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W651',
-                valeur: 'a'
+                valeurEvaluation: 'a'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-v1h5uw0o',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W421',
-                valeur: 'a'
+                valeurEvaluation: 'a'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-av8ci1hn',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W422',
-                valeur: 'n'
+                valeurEvaluation: 'n'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-is2ff4fm',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W211',
-                valeur: 'n'
+                valeurEvaluation: 'n'
             },
             {
-                commentaire: 'commentaireBB',
+                commentaireEvaluationPublic: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-q17zsevt',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W522',
-                valeur: 'n'
+                valeurEvaluation: 'n'
             },
             {
-                commentaire: 'derniere eval de l\'année',
+                commentaireEvaluationPublic: 'derniere eval de l\'année',
                 date: new Date('2017-06-22T00:00:00.000Z'),
                 id: 'bouchon-q17zsevt',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W522',
-                valeur: '1'
+                valeurEvaluation: '1',
+                constatEnPreparation: 'etat de fait'
             }
         ],
         dateDerniereSauvegarde: new Date('2017-07-03T15:57:12.878Z'),

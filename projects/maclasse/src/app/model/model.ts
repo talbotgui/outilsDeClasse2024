@@ -16,10 +16,10 @@ export class Annee extends AvecIdentifiant {
   public enteteEdition?: string;
   public historique: Historique[] = [];
   public journal: Journal[] = [];
-  public mapLibelleNotes: any;
-  public mapLibelleStatutEleve: any;
-  public mapTypeContact: any;
-  public mapRaisonAbsence: any;
+  public mapLibelleNotes: { [key: string]: string } = {};
+  public mapLibelleStatutEleve: { [key: string]: string } = {};
+  public mapTypeContact: { [key: string]: string } = {};
+  public mapRaisonAbsence: { [key: string]: string } = {};
   public notes: Note[] = [];
   public periodes: Periode[] = [];
   public projets: Projet[] = [];
