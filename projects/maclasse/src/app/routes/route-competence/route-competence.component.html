@@ -11,7 +11,7 @@
 <!-- Sélecteur de compétence -->
 <fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Sélection d'une compétence</legend>
-    <div composant-selectioncompetence></div>
+    <div composant-selectioncompetence (onSelectionDunCompetence)="selectionnerCompetence($event)"></div>
 </fieldset>
 
 <!-- Toutes les compétences-->

@@ -14,7 +14,7 @@
             <mat-form-field class="maclasse-pleinelargeur">
                 <mat-label>Mot clef</mat-label>
                 <textarea type="text" placeholder="Mot clef" matInput [formControl]="controleAutocompletion" [matAutocomplete]="auto"></textarea>
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="afficherOptionCompetenceDansAutocomplete">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="afficherOptionCompetenceDansAutocomplete" (optionSelected)="selectionnerCompetenceDepuisAutocompletion($event)">
                     @for (c of resultatsAutocompletion | async; track c.competence.id) {
                     <mat-option [value]="c">{{c.competence.text}}</mat-option>
                     }
@@ -51,11 +51,11 @@
         <!-- Si la dernière compétence sélectionnée a des enfants, SELECT -->
         @if (competencesEnfantsDisponibles && competencesEnfantsDisponibles.length > 0) {
         <h3>Sous-compétence(s) disponible(s)</h3>
-        <mat-form-field>
+        <mat-form-field class="maclasse-pleinelargeur">
             <mat-label>Competence suivante</mat-label>
-            <mat-select placeholder="Competence suivante" name="competenceSuivante">
+            <mat-select placeholder="Competence suivante" name="competenceSuivante" (selectionChange)="selectionnerCompetenceEnfant($event)">
                 @for (c of competencesEnfantsDisponibles ; track c.id) {
-                <mat-option (onSelectionChange)="selectionnerCompetenceEnfant(c)" [value]="c.id">{{c.text}}</mat-option>
+                <mat-option [value]="c.id">{{c.text}}</mat-option>
                 }
             </mat-select>
         </mat-form-field>

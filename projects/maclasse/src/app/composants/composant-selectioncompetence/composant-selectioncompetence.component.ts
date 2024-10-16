@@ -1,12 +1,12 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -31,6 +31,7 @@ import { ContexteService } from '../../service/contexte-service';
 })
 export class ComposantSelectionCompetenceComponent extends AbstractComponent implements OnInit {
 
+
     /** Flag indiquant que les données sont chargées. */
     public donneesChargees = false;
 
@@ -45,6 +46,10 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
 
     /** Formulaire d'autocompletion (non typé volontairement car saisie d'une string mais sélection d'un OptionCompetence) */
     public controleAutocompletion: FormControl = new FormControl();
+
+    /** Sortie à la sélection d'une compétence*/
+    @Output()
+    public onSelectionDunCompetence = new EventEmitter<Competence>();
 
     /** Liste des résulat de l'autocomplétion*/
     public resultatsAutocompletion: Observable<OptionCompetence[]> | undefined;
@@ -123,13 +128,36 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
         this.competencesEnfantsDisponibles = this.competences.filter(c => c.parent == idCompetenceParente);
     }
 
-    /** A la sélection d'une compétence enfant */
-    public selectionnerCompetenceEnfant(competenceEnfant: Competence): void {
-        // Ajout dans la liste
-        this.competencesSelectionnees.push(competenceEnfant)
+    /** Envoi d'un évènement de sélection depuis l'arborescence */
+    private selectionnerCompetenceDepuisArborescence(): void {
+        if (this.competencesSelectionnees) {
+            this.onSelectionDunCompetence.emit(this.competencesSelectionnees[this.competencesSelectionnees.length - 1]);
+        }
+    }
 
-        // Calcul des compétences enfantes suivantes
-        this.definirListeCompetenceEnfant(competenceEnfant.id || '#');
+    /** Envoi d'un évènement de sélection depuis l'autocompletion */
+    public selectionnerCompetenceDepuisAutocompletion(event: MatAutocompleteSelectedEvent): void {
+        if (event.option) {
+            this.onSelectionDunCompetence.emit((event.option.value as OptionCompetence).competence);
+        }
+    }
+
+    /** A la sélection d'une compétence enfant */
+    public selectionnerCompetenceEnfant(event: MatSelectChange): void {
+
+        // recherche de la compétence
+        const competenceEnfant = this.competences.find(c => c.id === event.value);
+        if (competenceEnfant) {
+
+            // Ajout dans la liste
+            this.competencesSelectionnees.push(competenceEnfant)
+
+            // Calcul des compétences enfantes suivantes
+            this.definirListeCompetenceEnfant(competenceEnfant.id || '#');
+
+            // Envoi de l'évènement de sélection d'une compétence
+            this.selectionnerCompetenceDepuisArborescence();
+        }
     }
 
     /** Suppression d'une compétence déjà sélectionnée */
@@ -152,5 +180,8 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
         } else {
             this.definirListeCompetenceEnfant('#');
         }
+
+        // Envoi de l'évènement de sélection d'une compétence
+        this.selectionnerCompetenceDepuisArborescence();
     }
 }

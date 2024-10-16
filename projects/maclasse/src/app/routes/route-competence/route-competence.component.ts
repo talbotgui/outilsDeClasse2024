@@ -13,6 +13,7 @@ import { tap } from 'rxjs';
 import { ComposantSelectionCompetenceComponent } from '../../composants/composant-selectioncompetence/composant-selectioncompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { NoeudCompetence } from '../../model/arbre-model';
+import { Competence } from '../../model/note-model';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({
@@ -38,6 +39,9 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
     /** Competences chargées. */
     public flagCompetencesChargees = false;
 
+    /** Données chargées dans le datasource mais sous forme de map */
+    private mapNoeuds = new Map<string, NoeudCompetence>();
+
     /** Objet de controle de l'arbre (deprécié mais aucune documentation de l'usage sans cette classe au 17/09/2024). */
     public treeControl = new NestedTreeControl<NoeudCompetence>(n => n.noeudsEnfant);
 
@@ -58,7 +62,7 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
                     this.dataSource.data = noeudsRacine;
 
                     // Initialisation de la map utilisée durant la création du jdd de l'arbre
-                    const mapNoeuds = new Map<string, NoeudCompetence>();
+                    this.mapNoeuds = new Map<string, NoeudCompetence>();
 
                     // Pour chaque compétence complète
                     donnees.competences.forEach(c => {
@@ -66,12 +70,12 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
 
                             // Création de la compétence
                             const nouvelleCompetence = new NoeudCompetence(c.id, c.text, []);
-                            mapNoeuds.set(c.id, nouvelleCompetence);
+                            this.mapNoeuds.set(c.id, nouvelleCompetence);
                             // Rechercher du parent
                             if (c.parent == '#') {
                                 noeudsRacine.push(nouvelleCompetence);
                             } else {
-                                const noeudParent = mapNoeuds.get(c.parent);
+                                const noeudParent = this.mapNoeuds.get(c.parent);
                                 if (noeudParent) {
                                     nouvelleCompetence.noeudParent = noeudParent;
                                     noeudParent.noeudsEnfant.push(nouvelleCompetence);
@@ -91,5 +95,30 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
     /** Pour savoir si une competence a des enfants. */
     public estUneCompetenceParente(_: number, node: NoeudCompetence): boolean {
         return node.noeudsEnfant && node.noeudsEnfant.length > 0;
+    }
+
+    /** A la sélection d'un compétence dans le sélecteur de compétence. */
+    public selectionnerCompetence(competence: Competence): void {
+
+        // Collapse total
+        this.treeControl.collapseAll();
+
+        // Si la compétence est bien un noeud
+        if (competence && competence.id) {
+            const noeud = this.mapNoeuds.get(competence.id);
+            if (noeud) {
+
+                // Création du chemin vers le bon noeud
+                const listeNoeud = [];
+                let n: NoeudCompetence | undefined = noeud;
+                while (n) {
+                    listeNoeud.push(n);
+                    n = n.noeudParent;
+                }
+
+                // En partant du dernier, expand de chaque noeud
+                listeNoeud.reverse().forEach(n => this.treeControl.expand(n));
+            }
+        }
     }
 }
