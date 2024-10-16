@@ -42,7 +42,6 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     /** Donnees de référence : libellés de note. */
     public mapLibelleNotes: { [key: string]: string } = {};
 
-
     /** Donnees manipulées : liste des notes. */
     private notes: Note[] = [];
     /** Donnees manipulées : liste des lignes du tableau de bord. */
@@ -54,6 +53,9 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     public periodeSelectionnee: Periode | undefined;
     /** Filtre : Mode d'affichage. */
     public modeAffichage: number = 1;
+
+    /** Edition : groupe de compétence en cours d'édition */
+    public indexEnEdition: number | undefined;
 
     /** Constructeur pour injection des dépendances. */
     public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private maclasseService: MaClasseService, private dialog: MatDialog) {
@@ -201,6 +203,11 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
 
     /** Au changement d'un des filtres. */
     public onChangementFiltre(): void {
+
+        // Pas de mode complet pour la dernière période
+        if (this.modeAffichage == 3 && this.periodeSelectionnee?.id == this.periodes[this.periodes.length - 1].id) {
+            this.modeAffichage = 2;
+        }
 
         // MaJ de l'URL avec les données de filtrage
         if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {

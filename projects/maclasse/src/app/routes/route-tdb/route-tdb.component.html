@@ -4,9 +4,9 @@
     <mat-form-field>
         <mat-label>Mode d'affichage</mat-label>
         <mat-select placeholder="Mode d'affichage" [(ngModel)]="modeAffichage" (selectionChange)="onChangementFiltre()">
-            <mat-option value="1">Mode préparation</mat-option>
-            <mat-option value="2">Mode évaluation</mat-option>
-            <mat-option value="3">Mode complet</mat-option>
+            <mat-option value=1>Mode préparation</mat-option>
+            <mat-option value=2>Mode évaluation</mat-option>
+            <mat-option value=3>Mode complet</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field>
@@ -42,18 +42,31 @@
 <fieldset class="maclasse-formulaire maclasse-couperEnModePrint">
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
-        @if (modeAffichage==1){
-        <span>en préparation de </span>
-        }@else if (modeAffichage==2 || modeAffichage==3){
-        <span>pour évaluer </span>
+        @if (modeAffichage==1) {
+        <span>pour préparer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
+        } @else if (modeAffichage==2 || modeAffichage==3) {
+        <span>pour évaluer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
         }
-        <span>la période {{periodes.indexOf(periodeSelectionnee)+1}}.</span>
+        @if (modeAffichage==3) {
+        <span> et préparer la période suivante</span>
+        }
     </legend>
     <div>
 
         @for (ligne of lignes ; track ligne.id ; let idx = $index) {
         <fieldset class="maclasse-formulaire">
-            <legend>{{ligne.libelleCompetenceParente}}</legend>
+            <legend>
+                <span>{{ligne.libelleCompetenceParente}}</span>
+                @if (indexEnEdition==idx) {
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="indexEnEdition=undefined" matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+                    <fa-icon icon="check"></fa-icon>
+                </button>
+                }@else {
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="indexEnEdition=idx" matTooltip="Editer cette ligne" aria-label="Editer cette ligne">
+                    <fa-icon icon="pencil" size="xs"></fa-icon>
+                </button>
+                }
+            </legend>
             <div class="maclasse-table">
                 <div class="maclasse-table-ligne maclasse-table-entete">
                     <div class="maclasse-table-case" [class.maclasse-table-case-w85]="modeAffichage==1" [class.maclasse-table-case-w55]="modeAffichage==2"
@@ -85,18 +98,30 @@
                     </div>
                     @if (modeAffichage!=1){
                     <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx) {
+                        }@else {
                         <p>{{(sousLigne.notePeriodePrecedente && sousLigne.notePeriodePrecedente.valeurEvaluation)?mapLibelleNotes[sousLigne.notePeriodePrecedente.valeurEvaluation]:''}}</p>
+                        }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx) {
+                        }@else {
                         <p>{{sousLigne.notePeriodePrecedente?.commentaireEvaluationPublic}}</p>
+                        }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx) {
+                        }@else {
                         <p>{{sousLigne.notePeriodePrecedente?.commentaireEvaluationPrive}}</p>
+                        }
                     </div>
                     }
                     @if (modeAffichage!=2){
                     <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx) {
+                        }@else {
                         <p>{{sousLigne.notePeriodeSuivante?.constatEnPreparation}}</p>
+                        }
                     </div>
                     }
                 </div>
