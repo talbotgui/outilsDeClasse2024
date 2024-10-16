@@ -4,7 +4,7 @@
     <!-- Selecteur de fichier de données -->
     <!-- L'input FILE est en dehors du mat-form-field car Material ne les supporte pas-->
     <button type="button" mat-icon-button (click)="inputFichierLocal.click()" matTooltip="Sélectionner un fichier" aria-label="Sélectionner un fichier en cliquant sur ce bouton">
-        <fa-icon icon="file-code-o"></fa-icon>
+        <fa-icon icon="file-upload"></fa-icon>
     </button>
     <input hidden type="file" #inputFichierLocal (change)="onSelectFichierLocal($event)">
 
