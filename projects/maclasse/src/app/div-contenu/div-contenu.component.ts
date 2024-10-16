@@ -30,12 +30,8 @@ export class DivContenuComponent extends AbstractComponent implements OnInit {
   public ngOnInit(): void {
     // Si des données sont chargées, 
     const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
-      tap(donnees => {
-        //l'état est conservé
-        this.donneesDeClasseChargee = !!donnees;
-        // bascule sur la route ELEVE
-        this.router.navigate(['route-eleve']);
-      })
+      //l'état est conservé
+      tap(donnees => this.donneesDeClasseChargee = !!donnees)
     ).subscribe();
     super.declarerSouscription(sub);
   }

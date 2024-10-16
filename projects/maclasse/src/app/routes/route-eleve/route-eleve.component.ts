@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
@@ -49,7 +50,7 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     public joursDeLaSemaine: Map<string, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService) { super(); }
+    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }
 
     /** Au chargement du composant */
     public ngOnInit(): void {
@@ -60,9 +61,15 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
                 this.mapLibelleStatutEleve = donnees?.mapLibelleStatutEleve;
                 this.mapTypeContact = donnees?.mapTypeContact;
                 this.mapRaisonAbsence = donnees?.mapRaisonAbsence;
+                const idEleveSelectionne = this.activatedRoute.snapshot.queryParams['id'];
+                if (idEleveSelectionne) {
+                    this.eleveSelectionne = this.eleves?.find(e => e.id === idEleveSelectionne);
+                }
             })
         ).subscribe();
         super.declarerSouscription(sub);
+
+        this.activatedRoute.queryParams.subscribe(params => console.log('params=', params));
     }
 
     /** Ajout d'un contact à la liste des contacts de l'élève sélectionné */
@@ -108,6 +115,10 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         else {
             this.eleveSelectionne = eleve;
         }
+
+        // MaJ de l'URL avec le bon ID d'élève
+        const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.eleveSelectionne?.id } }).toString();
+        this.location.go(url);
     }
 
     /** Ajouter une ligne de cursus */
