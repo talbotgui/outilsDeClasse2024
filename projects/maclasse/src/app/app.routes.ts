@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.component';
 import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
+import { RouteCompetenceComponent } from './routes/route-competence/route-competence.component';
 import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
 import { RouteJournalComponent } from './routes/route-journal/route-journal.component';
 
@@ -11,19 +12,15 @@ export const routes: Routes = [
     { path: 'route-accueil', component: RouteAccueilComponent },
     { path: 'route-chargerdonnees', component: RouteChargerDonneesComponent },
     { path: 'route-creerdonnees', component: RouteAccueilComponent },
-    { path: 'route-competence', component: RouteAccueilComponent },
+    { path: 'route-competence', component: RouteCompetenceComponent },
     { path: 'route-eleve', component: RouteEleveComponent },
     { path: 'route-journal', component: RouteJournalComponent },
     { path: 'route-projet', component: RouteAccueilComponent },
     { path: 'route-tableaudebord', component: RouteAccueilComponent },
     { path: 'route-taches', component: RouteAccueilComponent }
-    // { path: 'tab-editioneleve/:idEleve', component: RouteAccueilComponent },
-    // { path: 'tab-editionlisteeleve', component: RouteAccueilComponent },
-    // { path: 'tab-editionjournal/:timeJournal', component: RouteAccueilComponent },
     // { path: 'tab-editionppi/:idEleve/:idPeriode', component: RouteAccueilComponent },
     // { path: 'tab-editionbilan/:idEleve/:idPeriode', component: RouteAccueilComponent },
     // { path: 'tab-eleve/:idEleve', component: RouteAccueilComponent },
     // { path: 'tab-tableaudebord/:idEleve/:idPeriode', component: RouteAccueilComponent },
-    // { path: 'tab-journal/:timeJournal', component: RouteAccueilComponent },
     // { path: 'tab-nouvelleAnnee', component: RouteAccueilComponent },
 ];
