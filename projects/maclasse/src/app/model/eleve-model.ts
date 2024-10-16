@@ -20,7 +20,7 @@ export class Eleve extends AvecIdentifiant {
   public autorisationBaignade?: string;
   public inclusion: InclusionEleve = new InclusionEleve();
 }
-export class CursusEleve {
+export class CursusEleve extends AvecIdentifiant {
   public annee: number = 0;
   public niveau?: string;
   public etablissement?: string;

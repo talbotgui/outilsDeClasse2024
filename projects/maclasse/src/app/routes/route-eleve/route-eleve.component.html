@@ -4,7 +4,7 @@
     <legend>Sélection d'un élève de la classe</legend>
 
     <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
-        @for (eleve of eleves; track eleve) {
+        @for (eleve of eleves; track eleve.id) {
         <mat-chip-option (click)="onSelectionEleve(eleve)">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
         }
     </mat-chip-listbox>
@@ -13,7 +13,7 @@
 @else {
 <p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
 </p>
-<p>Vous êtes invité à cliquer sur l'onglet <i>Charger mon année</i></p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
 }
 
 @if (eleveSelectionne){
@@ -142,7 +142,7 @@
 <!-- Formulaire - inclusions -->
 <fieldset>
     <legend>Temps d'accompagnement et d'inclusion <em class="fa fa-plus" (click)="ajouterUneAbsence()"></em></legend>
-    @for (absence of eleveSelectionne.absences ; track absence ; let idx = $index) {
+    @for (absence of eleveSelectionne.absences ; track absence.id ; let idx = $index) {
     <fieldset>
         <legend>N°{{idx}}</legend>
         <mat-form-field>
@@ -200,7 +200,7 @@
         <mat-grid-tile><em class="fa fa-plus" matTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em></mat-grid-tile>
 
         <!-- Pour chaque lignes -->
-        @for (cur of eleveSelectionne.cursus ; track cur ; let idx = $index) {
+        @for (cur of eleveSelectionne.cursus ; track cur.id ; let idx = $index) {
         <mat-grid-tile colspan="3">
             <mat-form-field class="maclasse-pleinelargeur">
                 <mat-label>Niveau en 09/{{cur.annee}}</mat-label>

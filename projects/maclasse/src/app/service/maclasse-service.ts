@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { map, Observable, of } from "rxjs";
+import { InclusionEleve } from "../model/eleve-model";
 import { MessageAafficher, TypeMessageAafficher } from "../model/message-model";
 import { Annee } from "../model/model";
 import { ModelUtil } from "../model/model-utils";
@@ -61,13 +62,25 @@ export class MaClasseService {
         donnees.taches = donnees.taches ?? [];
         // Initialisation des ID si manquant
         donnees.competences.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.eleves.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.historique.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.journal.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.notes.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.periodes.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.projets.forEach(c => c.id = c.id ?? ModelUtil.getUID());
-        donnees.taches.forEach(c => c.id = c.id ?? ModelUtil.getUID());
+        donnees.eleves.forEach(e => {
+            e.id = e.id ?? ModelUtil.getUID();
+            e.inclusion = e.inclusion ?? new InclusionEleve();
+            e.contacts = e.contacts ?? [];
+            e.absences = e.absences ?? [];
+            e.cursus = e.cursus ?? [];
+            e.contacts.forEach(c => c.id = c.id ?? ModelUtil.getUID());
+            e.cursus.forEach(c => c.id = c.id ?? ModelUtil.getUID());
+            e.absences.forEach(a => a.id = a.id ?? ModelUtil.getUID());
+        });
+        donnees.historique.forEach(h => h.id = h.id ?? ModelUtil.getUID());
+        donnees.journal.forEach(j => j.id = j.id ?? ModelUtil.getUID());
+        donnees.notes.forEach(n => n.id = n.id ?? ModelUtil.getUID());
+        donnees.periodes.forEach(p => p.id = p.id ?? ModelUtil.getUID());
+        donnees.projets.forEach(p => p.id = p.id ?? ModelUtil.getUID());
+        donnees.taches.forEach(t => {
+            t.id = t.id ?? ModelUtil.getUID();
+            t.echeances = t.echeances ?? [];
+        });
     }
 
     /** Parse du fichier. */
