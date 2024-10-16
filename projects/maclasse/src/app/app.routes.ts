@@ -3,6 +3,7 @@ import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.comp
 import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
 import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
 
+/** Liste des routes possibles dans l'application.  */
 export const routes: Routes = [
     // pour rediriger par défaut sur le dashboard
     { path: '', redirectTo: '/route-accueil', pathMatch: 'full' },
