@@ -11,7 +11,7 @@ import { DivEnteteComponent } from './div-entete/div-entete.component';
 import { DivMessageComponent } from './div-message/div-message.component';
 
 @Component({
-  selector: 'app-root', templateUrl: './app.component.html', styleUrl: './app.component.scss',
+  selector: '[app-root]', templateUrl: './app.component.html', styleUrl: './app.component.scss',
   standalone: true, imports: [
     // Pour les composants Material
     MatSidenavModule, MatButtonModule, MatTooltipModule,
