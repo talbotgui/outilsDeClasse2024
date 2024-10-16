@@ -1,14 +1,8 @@
 BUG :
- - 
+ - afficher l'application sur la pleine hauteur de la fenêtre 
 
 TODO : 
- - arbre des compétences
- - sélection des compétences dans le journal
  - détection de changement pour inhiber la sauvegarde ?
- - édition de l'élève
- - édition du journal
- - compétences dans le journal
- - compétences dans l'édition du journal
  - projets
  - tâches
 ...
