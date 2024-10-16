@@ -8,6 +8,7 @@ export class AvecIdentifiant {
   public id: string = ModelUtil.getUID();
 }
 export class Annee extends AvecIdentifiant {
+  public versionMajeureApplication?: number;
   public anneeScolaire?: string;
   public competences: Competence[] = [];
   public cycleNiveau?: string;
@@ -15,7 +16,6 @@ export class Annee extends AvecIdentifiant {
   public eleves: Eleve[] = [];
   public enseignant?: string;
   public enteteEdition?: string;
-  public historique: Historique[] = [];
   public journal: Journal[] = [];
   public mapLibelleNotes: { [key: string]: string } = {};
   public mapLibelleStatutEleve: { [key: string]: string } = {};
@@ -30,10 +30,6 @@ export class Periode extends AvecIdentifiant {
   public nom?: string;
   public debut: Date | undefined;
   public fin: Date | undefined;
-}
-export class Historique extends AvecIdentifiant {
-  public date: Date | undefined;
-  public modification?: string;
 }
 export class Echeance extends AvecIdentifiant {
   public termine: boolean = false;

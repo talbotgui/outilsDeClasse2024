@@ -4,6 +4,7 @@ export class Jdd {
 
     // Jeu de données riche
     static JDD_RICHE: Annee = {
+        versionMajeureApplication: 2024,
         id: 'bouchon-0',
         enteteEdition: 'Académie X<br/>Département X<br/>Circonscription X<br/>École : X<br/>Adresse : X<br/>Téléphone : 0<br/>Courriel : x@x.x',
         enseignant: 'M. Toto',
@@ -7273,52 +7274,6 @@ export class Jdd {
             }
         ],
         dateDerniereSauvegarde: new Date('2017-07-03T15:57:12.878Z'),
-        historique: [
-            {
-                id: 'bouchon-17', date: new Date('2016-09-15T19:30:37.231Z'),
-                modification: 'Ajout d\'une note à PRENOM1 NOM1'
-            },
-            {
-                id: 'bouchon-18', date: new Date('2016-09-15T19:30:45.829Z'),
-                modification: 'Ajout d\'une note à PRENOM2 NOM2'
-            },
-            {
-                id: 'bouchon-19', date: new Date('2016-09-15T19:30:49.348Z'),
-                modification: 'Sauvegarde du fichier'
-            },
-            {
-                id: 'bouchon-20', date: new Date('2016-09-15T20:25:13.582Z'),
-                modification: 'Sauvegarde du fichier'
-            },
-            {
-                id: 'bouchon-21', date: new Date('2016-09-15T20:36:47.171Z'),
-                modification: 'Sauvegarde du fichier'
-            },
-            {
-                id: 'bouchon-22', date: new Date('2016-10-06T19:42:16.680Z'),
-                modification: 'Cahier journal du 05/10/2016'
-            },
-            {
-                id: 'bouchon-23', date: new Date('2016-10-06T19:43:04.428Z'),
-                modification: 'Cahier journal du 05/10/2016'
-            },
-            {
-                id: 'bouchon-24', date: new Date('2016-10-06T19:43:08.279Z'),
-                modification: 'Sauvegarde du fichier'
-            },
-            {
-                id: 'bouchon-25', date: new Date('2016-10-09T16:45:57.931Z'),
-                modification: 'Cahier journal du 07/10/2016'
-            },
-            {
-                id: 'bouchon-26', date: new Date('2016-10-09T16:47:07.496Z'),
-                modification: 'Sauvegarde du fichier'
-            },
-            {
-                id: 'bouchon-27', date: new Date('2017-07-03T15:56:17.656Z'),
-                modification: 'Ajout d\'une note à PRENOM1 NOM1'
-            }
-        ],
         journal: [
             {
                 id: 'bouchon-30', date: new Date('2024-09-01T22:00:00.000Z'),
