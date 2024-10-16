@@ -87,6 +87,17 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         this.eleves?.push(new Eleve());
     }
 
+    /** Suppression de l'élève sélectionné */
+    public supprimerEleveSelectionne(): void {
+        if (this.eleves && this.eleveSelectionne) {
+            const index = this.eleves.indexOf(this.eleveSelectionne);
+            if (index !== -1) {
+                this.eleves.splice(index, 1);
+            }
+            this.eleveSelectionne = undefined;
+        }
+    }
+
     /** Au clic sur un élève, on le sélectionne/désélectionne */
     public onSelectionEleve(eleve: Eleve): void {
         // Si l'élève cliqué est déjà sélectionné, on vide l'élève sélectionné
