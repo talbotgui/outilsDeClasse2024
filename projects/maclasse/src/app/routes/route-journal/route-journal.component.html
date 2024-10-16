@@ -165,28 +165,25 @@
 
             <!-- les temps -->
             @for (groupe of temps.groupes ; track groupe.id ; let jdx = $index) {
-            <div>
+            <fieldset>
+                <legend class="maclasse-legendFlex">
+                    @if (tempsEnEdition !== idx) {
+                    {{groupe.nom}}
+                    } @else {
+                    <mat-form-field class="maclasse-pleinelargeur">
+                        <mat-label>Nom</mat-label>
+                        <input matInput type="text" name="Nom" [(ngModel)]="groupe.nom">
+                    </mat-form-field>
+
+                    <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerGroupe(idx, jdx)" matTooltip="Supprimer ce groupe dans le temps"
+                        aria-label="Supprimer ce groupe dans le temps">
+                        <fa-icon icon="users-slash"></fa-icon>
+                    </button>
+                    }
+                </legend>
                 <mat-grid-list cols="12" [rowHeight]="(tempsEnEdition!==idx)?'20px':'74px'">
                     <mat-grid-tile colspan="8">
-                        @if (tempsEnEdition !== idx) {
-                        <h2 class="maclasse-h2">{{groupe.nom}}</h2>
-                        } @else {
-                        <mat-form-field class="maclasse-pleinelargeur">
-                            <mat-label>Nom</mat-label>
-                            <input matInput type="text" name="Nom" [(ngModel)]="groupe.nom">
-                        </mat-form-field>
-
-                        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerGroupe(idx, jdx)" matTooltip="Supprimer ce groupe dans le temps"
-                            aria-label="Supprimer ce groupe dans le temps">
-                            <fa-icon icon="users-slash"></fa-icon>
-                        </button>
-                        }
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="4">
-                        <h2 class="maclasse-h2">Bilan / notes</h2>
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="8">
-                        <span>Elèves : </span>
+                        <span>Elèves :&nbsp;</span>
                         @if (tempsEnEdition !== idx) {
                         @for (eleve of eleves; track eleve.id) {
                         @if (groupe.eleves && groupe.eleves.includes(eleve.id)){
@@ -203,12 +200,8 @@
                         </mat-chip-listbox>
                         }
                     </mat-grid-tile>
-                    <mat-grid-tile colspan="4" rowspan="4" class="maclasse-caseEditeur">
-                        @if (tempsEnEdition !== idx) {
-                        <div [innerHTML]="groupe.commentaire | html"></div>
-                        } @else {
-                        <angular-editor placeholder="Commentaire" name="Commentaire" [(ngModel)]="groupe.commentaire"></angular-editor>
-                        }
+                    <mat-grid-tile colspan="4">
+                        <h2 class="maclasse-h2">Bilan / notes</h2>
                     </mat-grid-tile>
                     <mat-grid-tile colspan="8">
                         @if (tempsEnEdition !== idx) {
@@ -218,6 +211,13 @@
                             <mat-label>Objectifs</mat-label>
                             <input matInput type="text" name="Objectifs" [(ngModel)]="groupe.objectifs">
                         </mat-form-field>
+                        }
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="3" rowspan="4" class="maclasse-caseEditeur">
+                        @if (tempsEnEdition !== idx) {
+                        <div [innerHTML]="groupe.commentaire | html"></div>
+                        } @else {
+                        <angular-editor placeholder="Commentaire" name="Commentaire" [(ngModel)]="groupe.commentaire"></angular-editor>
                         }
                     </mat-grid-tile>
                     <mat-grid-tile colspan="8">
@@ -241,7 +241,7 @@
                         }
                     </mat-grid-tile>
                 </mat-grid-list>
-            </div>
+            </fieldset>
             }
             }
         </div>

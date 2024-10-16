@@ -1,6 +1,5 @@
 BUG :
- - bug à l'ajout d'un groupe sur la liste des élèves déjà sélectionnés
- - bug affichage groupe en readOnly
+ - 
 
 TODO : 
  - arbre des compétences
