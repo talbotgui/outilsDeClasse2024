@@ -16,8 +16,7 @@
     "build-competences": "ng build --project=competences",
     "//serce:ssr-* : SSR": "",
     "serve:ssr:maclasse": "node dist/maclasse/server/server.mjs",
-    "serve:ssr:competences": "node dist/competences/server/server.mjs",
-    "lint": "ng lint"
+    "serve:ssr:competences": "node dist/competences/server/server.mjs"
   },
   "private": true,
   "dependencies": {

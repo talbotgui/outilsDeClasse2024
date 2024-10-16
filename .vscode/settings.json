@@ -7,5 +7,6 @@
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
     },
+    "html.format.wrapLineLength": 200,
     "terminal.integrated.defaultProfile.windows": "Git Bash"
 }

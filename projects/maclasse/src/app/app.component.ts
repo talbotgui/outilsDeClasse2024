@@ -1,13 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { DivEnteteComponent } from './div-entete/div-entete.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  selector: 'app-root', templateUrl: './app.component.html', styleUrl: './app.component.scss',
+  standalone: true, imports: [RouterOutlet, MatTabsModule, CommonModule, RouterLink, RouterLinkActive, DivEnteteComponent]
 })
 export class AppComponent {
-  title = 'maclasse';
+
+  /** Flag indiquant que le menu peut être complètement affiché car les données sont chargées */
+  public menuCompletAffiche = false;
+
 }
