@@ -53,7 +53,6 @@ export class MaClasseService {
         donnees.eleves = donnees.eleves ?? [];
         donnees.historique = donnees.historique ?? [];
         donnees.journal = donnees.journal ?? [];
-        donnees.libellesTypeTempsJournal = donnees.libellesTypeTempsJournal ?? [];
         donnees.mapLibelleNotes = donnees.mapLibelleNotes ?? {};
         donnees.mapLibelleStatutEleve = donnees.mapLibelleStatutEleve ?? {};
         donnees.mapTypeContact = donnees.mapTypeContact ?? {};

@@ -10,6 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
@@ -17,6 +18,7 @@ import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { Journal, Temps } from '../../model/journal-model';
 import { ModelUtil } from '../../model/model-utils';
+import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({
@@ -27,7 +29,9 @@ import { ContexteService } from '../../service/contexte-service';
         // Matérial
         ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule,
         // Pour l'éditeur WYSIWYG
-        HttpClientModule, AngularEditorModule
+        HttpClientModule, AngularEditorModule,
+        // Pipes
+        HtmlPipe
     ]
 })
 export class RouteJournalComponent extends AbstractComponent implements OnInit {
@@ -44,15 +48,16 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     /** Index du temps en cours d'édition */
     public tempsEnEdition: number | undefined;
 
+    /** Flag pour les remarques  en cours d'édition */
+    public remarqueEnEdition: boolean = false;
+
     /** Données de référence : liste des heures pour la sélection de l'heure de début et de fin des temps */
     public tempsDisponibles: string[] = ModelUtil.creerListeHoraires();
-    /** Données de référence : liste des types de temps */
-    public typesDeTemps: string[] = [];
     /** Donnees de référence : liste des élèves */
     public eleves: Eleve[] = []
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }
+    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private sanitizer: DomSanitizer) { super(); }
 
     /** Au chargement du composant */
     public ngOnInit(): void {
@@ -72,7 +77,6 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
                 // Copie des données nécessaires
-                this.typesDeTemps = donnees?.libellesTypeTempsJournal || [];
                 this.journaux = donnees?.journal;
                 this.eleves = donnees?.eleves || [];
 
@@ -149,6 +153,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             const temps = new Temps();
             temps.type = type;
             this.journal.temps.splice(i + 1, 0, temps);
+            this.tempsEnEdition = i + 1
         }
     }
 
@@ -171,6 +176,13 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     public onKeyUpSurTempsDeJournal(event: KeyboardEvent): void {
         if (!!event.ctrlKey && event.key == "Enter") {
             this.validerTemps();
+        }
+    }
+
+    /** Pour valider les remarques directement via un CRTL+ENTRER */
+    public onKeyUpSurRemarqueDeJournal(event: KeyboardEvent): void {
+        if (!!event.ctrlKey && event.key == "Enter") {
+            this.remarqueEnEdition = false;
         }
     }
 }

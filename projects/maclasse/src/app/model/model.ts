@@ -16,7 +16,6 @@ export class Annee extends AvecIdentifiant {
   public enteteEdition?: string;
   public historique: Historique[] = [];
   public journal: Journal[] = [];
-  public libellesTypeTempsJournal: string[] = [];
   public mapLibelleNotes: any;
   public mapLibelleStatutEleve: any;
   public mapTypeContact: any;

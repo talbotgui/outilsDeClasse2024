@@ -51,12 +51,6 @@
     "1": "dans l'établissement",
     "2": "dans la classe"
   },
-  "libellesTypeTempsJournal": [
-    "Apprentissage",
-    "Entraînement",
-    "Réinvestissement",
-    "Evaluation"
-  ],
   "eleves": [
     {
       "contacts": [

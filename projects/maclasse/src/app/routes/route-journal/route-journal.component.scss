@@ -17,19 +17,10 @@ fieldset.tempsDeJournal>div {
 
 /* Pour créer un style d'onglet au niveau des fieldset - FIN */
 
-/* Pour les temps de type RECREATION et TRANSPORT - DEBUT. */
-fieldset.maclasse-recreation,
-fieldset.maclasse-transport {
+/* Pour les temps de type RECREATION et TRANSPORT. */
+fieldset.maclasse-transportOuRecreation>legend {
     background-color: lightgray;
 }
-
-/* Pour les temps de type . */
-fieldset.maclasse-recreation>fieldset,
-fieldset.maclasse-transport>fieldset {
-    display: contents;
-}
-
-/* Pour les temps de type RECREATION et TRANSPORT - FIN. */
 
 /* Pour créer une liste d'élèves sans ponctuation. */
 span.eleve {

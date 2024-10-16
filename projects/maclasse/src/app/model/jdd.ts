@@ -69,12 +69,6 @@ export class Jdd {
             P: "Psychologue",
             A: "Autre"
         },
-        libellesTypeTempsJournal: [
-            'Apprentissage',
-            'Entraînement',
-            'Réinvestissement',
-            'Evaluation'
-        ],
         eleves: [
             {
                 id: 'bouchon-hfys3v9z',
@@ -7297,7 +7291,6 @@ export class Jdd {
                     {
                         debut: '9h00', fin: '9h15',
                         id: 'bouchon-28', nom: 'accueil',
-                        type: 'Apprentissage',
                         commentaire: 'Temps d\'accueil : un élève en retard mais le temps a été calme',
                         eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
                         competences: [
@@ -7307,7 +7300,6 @@ export class Jdd {
                     {
                         debut: '9h15', fin: '9h45',
                         id: 'bouchon-29', nom: 'math',
-                        type: 'Apprentissage',
                         commentaire: 'début de journée',
                         eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
                         competences: [
@@ -7323,7 +7315,6 @@ export class Jdd {
                     {
                         debut: '9h00', fin: '9h15',
                         id: 'bouchon-32', nom: 'T1',
-                        type: 'Apprentissage',
                         commentaire: 'Comm T1',
                         eleves: [
                             'evnr1v6a',
@@ -7338,7 +7329,6 @@ export class Jdd {
                     {
                         debut: '9h15', fin: '9h30',
                         id: 'bouchon-33', nom: 'T2',
-                        type: 'Apprentissage',
                         commentaire: 'Comm T2',
                         eleves: [
                             'evnr1v6a',

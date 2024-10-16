@@ -44,21 +44,37 @@
     <!-- Si un journal correspond -->
     @else{
 
+    <!-- Remarque de ce journal -->
+    <fieldset class="tempsDeJournal" (keyup)="onKeyUpSurRemarqueDeJournal($event)">
+        <legend>
+            Remarques :
+            @if (!remarqueEnEdition){
+            <button type=" button" (click)="remarqueEnEdition=true" matTooltip="Modifier les remarques" aria-label="Modifier les remarques">
+                <em class="maclasse-fa fa fa-pencil"></em>
+            </button>
+            } @else {
+            <button type="button" (click)="remarqueEnEdition=false" matTooltip="Valider les remarques" aria-label="Valider les remarques">
+                <em class="maclasse-fa fa fa-check"></em>
+            </button>
+            }
+        </legend>
+        @if (remarqueEnEdition){
+        <angular-editor placeholder="Remarque" name="Remarque" [(ngModel)]="journal.remarque"></angular-editor>
+        } @else {
+        <div [innerHTML]="journal.remarque | html"></div>
+        }
+    </fieldset>
+
     <!-- les temps -->
     @for (temps of journal.temps ; track temps.id ; let idx = $index) {
-    @if (temps.type==='recreation') {
-    <fieldset class="maclasse-recreation">
-        <legend>Récréation</legend>
-    </fieldset>
-    } @else if (temps.type==='transport') {
-    <fieldset class="maclasse-transport">
-        <legend>Transport</legend>
-    </fieldset>
-    } @else {
 
-    <fieldset class="tempsDeJournal" (keyup)="onKeyUpSurTempsDeJournal($event)">
+    <fieldset class="tempsDeJournal" [class.maclasse-transportOuRecreation]="temps.type==='transport' || temps.type==='recreation'" (keyup)="onKeyUpSurTempsDeJournal($event)">
         <legend>
-            @if (tempsEnEdition!==idx) {
+            @if (temps.type==='recreation') {
+            Récréation
+            } @else if (temps.type==='transport') {
+            Transport
+            } @else if (tempsEnEdition!==idx) {
             <span>de {{temps.debut}} à {{temps.fin}}</span>
             } @else {
             <mat-form-field class="maclasse-petitelargeur">
@@ -78,6 +94,7 @@
                 </mat-select>
             </mat-form-field>
             }
+            @if (temps.type==='classe'){
             @if (tempsEnEdition!==idx) {
             <button type="button" (click)="editerTemps(idx)" matTooltip="Modifier ce temps" aria-label="Modifier ce temps">
                 <em class="maclasse-fa fa fa-pencil"></em>
@@ -86,6 +103,7 @@
             <button type="button" (click)="validerTemps()" matTooltip="Valider ce temps" aria-label="Valider ce temps">
                 <em class="maclasse-fa fa fa-check"></em>
             </button>
+            }
             }
             @if (idx !== journal.temps.length-1) {
             <button type="button" (click)="descendreTemps(idx)" matTooltip="Descendre ce temps" aria-label="Descendre ce temps">
@@ -110,6 +128,7 @@
             </button>
             }
         </legend>
+        @if (temps.type==='classe'){
         <div>
             <mat-grid-list cols="12" [rowHeight]="(tempsEnEdition!==idx)?'20px':'74px'">
                 <mat-grid-tile colspan="8">
@@ -144,7 +163,11 @@
                     }
                 </mat-grid-tile>
                 <mat-grid-tile colspan="4" rowspan="4">
-                    {{temps.commentaire}}
+                    @if (tempsEnEdition!==idx) {
+                    <div [innerHTML]="temps.commentaire | html"></div>
+                    } @else {
+                    <angular-editor placeholder="Commentaire" name="Commentaire" [(ngModel)]="temps.commentaire"></angular-editor>
+                    }
                 </mat-grid-tile>
                 <mat-grid-tile colspan="8">
                     @if (tempsEnEdition!==idx) {
@@ -178,8 +201,9 @@
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
+        }
     </fieldset>
-    }}
+    }
     }
 </fieldset>
 }

@@ -55,12 +55,6 @@
     "1": "dans l'établissement",
     "2": "dans la classe"
   },
-  "libellesTypeTempsJournal": [
-    "Apprentissage",
-    "Entraînement",
-    "Réinvestissement",
-    "Evaluation"
-  ],
   "eleves": [
     {
       "id": "hfys3v9z",
@@ -13072,7 +13066,6 @@
           "debut": "9h00",
           "fin": "9h15",
           "nom": "accueil",
-          "type": "Apprentissage",
           "commentaire": "Temps d'accueil : un élève en retard mais le temps a été calme",
           "eleves": [
             "evnr1v6a",
@@ -13093,7 +13086,6 @@
           "debut": "9h00",
           "fin": "9h15",
           "nom": "T1",
-          "type": "Apprentissage",
           "commentaire": "Comm T1",
           "eleves": [
             "evnr1v6a",
@@ -13109,7 +13101,6 @@
           "debut": "9h15",
           "fin": "9h30",
           "nom": "T2",
-          "type": "Apprentissage",
           "commentaire": "Comm T2",
           "eleves": [
             "evnr1v6a",
