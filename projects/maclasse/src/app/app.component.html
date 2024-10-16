@@ -8,14 +8,14 @@
   <mat-sidenav-container>
 
     <!-- Ouverture de l'aide-->
-    <div class="afficherAide">
+    <div class="maclasse-afficherAide">
       <em class="fa fa-question-circle" matTooltip="Afficher l'aide" mat-button (click)="sidenav.open()"></em>
     </div>
 
     <!-- L'aide sur le côté -->
     <mat-sidenav #sidenav autoFocus="true" position="end">
       <!-- Fermeture de l'aide-->
-      <div class="afficherAide">
+      <div class="maclasse-afficherAide">
         <em class="fa fa-question-circle" matTooltip="Masquer l'aide" mat-button (click)="sidenav.close()"></em>
       </div>
 
@@ -27,7 +27,7 @@
     <div div-message></div>
 
     <!-- Le contenu en milieu de page-->
-    <div div-contenu></div>
+    <div class="maclasse-contenu" div-contenu></div>
 
   </mat-sidenav-container>
 </div>
