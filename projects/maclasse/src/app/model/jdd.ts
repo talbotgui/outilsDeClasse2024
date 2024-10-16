@@ -7290,21 +7290,26 @@ export class Jdd {
                 temps: [
                     {
                         debut: '9h00', fin: '9h15',
-                        id: 'bouchon-28', nom: 'accueil',
-                        commentaire: 'Temps d\'accueil : un élève en retard mais le temps a été calme',
-                        eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
-                        competences: [
-                            'j1_264'
-                        ]
+                        id: 'bouchon-28',
+                        groupes: [{
+                            id: 'bouchon-40', nom: 'accueil',
+                            commentaire: 'Temps d\'accueil : un élève en retard mais le temps a été calme',
+                            eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
+                            competences: [
+                                'j1_264'
+                            ]
+                        }]
                     },
                     {
                         debut: '9h15', fin: '9h45',
-                        id: 'bouchon-29', nom: 'math',
-                        commentaire: 'début de journée',
-                        eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
-                        competences: [
-                            'j1_264'
-                        ]
+                        id: 'bouchon-29', groupes: [{
+                            id: 'bouchon-39', nom: 'math',
+                            commentaire: 'début de journée',
+                            eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
+                            competences: [
+                                'j1_264'
+                            ]
+                        }]
                     }
                 ]
             },
@@ -7314,30 +7319,36 @@ export class Jdd {
                 temps: [
                     {
                         debut: '9h00', fin: '9h15',
-                        id: 'bouchon-32', nom: 'T1',
-                        commentaire: 'Comm T1',
-                        eleves: [
-                            'evnr1v6a',
-                            'rvns1q6a',
-                            'lkjsf2d3'
-                        ],
-                        competences: [
-                            'j1_263',
-                            'JF1221'
-                        ]
+                        id: 'bouchon-32',
+                        groupes: [{
+                            id: 'bouchon-38', nom: 'T1',
+                            commentaire: 'Comm T1',
+                            eleves: [
+                                'evnr1v6a',
+                                'rvns1q6a',
+                                'lkjsf2d3'
+                            ],
+                            competences: [
+                                'j1_263',
+                                'JF1221'
+                            ]
+                        }]
                     },
                     {
                         debut: '9h15', fin: '9h30',
-                        id: 'bouchon-33', nom: 'T2',
-                        commentaire: 'Comm T2',
-                        eleves: [
-                            'evnr1v6a',
-                            'rvns1q6a'
-                        ],
-                        competences: [
-                            'j1_266',
-                            'JF1222'
-                        ]
+                        id: 'bouchon-33',
+                        groupes: [{
+                            id: 'bouchon-37', nom: 'T2',
+                            commentaire: 'Comm T2',
+                            eleves: [
+                                'evnr1v6a',
+                                'rvns1q6a'
+                            ],
+                            competences: [
+                                'j1_266',
+                                'JF1222'
+                            ]
+                        }]
                     }
                 ]
             }

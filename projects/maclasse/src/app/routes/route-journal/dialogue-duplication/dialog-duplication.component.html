@@ -8,7 +8,7 @@
             <span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}} vers le journal du</span>
             }
             @if (!!temps) {
-            <span> du temps '{{temps.nom}}' vers le journal du</span>
+            <span> du temps '{{temps.debut}}-{{temps.fin}}' vers le journal du</span>
             }
         </mat-label>
         <input matInput [matDatepicker]="pickerDateCible" #inputDateCible="ngModel" [(ngModel)]="dateCible">

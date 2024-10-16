@@ -1,9 +1,10 @@
-détection de changement pour inhiber la sauvegarde ?
 créer des groupes dans un temps du journal
+arbre des compétences
+sélection des compétences dans le journal
+détection de changement pour inhiber la sauvegarde ?
 mode édition/lecture d'un élève
 édition de l'élève
 édition du journal
-arbre des compétences
 compétences dans le journal
 compétences dans l'édition du journal
 

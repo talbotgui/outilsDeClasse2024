@@ -1,12 +1,12 @@
 /************************************************************
 Pour créer un style d'onglet au niveau des fieldset - DEBUT 
 ************************************************************/
-fieldset.tempsDeJournal {
+fieldset.maclasse-tempsDeJournal {
     border: none;
     padding-top: 0px;
 }
 
-fieldset.tempsDeJournal>legend {
+fieldset.maclasse-tempsDeJournal>legend {
     line-height: 40px;
     border-radius: 10px 10px 0px 0px;
     /* pour que la couleur de fond soit celle du thème Angular*/
@@ -15,11 +15,11 @@ fieldset.tempsDeJournal>legend {
     color: white;
 }
 
-fieldset.tempsDeJournal>legend>button {
+fieldset.maclasse-tempsDeJournal>legend>button {
     color: white;
 }
 
-fieldset.tempsDeJournal>div {
+fieldset.maclasse-tempsDeJournal>div {
     padding-top: 0.35em;
     border: 1px solid var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
 }
@@ -28,22 +28,32 @@ fieldset.tempsDeJournal>div {
  Pour créer un style d'onglet au niveau des fieldset - FIN 
 ************************************************************/
 
-/* Pour masquer le cadre sous les listes déroulantes des heures dans les legend et éliminer le décalage */
-fieldset.tempsDeJournal>legend .mat-mdc-form-field-subscript-wrapper {
-    display: none;
-}
-
 /* Pour les temps de type RECREATION et TRANSPORT. */
 fieldset.maclasse-transportOuRecreation>legend {
     background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
 }
 
 /* Pour créer une liste d'élèves sans ponctuation. */
-span.eleve {
+span.maclasse-eleve {
     margin-left: 15px;
 }
 
 /** Pour rendre scrollable la case contenant l'éditeur. */
 .maclasse-caseEditeur {
     overflow: auto;
+}
+
+/** Pour aligner les titres de temps et les boutons. */
+div.maclasse-titreDeTemps {
+    width: 135px;
+}
+
+/** Pour conserver les éléments de la legend aligné. */
+.maclasse-legendFlex {
+    display: flex;
+}
+
+/** Pour placer les icones de manière régulière. */
+.maclasse-largeurUnBouton {
+    width: 48px;
 }

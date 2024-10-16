@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { map, Observable, of } from "rxjs";
 import { InclusionEleve } from "../model/eleve-model";
-import { Journal, Temps } from "../model/journal-model";
+import { GroupeSurUnTemps, Journal, Temps } from "../model/journal-model";
 import { MessageAafficher, TypeMessageAafficher } from "../model/message-model";
 import { Annee } from "../model/model";
 import { ModelUtil } from "../model/model-utils";
@@ -50,14 +50,23 @@ export class MaClasseService {
     /** Fonction de manipulation de données */
     private clonerTemps(t: Temps): Temps {
         const nouveauTemps = new Temps();
-        nouveauTemps.commentaire = t.commentaire;
-        nouveauTemps.competences = t.competences.slice();
         nouveauTemps.debut = t.debut;
         nouveauTemps.fin = t.fin;
-        nouveauTemps.eleves = t.eleves.slice();
-        nouveauTemps.nom = t.nom;
         nouveauTemps.type = t.type;
+        if (t.groupes) {
+            nouveauTemps.groupes = t.groupes.map(this.clonerGroupeSurUnTemps);
+        }
         return nouveauTemps;
+    }
+
+    /** Fonction de manipulation de données */
+    private clonerGroupeSurUnTemps(g: GroupeSurUnTemps): GroupeSurUnTemps {
+        const nouveauGroupe = new GroupeSurUnTemps();
+        nouveauGroupe.commentaire = g.commentaire;
+        nouveauGroupe.competences = g.competences.slice();
+        nouveauGroupe.eleves = g.eleves.slice();
+        nouveauGroupe.nom = g.nom;
+        return nouveauGroupe;
     }
 
     /** Ajout /completion d'attributs/membres vides. */
@@ -92,6 +101,9 @@ export class MaClasseService {
             j.id = j.id ?? ModelUtil.getUID();
             j.temps.forEach(t => {
                 t.id = t.id ?? ModelUtil.getUID();
+                t.groupes.forEach(g => {
+
+                });
                 t.type = (t.type) ? t.type : 'classe';
             });
         });
@@ -196,6 +208,13 @@ export class MaClasseService {
         const nouveauJournal = new Journal();
         nouveauJournal.date = dateJournal;
         journaux?.push(nouveauJournal);
+
+        // Le journal a par défaut un temps et un groupe
+        const temps = new Temps();
+        temps.type = 'classe';
+        temps.groupes = [new GroupeSurUnTemps()];
+        nouveauJournal.temps = [temps];
+
         return nouveauJournal;
     }
 

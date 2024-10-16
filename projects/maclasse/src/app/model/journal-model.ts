@@ -9,11 +9,15 @@ export class Journal extends AvecIdentifiant {
 export class Temps extends AvecIdentifiant {
     public debut?: string;
     public fin?: string;
+    public type?: string;
+    public groupes: GroupeSurUnTemps[] = [];
+}
+
+export class GroupeSurUnTemps extends AvecIdentifiant {
     public nom?: string;
     public objectifs?: string;
     public consignes?: string;
     public materiel?: string;
-    public type?: string;
     public commentaire?: string;
     public eleves: string[] = [];
     public competences: string[] = [];
