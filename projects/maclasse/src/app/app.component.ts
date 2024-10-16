@@ -32,6 +32,7 @@ export class AppComponent extends AbstractComponent implements OnInit {
   // conserver l'instance de bouchonService même si elle n'est pas utilisée pour forcer le chargement du composant et déclencher l'exécution de son constructeur
   constructor(private library: FaIconLibrary, private contexteService: ContexteService, private bouchonService: BouchonService) {
     super();
+    // Pour importer toute la librairie SOLID de FontAwesome et la rendre disponible dans toute l'application
     library.addIconPacks(fas);
 
   }
