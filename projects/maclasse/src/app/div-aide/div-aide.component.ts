@@ -39,7 +39,14 @@ export class DivAideComponent extends AbstractComponent implements OnInit {
         // Si l'évènement est le dernier de la série liée à un changement de page dans le routeur
         // @see https://medium.com/@gurunadhpukkalla/router-events-in-angular-3112a3968660
         if (e instanceof NavigationEnd) {
-            this.routeActive = (e as NavigationEnd).urlAfterRedirects;
+
+            // Récupération de l'URI sans les paramètres
+            let uri = (e as NavigationEnd).urlAfterRedirects;
+            const indexParam = uri.indexOf('?');
+            if (indexParam !== -1) {
+                uri = uri.substring(0, indexParam);
+            }
+            this.routeActive = uri;
         }
     }
 }
