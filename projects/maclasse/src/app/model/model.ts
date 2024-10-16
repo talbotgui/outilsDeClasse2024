@@ -15,15 +15,10 @@ export class Annee {
   public journal: Journal[] = [];
   public dateDerniereSauvegarde: Date | undefined;
   public historique: Historique[] = [];
-  public erreursChargement: string[] = [];
   public mapLibelleStatutEleve: any;
   public mapLibelleNotes: any;
   public mapTypeContact: any;
   public mapRaisonAbsence: any;
-  public mapLibelleStatutEleveMap: Map<string, string> | undefined = new Map<string, string>();
-  public mapLibelleNotesMap: Map<string, string> | undefined = new Map<string, string>();
-  public mapTypeContactMap: Map<string, string> | undefined = new Map<string, string>();
-  public mapRaisonAbsenceMap: Map<string, string> | undefined = new Map<string, string>();
   public themeSelectionne?: string;
   public taches: Tache[] = [];
   public projets: Projet[] = [];
