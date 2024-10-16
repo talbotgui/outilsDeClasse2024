@@ -4,8 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { MaClasseService } from '../../service/maclasse-service';
 
@@ -21,10 +20,7 @@ import { MaClasseService } from '../../service/maclasse-service';
 export class RouteChargerDonneesComponent extends AbstractComponent {
 
     /** Constructeur pour injection des dépendances. */
-    constructor(library: FaIconLibrary, private maclasseService: MaClasseService) {
-        super();
-        library.addIconPacks(fas);
-    }
+    constructor(private maclasseService: MaClasseService) { super(); }
 
     /**Nom du fichier local sélectionné (vide sinon) */
     public nomFichierLocal = "";

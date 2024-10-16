@@ -30,9 +30,10 @@ export class AppComponent extends AbstractComponent implements OnInit {
 
   /** Constructeur pour injection des dépendances. */
   // conserver l'instance de bouchonService même si elle n'est pas utilisée pour forcer le chargement du composant et déclencher l'exécution de son constructeur
-  constructor(library: FaIconLibrary, private contexteService: ContexteService, private bouchonService: BouchonService) {
+  constructor(private library: FaIconLibrary, private contexteService: ContexteService, private bouchonService: BouchonService) {
     super();
     library.addIconPacks(fas);
+
   }
 
   /** Au chargement du composant */

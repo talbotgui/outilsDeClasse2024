@@ -1,6 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -54,10 +53,7 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     public joursDeLaSemaine: Map<string, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(library: FaIconLibrary, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) {
-        super();
-        library.addIconPacks(fas);
-    }
+    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }
 
     /** Au chargement du composant */
     public ngOnInit(): void {

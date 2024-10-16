@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../directives/abstract.component';
 import { ContexteService } from '../service/contexte-service';
@@ -22,10 +21,7 @@ export class DivAideComponent extends AbstractComponent implements OnInit {
     public donneesChargees = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(library: FaIconLibrary, private router: Router, private contexteService: ContexteService) {
-        super();
-        library.addIconPacks(fas);
-    }
+    public constructor(private router: Router, private contexteService: ContexteService) { super(); }
 
     /** Au chargement du composant */
     public ngOnInit(): void {
