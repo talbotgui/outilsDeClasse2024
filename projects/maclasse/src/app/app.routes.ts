@@ -4,6 +4,7 @@ import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/rout
 import { RouteCompetenceComponent } from './routes/route-competence/route-competence.component';
 import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
 import { RouteJournalComponent } from './routes/route-journal/route-journal.component';
+import { RouteTdbComponent } from './routes/route-tdb/route-tdb.component';
 
 /** Liste des routes possibles dans l'application.  */
 export const routes: Routes = [
@@ -16,7 +17,7 @@ export const routes: Routes = [
     { path: 'route-eleve', component: RouteEleveComponent },
     { path: 'route-journal', component: RouteJournalComponent },
     { path: 'route-projet', component: RouteAccueilComponent },
-    { path: 'route-tableaudebord', component: RouteAccueilComponent },
+    { path: 'route-tableaudebord', component: RouteTdbComponent },
     { path: 'route-taches', component: RouteAccueilComponent }
     // { path: 'tab-editionppi/:idEleve/:idPeriode', component: RouteAccueilComponent },
     // { path: 'tab-editionbilan/:idEleve/:idPeriode', component: RouteAccueilComponent },

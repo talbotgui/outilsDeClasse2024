@@ -3,6 +3,12 @@ BUG :
  - l'icône de copie du libellé d'une compétence reste dans une impression
 
 TODO : 
+ - au chargement, vérifier la cohérence des données : 
+    - périodes qui se suivent, dans l'ordre des dates, sans chevauchement
+    - références aux croisées (idCompetence, idEleve, ...)
+ - initialiser le commentaire du journal avec les absents et les prises en charges
+ - permettre d'écraser un journal à la duplication d'un journal si le jour cible existe déjà
+ - permettre la création du journal à la duplication d'un temps si le jour cible n'existe pas.
  - tableau de bord
  - détection de changement pour inhiber la sauvegarde ?
  - projets

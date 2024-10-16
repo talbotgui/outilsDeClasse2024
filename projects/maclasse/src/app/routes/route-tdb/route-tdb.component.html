@@ -1,0 +1,67 @@
+@if (periodes.length>0 && eleves.length>0) {
+<fieldset class="maclasse-masquerEnModePrint">
+    <legend>Sélection des filtres</legend>
+    <mat-form-field>
+        <mat-label>Mode d'affichage</mat-label>
+        <mat-select placeholder="Mode d'affichage" [(ngModel)]="modeAffichage" (selectionChange)="onChangementFiltre()">
+            <mat-option value="1">Mode préparation</mat-option>
+            <mat-option value="2">Mode évaluation</mat-option>
+            <mat-option value="3">Mode complet</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        @if (modeAffichage==1){
+        <mat-label>Période à préparer</mat-label>
+        }@else if (modeAffichage==2 || modeAffichage==3){
+        <mat-label>Période à évaluer</mat-label>
+        }
+        <mat-select placeholder="Période" [(ngModel)]="periodeSelectionnee" (selectionChange)="onChangementFiltre()">
+            @for (p of periodes ; track p.id) {
+            <mat-option [value]="p">{{p.nom}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Elève</mat-label>
+        <mat-select placeholder="Eleve" [(ngModel)]="eleveSelectionne" (selectionChange)="onChangementFiltre()">
+            @for (e of eleves ; track e.id) {
+            <mat-option [value]="e">{{e.prenom}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</fieldset>
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}
+
+
+@if (lignes && eleveSelectionne && periodeSelectionnee) {
+<fieldset class="maclasse-couperEnModePrint">
+    <legend>
+        <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
+        @if (modeAffichage==1){
+        <span>en préparation de </span>
+        }@else if (modeAffichage==2 || modeAffichage==3){
+        <span>pour évaluer </span>
+        }
+        <span>la période {{periodes.indexOf(periodeSelectionnee)+1}}.</span>
+    </legend>
+    <div>
+
+        @for (ligne of lignes ; track ligne.id ; let idx = $index) {
+        <fieldset>
+            <legend>{{ligne.libelleCompetenceParente}}</legend>
+            <div>
+                @for (sousLigne of ligne.sousLignes ; track sousLigne.id ; let idy = $index) {
+                <p>{{sousLigne.libelleCompetence}}</p>
+                }
+            </div>
+        </fieldset>
+        }
+
+    </div>
+</fieldset>
+}
