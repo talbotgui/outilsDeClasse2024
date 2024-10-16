@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../directives/abstract.component';
 import { ContexteService } from '../service/contexte-service';
 
 @Component({
     selector: '[div-aide]', templateUrl: './div-aide.component.html',
-    standalone: true, imports: []
+    standalone: true, imports: [
+        // FontAwesome
+        FontAwesomeModule
+    ]
 })
 export class DivAideComponent extends AbstractComponent implements OnInit {
 
@@ -17,7 +22,10 @@ export class DivAideComponent extends AbstractComponent implements OnInit {
     public donneesChargees = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private router: Router, private contexteService: ContexteService) { super(); }
+    public constructor(library: FaIconLibrary, private router: Router, private contexteService: ContexteService) {
+        super();
+        library.addIconPacks(fas);
+    }
 
     /** Au chargement du composant */
     public ngOnInit(): void {

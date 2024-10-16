@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
@@ -28,6 +30,8 @@ import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplic
     standalone: true, imports: [
         // Angular
         CommonModule, FormsModule,
+        // FontAwesome
+        FontAwesomeModule,
         // Matérial
         ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule, MatDialogModule,
         // Pour l'éditeur WYSIWYG
@@ -59,7 +63,10 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     public eleves: Eleve[] = []
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private maclasseService: MaClasseService, private dialog: MatDialog) { super(); }
+    public constructor(library: FaIconLibrary, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private maclasseService: MaClasseService, private dialog: MatDialog) {
+        super();
+        library.addIconPacks(fas);
+    }
 
     /** Au chargement du composant */
     public ngOnInit(): void {
@@ -155,7 +162,9 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             const temps = new Temps();
             temps.type = type;
             this.journal.temps.splice(i + 1, 0, temps);
-            this.tempsEnEdition = i + 1
+            if (type === 'classe') {
+                this.tempsEnEdition = i + 1;
+            }
         }
     }
 

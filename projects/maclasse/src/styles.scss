@@ -36,3 +36,9 @@ mat-form-field.maclasse-petitelargeur {
 button.mat-mdc-icon-button {
     color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
 }
+
+// Les boutons Material avec des icônes ne sont pas plus grand que le texte
+.mat-mdc-icon-button.maclasse-bouton16 svg {
+    height: 16px;
+    width: 16px;
+}

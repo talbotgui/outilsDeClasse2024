@@ -1,4 +1,7 @@
 import { CommonModule, Location } from '@angular/common';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,9 +29,10 @@ import { ContexteService } from '../../service/contexte-service';
         CommonModule, FormsModule,
         // Matérial
         ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule,
+        // FontAwesome
+        FontAwesomeModule,
         // Pour l'éditeur WYSIWYG
         HttpClientModule, AngularEditorModule
-
     ]
 })
 export class RouteEleveComponent extends AbstractComponent implements OnInit {
@@ -50,7 +54,10 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     public joursDeLaSemaine: Map<string, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }
+    public constructor(library: FaIconLibrary, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) {
+        super();
+        library.addIconPacks(fas);
+    }
 
     /** Au chargement du composant */
     public ngOnInit(): void {

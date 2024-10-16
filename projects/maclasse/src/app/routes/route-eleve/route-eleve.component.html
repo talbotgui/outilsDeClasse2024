@@ -8,7 +8,7 @@
         <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
         }
         <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
-            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><em class="maclasse-fa fa fa-plus"></em></button>
+            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>
         </mat-chip-option>
     </mat-chip-listbox>
 </fieldset>
@@ -53,7 +53,7 @@
         </mat-select>
     </mat-form-field>
     <button type="button" (click)="supprimerEleveSelectionne()" mat-raised-button matTooltip="Supprimer cet élève" aria-label="Supprimer cet élève">
-        <em class="maclasse-fa fa fa-minus"></em> Supprimer cet élève
+        <fa-icon icon="minus"></fa-icon> Supprimer cet élève
     </button>
 </fieldset>
 
@@ -62,7 +62,7 @@
     <legend>
         <span>Contacts</span>
         <button type="button" mat-icon-button (click)="ajouterUnContact()" matTooltip="Ajouter un contact" aria-label="Ajouter un contact">
-            <em class="maclasse-fa fa fa-plus"></em>
+            <fa-icon icon="plus"></fa-icon>
         </button>
     </legend>
     @for (contact of eleveSelectionne.contacts ; track contact.id ; let idx = $index) {
@@ -93,7 +93,7 @@
             <input matInput type="adressePostale" name="adressePostale" [(ngModel)]="contact.adressePostale">
         </mat-form-field>
         <button type="button" (click)="supprimerContact(idx)" mat-raised-button matTooltip="Supprimer ce contact" aria-label="Supprimer ce contact">
-            <em class="maclasse-fa fa fa-minus"></em> Supprimer ce contact
+            <fa-icon icon="minus"></fa-icon> Supprimer ce contact
         </button>
     </fieldset>
     }
@@ -154,7 +154,7 @@
     <legend>
         <span>Temps d'accompagnement et d'inclusion </span>
         <button type="button" mat-icon-button (click)="ajouterUneAbsence()" matTooltip="Ajouter un temps" aria-label="Ajouter un temps">
-            <em class="maclasse-fa fa fa-plus"></em>
+            <fa-icon icon="plus"></fa-icon>
         </button>
     </legend>
     @for (absence of eleveSelectionne.absences ; track absence.id ; let idx = $index) {
@@ -201,7 +201,7 @@
             </mat-select>
         </mat-form-field>
         <button type="button" (click)="supprimerAbsence(idx)" mat-raised-button matTooltip="Supprimer cette absence" aria-label="Supprimer cette absence">
-            <em class="maclasse-fa fa fa-minus"></em> Supprimer cette absence
+            <fa-icon icon="minus"></fa-icon> Supprimer cette absence
         </button>
     </fieldset>
     }
@@ -217,7 +217,7 @@
         <mat-grid-tile colspan="4">Accompagnement</mat-grid-tile>
         <mat-grid-tile>
             <button type="button" mat-icon-button (click)="ajouterCursus()" matTooltip="Ajouter une ligne dans le cursus" aria-label="Ajouter une ligne dans le cursus">
-                <em class="maclasse-fa fa fa-plus"></em>
+                <fa-icon icon="plus"></fa-icon>
             </button>
         </mat-grid-tile>
 
@@ -243,7 +243,7 @@
         </mat-grid-tile>
         <mat-grid-tile>
             <button type="button" mat-icon-button (click)="supprimerCursus(idx)" matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
-                <em class="maclasse-fa fa fa-remove"></em>
+                <fa-icon icon="remove"></fa-icon>
             </button>
         </mat-grid-tile>
         }
