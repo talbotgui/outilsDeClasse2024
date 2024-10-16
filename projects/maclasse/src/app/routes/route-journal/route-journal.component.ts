@@ -7,7 +7,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -15,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
+import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { GroupeSurUnTemps, Journal, Temps } from '../../model/journal-model';
@@ -32,11 +32,13 @@ import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplic
         // FontAwesome
         FontAwesomeModule,
         // Matérial
-        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatGridListModule, MatDialogModule,
+        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatDialogModule,
         // Pour l'éditeur WYSIWYG
         HttpClientModule, AngularEditorModule,
         // Pipes
-        HtmlPipe
+        HtmlPipe,
+        // Composant applicatif
+        ComposantAffichageCompetenceComponent
     ]
 })
 export class RouteJournalComponent extends AbstractComponent implements OnInit {

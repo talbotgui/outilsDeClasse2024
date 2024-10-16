@@ -17,7 +17,7 @@ import { Competence } from '../../model/note-model';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({
-    selector: '[composant-selectioncompetence]', templateUrl: './composant-selectioncompetence.component.html', styleUrl: 'composant-selectioncompetence.component.scss',
+    selector: '[composant-selectioncompetence]', templateUrl: './composant-selectioncompetence.component.html',
     standalone: true, imports: [
         // Pour les composants Material
         MatButtonModule, MatTooltipModule, MatSelectModule, MatTabsModule,
@@ -105,7 +105,7 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
     }
 
     /** Pour faire un copier/coller */
-    public copierDansLeClipboard(source: boolean): string {
+    public recupererLibelleComplet(source: boolean): string {
 
         // Recherche du libellé en fonction de la source
         let libelleComplet = '';
@@ -113,12 +113,6 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
             libelleComplet = this.competencesSelectionnees.map(c => c.text).join(' > ');
         } else if (this.controleAutocompletion.value) {
             libelleComplet = this.afficherOptionCompetenceDansAutocomplete(this.controleAutocompletion.value as OptionCompetence);
-        }
-
-        // Copie
-        if (libelleComplet) {
-            // console.log('copie de ', libelleComplet);
-            // navigator.clipboard.writeText(libelleComplet);
         }
         return libelleComplet;
     }

@@ -181,66 +181,84 @@
                     </button>
                     }
                 </legend>
-                <mat-grid-list cols="12" [rowHeight]="(tempsEnEdition!==idx)?'20px':'74px'">
-                    <mat-grid-tile colspan="8">
-                        <span>Elèves :&nbsp;</span>
-                        @if (tempsEnEdition !== idx) {
-                        @for (eleve of eleves; track eleve.id) {
-                        @if (groupe.eleves && groupe.eleves.includes(eleve.id)){
-                        <span class="maclasse-eleve">{{eleve.prenom}}</span>
-                        }
-                        }
-                        } @else {
-                        <mat-chip-listbox aria-label="Sélection d'un élève" selectable="true" multiple="true">
-                            @for (eleve of eleves; track eleve.id) {
-                            <mat-chip-option (click)="ajouterRetirerEleveAuGroupeDunTemps(idx,jdx, eleve.id)" [selected]="groupe.eleves && groupe.eleves.includes(eleve.id)">
-                                {{eleve.prenom}}
-                            </mat-chip-option>
+                <div class="maclasse-grille" [class.maclasse-grille-edition]="tempsEnEdition == idx">
+                    <div class="maclasse-grille-col maclasse-grille-col8">
+                        <h2 class="maclasse-h2">Détails du groupe :</h2>
+                        <div class="maclasse-grille-case maclasse-caseeleves">
+                            <span class="maclasse-titre">Elèves :&nbsp;</span>
+                            @if (tempsEnEdition !== idx) {
+                            <span>
+                                @for (eleve of eleves; track eleve.id) {
+                                @if (groupe.eleves && groupe.eleves.includes(eleve.id)){
+                                <span class="maclasse-eleve">{{eleve.prenom}}</span>
+                                }
+                                }
+                            </span>
+                            } @else {
+                            <mat-chip-listbox aria-label="Sélection d'un élève" selectable="true" multiple="true">
+                                @for (eleve of eleves; track eleve.id) {
+                                <mat-chip-option (click)="ajouterRetirerEleveAuGroupeDunTemps(idx,jdx, eleve.id)" [selected]="groupe.eleves && groupe.eleves.includes(eleve.id)">
+                                    {{eleve.prenom}}
+                                </mat-chip-option>
+                                }
+                            </mat-chip-listbox>
                             }
-                        </mat-chip-listbox>
-                        }
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="4">
-                        <h2 class="maclasse-h2">Bilan / notes</h2>
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="8">
-                        @if (tempsEnEdition !== idx) {
-                        Objectifs : {{groupe.objectifs}}
-                        } @else {
-                        <mat-form-field class="maclasse-pleinelargeur">
-                            <mat-label>Objectifs</mat-label>
-                            <input matInput type="text" name="Objectifs" [(ngModel)]="groupe.objectifs">
-                        </mat-form-field>
-                        }
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="3" rowspan="4" class="maclasse-caseEditeur">
-                        @if (tempsEnEdition !== idx) {
-                        <div [innerHTML]="groupe.commentaire | html"></div>
-                        } @else {
-                        <angular-editor placeholder="Commentaire" name="Commentaire" [(ngModel)]="groupe.commentaire"></angular-editor>
-                        }
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="8">
-                        @if (tempsEnEdition !== idx) {
-                        Consignes : {{groupe.consignes}}
-                        } @else {
-                        <mat-form-field class="maclasse-pleinelargeur">
-                            <mat-label>Consignes</mat-label>
-                            <input matInput type="text" name="Consignes" [(ngModel)]="groupe.consignes">
-                        </mat-form-field>
-                        }
-                    </mat-grid-tile>
-                    <mat-grid-tile colspan="8">
-                        @if (tempsEnEdition !== idx) {
-                        Matériel : {{groupe.materiel}}
-                        } @else {
-                        <mat-form-field class="maclasse-pleinelargeur">
-                            <mat-label>Matériel</mat-label>
-                            <input matInput type="text" name="Materiel" [(ngModel)]="groupe.materiel">
-                        </mat-form-field>
-                        }
-                    </mat-grid-tile>
-                </mat-grid-list>
+                        </div>
+                        <div class="maclasse-grille-case">
+                            @if (tempsEnEdition !== idx) {
+                            <span class="maclasse-titre">Objectifs :</span>
+                            <span>{{groupe.objectifs}}</span>
+                            } @else {
+                            <mat-form-field class="maclasse-pleinelargeur">
+                                <mat-label>Objectifs</mat-label>
+                                <input matInput type="text" name="Objectifs" [(ngModel)]="groupe.objectifs">
+                            </mat-form-field>
+                            }
+                        </div>
+                        <div class="maclasse-grille-case">
+                            @if (tempsEnEdition !== idx) {
+                            <span class="maclasse-titre">Consignes :</span>
+                            <span>{{groupe.consignes}}</span>
+                            } @else {
+                            <mat-form-field class="maclasse-pleinelargeur">
+                                <mat-label>Consignes</mat-label>
+                                <input matInput type="text" name="Consignes" [(ngModel)]="groupe.consignes">
+                            </mat-form-field>
+                            }
+                        </div>
+                        <div class="maclasse-grille-case">
+                            @if (tempsEnEdition !== idx) {
+                            <span class="maclasse-titre">Matériel :</span>
+                            <span>{{groupe.materiel}}</span>
+                            } @else {
+                            <mat-form-field class="maclasse-pleinelargeur">
+                                <mat-label>Matériel</mat-label>
+                                <input matInput type="text" name="Materiel" [(ngModel)]="groupe.materiel">
+                            </mat-form-field>
+                            }
+                        </div>
+                    </div>
+                    <div class="maclasse-grille-col maclasse-grille-col4">
+                        <div class="maclasse-grille-case maclasse-caseEditeur">
+                            <h2 class="maclasse-h2">Bilan / notes</h2>
+                            @if (tempsEnEdition !== idx) {
+                            <div [innerHTML]="groupe.commentaire | html"></div>
+                            } @else {
+                            <angular-editor placeholder="Commentaire" name="Commentaire" [(ngModel)]="groupe.commentaire"></angular-editor>
+                            }
+                        </div>
+                    </div>
+                    <div class="maclasse-grille-col maclasse-grille-col12">
+                        <div class="maclasse-grille-case">
+                            <h2 class="maclasse-h2">Compétences :</h2>
+                            <ul>
+                                @for (idCompetence of groupe.competences ; track idCompetence ; let idx = $index) {
+                                <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false"></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
             }
             }

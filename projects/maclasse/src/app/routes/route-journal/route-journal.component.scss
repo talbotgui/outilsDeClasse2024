@@ -3,9 +3,14 @@ fieldset.maclasse-transportOuRecreation>legend {
     background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
 }
 
+/* Pour aligner le libellé et la liste des élèves en mode EDITION. */
+div.maclasse-caseeleves {
+    display: flex;
+}
+
 /* Pour créer une liste d'élèves sans ponctuation. */
-span.maclasse-eleve {
-    margin-left: 15px;
+span.maclasse-eleve:not(:first-child) {
+    margin-left: 5px;
 }
 
 /** Pour rendre scrollable la case contenant l'éditeur. */
@@ -26,4 +31,45 @@ div.maclasse-titreDeTemps {
 /** Pour placer les icones de manière régulière. */
 .maclasse-largeurUnBouton {
     width: 48px;
+}
+
+/**************************************************************************************
+ * Système de grille avec hauteur dynamique (que mat-grid ne sait pas gérer).  -- DEBUT
+ *************************************************************************************/
+
+div.maclasse-grille {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.maclasse-grille-case {
+    min-height: 30px;
+    line-height: 30px;
+}
+
+div.maclasse-grille-edition div.maclasse-grille-case {
+    min-height: 65px !important;
+    line-height: 40px !important;
+}
+
+div.maclasse-grille-col12 {
+    width: 100%;
+}
+
+div.maclasse-grille-col8 {
+    width: 66%;
+}
+
+div.maclasse-grille-col4 {
+    width: 34%;
+}
+
+/**************************************************************************************
+ * Système de grille avec hauteur dynamique (que mat-grid ne sait pas gérer).  -- FIN
+ *************************************************************************************/
+
+/** Pour souligner les libellés de données en mode lecture */
+span.maclasse-titre {
+    text-decoration: underline;
+    margin-right: 5px;
 }

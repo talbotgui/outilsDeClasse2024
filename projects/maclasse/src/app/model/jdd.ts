@@ -9,7 +9,7 @@ export class Jdd {
         enseignant: 'M. Toto',
         cycleNiveau: '2 / CE1',
         anneeScolaire: '2016-2017',
-        projets: [{ id: 'bouchon-p1', nom: 'projet1', idCompetences: ['j1_268', 'j1_269'] }],
+        projets: [{ id: 'bouchon-p1', nom: 'projet1', idCompetences: ['bouchon-j1_268', 'bouchon-j1_269'] }],
         periodes: [
             {
                 id: 'bouchon-1',
@@ -7117,16 +7117,16 @@ export class Jdd {
                 commentaire: 'commentaire 1',
                 date: new Date('2016-09-15T00:00:00.000Z'),
                 id: 'bouchon-rqwkrpew',
-                idEleve: 'evnr1v6a',
-                idItem: 'j1_263',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-j1_263',
                 valeur: '1'
             },
             {
                 commentaire: 'commentaire 2',
                 date: new Date('2016-09-16T00:00:00.000Z'),
                 id: 'bouchon-80vebly5',
-                idEleve: 'rvns1q6a',
-                idItem: 'j1_263',
+                idEleve: 'bouchon-rvns1q6a',
+                idItem: 'bouchon-j1_263',
                 valeur: 'n',
                 proposition: 'aide proposée',
                 constat: 'etat de fait'
@@ -7135,104 +7135,104 @@ export class Jdd {
                 commentaire: 'commentaire seconde competence sur le domaine',
                 date: new Date('2016-09-17T00:00:00.000Z'),
                 id: 'bouchon-80vebla3',
-                idEleve: 'rvns1q6a',
-                idItem: 'j1_266',
+                idEleve: 'bouchon-rvns1q6a',
+                idItem: 'bouchon-j1_266',
                 valeur: '2'
             },
             {
                 commentaire: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-8xi2pi2f',
-                idEleve: 'evnr1v6a',
-                idItem: 'W111',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W111',
                 valeur: '3'
             },
             {
                 commentaire: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-mlmqmsiz',
-                idEleve: 'evnr1v6a',
-                idItem: 'W113',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W113',
                 valeur: '3'
             },
             {
                 commentaire: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-bhiek0vk',
-                idEleve: 'evnr1v6a',
-                idItem: 'W132',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W132',
                 valeur: '3'
             },
             {
                 commentaire: 'commentaireAA',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-sjg60c0c',
-                idEleve: 'evnr1v6a',
-                idItem: 'W143',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W143',
                 valeur: '1'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-2fej8g43',
-                idEleve: 'evnr1v6a',
-                idItem: 'W611',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W611',
                 valeur: 'a'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-gs0sa58n',
-                idEleve: 'evnr1v6a',
-                idItem: 'W612',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W612',
                 valeur: 'a'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-rfxtldvg',
-                idEleve: 'evnr1v6a',
-                idItem: 'W651',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W651',
                 valeur: 'a'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-v1h5uw0o',
-                idEleve: 'evnr1v6a',
-                idItem: 'W421',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W421',
                 valeur: 'a'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-av8ci1hn',
-                idEleve: 'evnr1v6a',
-                idItem: 'W422',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W422',
                 valeur: 'n'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-is2ff4fm',
-                idEleve: 'evnr1v6a',
-                idItem: 'W211',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W211',
                 valeur: 'n'
             },
             {
                 commentaire: 'commentaireBB',
                 date: new Date('2016-09-22T00:00:00.000Z'),
                 id: 'bouchon-q17zsevt',
-                idEleve: 'evnr1v6a',
-                idItem: 'W522',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W522',
                 valeur: 'n'
             },
             {
                 commentaire: 'derniere eval de l\'année',
                 date: new Date('2017-06-22T00:00:00.000Z'),
                 id: 'bouchon-q17zsevt',
-                idEleve: 'evnr1v6a',
-                idItem: 'W522',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W522',
                 valeur: '1'
             }
         ],
@@ -7294,9 +7294,10 @@ export class Jdd {
                         groupes: [{
                             id: 'bouchon-40', nom: 'accueil',
                             commentaire: 'Temps d\'accueil : un élève en retard mais le temps a été calme',
-                            eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
+                            objectifs: 'obj', consignes: 'cons', materiel: 'mat',
+                            eleves: ['bouchon-evnr1v6a', 'bouchon-rvns1q6a', 'bouchon-lkjsf2d3'],
                             competences: [
-                                'j1_264'
+                                'bouchon-j1_264'
                             ]
                         }]
                     },
@@ -7305,9 +7306,10 @@ export class Jdd {
                         id: 'bouchon-29', groupes: [{
                             id: 'bouchon-39', nom: 'math',
                             commentaire: 'début de journée',
-                            eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
+                            objectifs: 'obj', consignes: 'cons', materiel: 'mat',
+                            eleves: ['bouchon-evnr1v6a', 'bouchon-rvns1q6a', 'bouchon-lkjsf2d3'],
                             competences: [
-                                'j1_264'
+                                'bouchon-j1_264'
                             ]
                         }]
                     }
@@ -7323,14 +7325,15 @@ export class Jdd {
                         groupes: [{
                             id: 'bouchon-38', nom: 'T1',
                             commentaire: 'Comm T1',
+                            objectifs: 'obj', consignes: 'cons', materiel: 'mat',
                             eleves: [
-                                'evnr1v6a',
-                                'rvns1q6a',
-                                'lkjsf2d3'
+                                'bouchon-evnr1v6a',
+                                'bouchon-rvns1q6a',
+                                'bouchon-lkjsf2d3'
                             ],
                             competences: [
-                                'j1_263',
-                                'JF1221'
+                                'bouchon-j1_263',
+                                'bouchon-JF1221'
                             ]
                         }]
                     },
@@ -7340,13 +7343,14 @@ export class Jdd {
                         groupes: [{
                             id: 'bouchon-37', nom: 'T2',
                             commentaire: 'Comm T2',
+                            objectifs: 'obj', consignes: 'cons', materiel: 'mat',
                             eleves: [
-                                'evnr1v6a',
-                                'rvns1q6a'
+                                'bouchon-evnr1v6a',
+                                'bouchon-rvns1q6a'
                             ],
                             competences: [
-                                'j1_266',
-                                'JF1222'
+                                'bouchon-j1_266',
+                                'bouchon-JF1222'
                             ]
                         }]
                     }

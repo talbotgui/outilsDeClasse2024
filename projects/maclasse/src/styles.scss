@@ -88,7 +88,6 @@ fieldset.maclasse-formulaire>div {
  Pour créer un style d'onglet au niveau des fieldset - FIN 
 ************************************************************/
 
-
 /** Au moment de l'impression. */
 @media print {
 
@@ -96,4 +95,11 @@ fieldset.maclasse-formulaire>div {
     .maclasse-masquerEnModePrint {
         display: none !important;
     }
+}
+
+/* Pour séparer correctement les compétences sélectionnées. */
+.maclasse-separateurcompetence {
+    color: blue;
+    font-size: 28px;
+    margin-right: 10px;
 }
