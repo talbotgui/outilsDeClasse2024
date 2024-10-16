@@ -90,8 +90,32 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         super.declarerSouscription(sub);
     }
 
+    /** Recherche de l'ascendance d'une compétence */
+    private calculerAscendance(idItem: string | undefined): Competence[] {
+        // Init du tableau des ascendants
+        const ascendance: Competence[] = [];
+
+        // Recherche de l'ascendance
+        let id = idItem;
+        while (id && id != '#') {
+            const competence = this.rechercherCompetence(id);
+            if (competence) {
+                ascendance.push(competence);
+            }
+            id = competence?.parent;
+        }
+
+        return ascendance;
+    }
+
+    /** Calcul (ou usage du cache) d'un libellé complet de compétence */
+    private calculerLibelleDeCompetence(competence: Competence): string {
+        return this.calculerAscendance(competence.id).map(c => c.text).join(' > ');
+    }
+
     /** Création des lignes à partir des notes */
     private creerLignesTdb(): void {
+        this.lignes = [];
 
         // Si une période est sélectionnée
         if (this.periodeSelectionnee) {
@@ -113,8 +137,6 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 }
             }
         }
-
-        console.log('lignes', this.lignes);
     }
 
     /** Création des lignes pour la période fournie */
@@ -143,7 +165,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                     if (!ligne) {
                         ligne = new LigneDeTableauDeBord();
                         ligne.competenceParente = competenceParente;
-                        ligne.libelleCompetenceParente = 'ccccccccccccccccccccccccccccccccccccccccc';
+                        ligne.libelleCompetenceParente = this.calculerLibelleDeCompetence(ligne.competenceParente);
                         this.lignes.push(ligne);
                     }
 
@@ -152,7 +174,9 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                     if (!sousLigne) {
                         sousLigne = new SousLigneDeTableauDeBord();
                         sousLigne.competence = this.rechercherCompetence(n.idItem);
-                        sousLigne.libelleCompetence = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+                        if (sousLigne.competence) {
+                            sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence);
+                        }
                         ligne.sousLignes.push(sousLigne);
                     }
 
@@ -190,16 +214,8 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
 
     /** Méthode de recherche dans les données de référence */
     private rechercherCompetenceParente(idItem: string | undefined): Competence | undefined {
-        // Init du tableau des ascendants
-        const ascendance = [];
-
         // Recherche de l'ascendance
-        let id = idItem;
-        while (id && id != '#') {
-            const competence = this.rechercherCompetence(id);
-            ascendance.push(competence);
-            id = competence?.parent;
-        }
+        const ascendance = this.calculerAscendance(idItem);
 
         // Renvoi du niveau 3 (ou lenght-1 à défaut)
         if (ascendance.length > 3) {

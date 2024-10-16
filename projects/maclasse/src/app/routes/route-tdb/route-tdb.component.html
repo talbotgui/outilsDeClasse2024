@@ -39,7 +39,7 @@
 
 
 @if (lignes && eleveSelectionne && periodeSelectionnee) {
-<fieldset class="maclasse-couperEnModePrint">
+<fieldset class="maclasse-formulaire maclasse-couperEnModePrint">
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
         @if (modeAffichage==1){
@@ -52,7 +52,7 @@
     <div>
 
         @for (ligne of lignes ; track ligne.id ; let idx = $index) {
-        <fieldset>
+        <fieldset class="maclasse-formulaire">
             <legend>{{ligne.libelleCompetenceParente}}</legend>
             <div>
                 @for (sousLigne of ligne.sousLignes ; track sousLigne.id ; let idy = $index) {
