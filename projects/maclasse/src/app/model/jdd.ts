@@ -100,31 +100,31 @@ export class Jdd {
                 },
                 cursus: [
                     {
-                        annee: 2012,
+                        id: "2012", annee: 2012,
                         niveau: 'PS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2013,
+                        id: "2013", annee: 2013,
                         niveau: 'MS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2014,
+                        id: "2014", annee: 2014,
                         niveau: 'GS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2015,
+                        id: "2015", annee: 2015,
                         niveau: 'CP',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2016,
+                        id: "2016", annee: 2016,
                         niveau: 'CE1',
                         etablissement: '',
                         accompagnement: ''
@@ -149,31 +149,31 @@ export class Jdd {
                 bilans: 'bla bla bla',
                 cursus: [
                     {
-                        annee: 2012,
+                        id: "2012", annee: 2012,
                         niveau: 'PS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2013,
+                        id: "2013", annee: 2013,
                         niveau: 'MS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2014,
+                        id: "2014", annee: 2014,
                         niveau: 'GS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2015,
+                        id: "2015", annee: 2015,
                         niveau: 'CP',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2016,
+                        id: "2016", annee: 2016,
                         niveau: 'CE1',
                         etablissement: '',
                         accompagnement: ''
@@ -200,31 +200,31 @@ export class Jdd {
                 bilans: 'bla bla bla',
                 cursus: [
                     {
-                        annee: 2012,
+                        id: "2012", annee: 2012,
                         niveau: 'PS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2013,
+                        id: "2013", annee: 2013,
                         niveau: 'MS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2014,
+                        id: "2014", annee: 2014,
                         niveau: 'GS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2015,
+                        id: "2015", annee: 2015,
                         niveau: 'CP',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2016,
+                        id: "2016", annee: 2016,
                         niveau: 'CE1',
                         etablissement: '',
                         accompagnement: ''
@@ -251,31 +251,31 @@ export class Jdd {
                 bilans: 'bla bla bla',
                 cursus: [
                     {
-                        annee: 2012,
+                        id: "2012", annee: 2012,
                         niveau: 'PS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2013,
+                        id: "2013", annee: 2013,
                         niveau: 'MS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2014,
+                        id: "2014", annee: 2014,
                         niveau: 'GS',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2015,
+                        id: "2015", annee: 2015,
                         niveau: 'CP',
                         etablissement: '',
                         accompagnement: ''
                     },
                     {
-                        annee: 2016,
+                        id: "2016", annee: 2016,
                         niveau: 'CE1',
                         etablissement: '',
                         accompagnement: ''
