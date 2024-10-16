@@ -15,8 +15,8 @@ import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
 import { Periode } from '../../model/model';
-import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/model-tdb';
 import { Competence, Note } from '../../model/note-model';
+import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/tdb-model';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({

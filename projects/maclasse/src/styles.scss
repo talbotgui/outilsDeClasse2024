@@ -193,3 +193,13 @@ fieldset.maclasse-formulaire>div {
 .mat-mdc-tab-body-content {
     overflow: hidden !important;
 }
+
+/** Pour aligner les erreurs de validation de données à gauche. */
+ul.maclasse-texteagauche {
+    text-align: left;
+}
+
+/** Pour les légendes contenant des boutons. */
+legend.maclasse-legendFlex {
+    display: flex;
+}

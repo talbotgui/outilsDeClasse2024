@@ -9,7 +9,7 @@ export class Jdd {
         enseignant: 'M. Toto',
         cycleNiveau: '2 / CE1',
         anneeScolaire: '2016-2017',
-        projets: [{ id: 'bouchon-p1', nom: 'projet1', idCompetences: ['bouchon-j1_268', 'bouchon-j1_269'] }],
+        projets: [{ id: 'bouchon-p1', nom: 'projet1', sousProjetParPeriode: [{ id: 'bouchon-p1p1', idPeriode: 'bouchon-1', idCompetences: ['bouchon-j1_268', 'bouchon-j1_269'] }] }],
         periodes: [
             {
                 id: 'bouchon-1',

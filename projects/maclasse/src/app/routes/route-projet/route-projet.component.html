@@ -1,0 +1,86 @@
+<!-- Sélection d'un projet -->
+@if (projets) {
+<fieldset class="maclasse-masquerEnModePrint">
+    <legend>Sélection d'un projet de la classe</legend>
+
+    <mat-chip-listbox aria-label="Sélection d'un projet" [selectable]="true">
+        @for (projet of projets; track projet.id) {
+        <mat-chip-option (click)="onSelectionProjet(projet)" [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
+        }
+        <mat-chip-option selectable="false" (click)="ajouterUnProjet()">
+            <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon icon="plus"></fa-icon></button>
+        </mat-chip-option>
+    </mat-chip-listbox>
+</fieldset>
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}
+
+@if (projetSelectionne) {
+<!-- Formulaire - données projet -->
+<fieldset class="maclasse-formulaire">
+    <legend class="maclasse-legendFlex">
+        @if (modeEdition){
+        <mat-form-field>
+            <mat-label>Nom</mat-label>
+            <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="projetSelectionne.nom">
+        </mat-form-field>
+        } @else {
+        <span>Projet sélectionné : {{projetSelectionne.nom}}</span>
+        }
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerProjetSelectionne()" matTooltip="Supprimer ce projet" aria-label="Supprimer ce projet">
+            <fa-icon icon="trash"></fa-icon>
+        </button>
+        @if (modeEdition) {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+            <fa-icon icon="check"></fa-icon>
+        </button>
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterUnSousProjet()" matTooltip="Ajouter une période" aria-label="Ajouter une période">
+            <fa-icon icon="plus"></fa-icon>
+        </button>
+        } @else {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer ce projet" aria-label="Editer ce projet">
+            <fa-icon icon="pencil" size="xs"></fa-icon>
+        </button>
+        }
+    </legend>
+    <div>
+        @for (sousLigne of projetSelectionne.sousProjetParPeriode; track sousLigne.id) {
+        <fieldset class="maclasse-formulaire">
+            <legend class="maclasse-legendFlex">
+                @if (modeEdition) {
+                <mat-form-field>
+                    <mat-label>Compétences en période</mat-label>
+                    <mat-select #inputPeriode="ngModel" [(ngModel)]="sousLigne.idPeriode" placeholder="Période" name="Période">
+                        @for (p of periodes ; track p.id) {
+                        <mat-option [value]="p.id">{{p.nom}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterCompetence(sousLigne)" matTooltip="Ajouter une compétence à ce projet pour cette période"
+                    aria-label="Ajouter une compétence à ce projet pour cette période">
+                    <fa-icon icon="plus"></fa-icon>
+                </button>
+                } @else {
+                <span>Compétences en période {{sousLigne.idPeriode}}</span>
+                }
+            </legend>
+            <div>
+                <ul>
+                    @for (idCompetence of sousLigne.idCompetences ; track idCompetence ; let idx = $index) {
+                    <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false" [iconeAction]="(modeEdition)?'trash':''"
+                        libelleAction="Supprimer la compétence" (onAction)="supprimerCompetence(sousLigne, idCompetence)"></li>
+                    }
+                </ul>
+            </div>
+        </fieldset>
+        }
+    </div>
+</fieldset>
+}
+
+<br />

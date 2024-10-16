@@ -2,6 +2,7 @@ import { Eleve } from "./eleve-model";
 import { Journal } from "./journal-model";
 import { ModelUtil } from "./model-utils";
 import { Competence, Note } from "./note-model";
+import { Projet } from "./projet-model";
 
 export class AvecIdentifiant {
   public id: string = ModelUtil.getUID();
@@ -24,7 +25,6 @@ export class Annee extends AvecIdentifiant {
   public periodes: Periode[] = [];
   public projets: Projet[] = [];
   public taches: Tache[] = [];
-  public themeSelectionne?: string;
 }
 export class Periode extends AvecIdentifiant {
   public nom?: string;
@@ -43,8 +43,4 @@ export class Echeance extends AvecIdentifiant {
 export class Tache extends AvecIdentifiant {
   public titre?: string;
   public echeances: Echeance[] = [];
-}
-export class Projet extends AvecIdentifiant {
-  public nom?: string;
-  public idCompetences: string[] = [];
 }
