@@ -25,9 +25,12 @@ export class DivMessageComponent extends AbstractComponent implements OnInit {
                 if (message) {
                     // on retire tout message venant de la même source
                     this.messagesAafficher = this.messagesAafficher.filter(m => m.codeEmetteurDuMessage !== message.codeEmetteurDuMessage);
-                    // on ajoute le nouveau message (s'il n'est pas vide)
+                    //s'il n'est pas vide
                     if (message.message) {
+                        // on ajoute le nouveau message
                         this.messagesAafficher.push(message);
+                        // et on le masque au bout de 3 secondes
+                        setTimeout(this.retirerMessage.bind(this), 3000, message);
                     }
                     // pour remettre l'utilisateur en haut de la page
                     window.scrollTo(0, 0);
@@ -35,5 +38,15 @@ export class DivMessageComponent extends AbstractComponent implements OnInit {
             }))
             .subscribe();
         super.declarerSouscription(sub);
+    }
+
+    /** Retirer le message de la liste */
+    private retirerMessage(message: MessageAafficher): void {
+        if (message) {
+            const index = this.messagesAafficher.indexOf(message);
+            if (index !== -1) {
+                this.messagesAafficher.splice(index, 1);
+            }
+        }
     }
 }
