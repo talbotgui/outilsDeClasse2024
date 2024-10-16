@@ -70,7 +70,6 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         if (this.eleveSelectionne) {
             this.eleveSelectionne.contacts.push(new ContactEleve());
         }
-        console.log("AjouterUnContact:", this.eleveSelectionne);
     }
 
     /** Ajout d'une absence  à la liste des absences de l'élève sélectionné */
@@ -81,6 +80,11 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
             }
             this.eleveSelectionne.absences.push(new AbsenceEleve());
         }
+    }
+
+    /** Ajout d'un élève et sélection automatique. */
+    public ajouterUnEleve(): void {
+        this.eleves?.push(new Eleve());
     }
 
     /** Au clic sur un élève, on le sélectionne/désélectionne */

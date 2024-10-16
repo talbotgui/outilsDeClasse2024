@@ -7,6 +7,7 @@
         @for (eleve of eleves; track eleve.id) {
         <mat-chip-option (click)="onSelectionEleve(eleve)">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
         }
+        <mat-chip-option selectable="false" (click)="ajouterUnEleve()"><em class="fa fa-plus"></em></mat-chip-option>
     </mat-chip-listbox>
 </fieldset>
 }
