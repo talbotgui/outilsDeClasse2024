@@ -146,8 +146,6 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 }
             }
         }
-
-        console.log('lignes=', this.lignes);
     }
 
     /** Création des lignes pour la période fournie */
@@ -238,6 +236,13 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             return ascendance[2];
         } else {
             return undefined;
+        }
+    }
+
+    /** Pour valider un temps directement via un CRTL+ENTRER */
+    public onKeyUpSurPage(event: KeyboardEvent): void {
+        if (!!event.ctrlKey && event.key == "Enter") {
+            this.indexEnEdition = undefined;
         }
     }
 }

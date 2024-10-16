@@ -39,7 +39,7 @@
 
 
 @if (lignes && eleveSelectionne && periodeSelectionnee) {
-<fieldset class="maclasse-formulaire maclasse-couperEnModePrint">
+<fieldset class="maclasse-formulaire maclasse-couperEnModePrint" (keyup)="onKeyUpSurPage($event)">
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
         @if (modeAffichage==1) {
@@ -96,21 +96,37 @@
                         [class.maclasse-table-case-w40]="modeAffichage==3">
                         <p>{{sousLigne.libelleCompetence}}</p>
                     </div>
-                    @if (modeAffichage!=1){
+                    @if (modeAffichage!=1) {
                     <div class="maclasse-table-case maclasse-table-case-w15">
-                        @if (indexEnEdition==idx) {
+                        @if (indexEnEdition==idx && sousLigne.notePeriodePrecedente) {
+                        <mat-form-field>
+                            <mat-label>Aquisition</mat-label>
+                            <mat-select placeholder="Aquisition" [(ngModel)]="sousLigne.notePeriodePrecedente.valeurEvaluation">
+                                @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
+                                <mat-option [value]="entree.key">{{entree.value}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
                         }@else {
                         <p>{{(sousLigne.notePeriodePrecedente && sousLigne.notePeriodePrecedente.valeurEvaluation)?mapLibelleNotes[sousLigne.notePeriodePrecedente.valeurEvaluation]:''}}</p>
                         }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
-                        @if (indexEnEdition==idx) {
+                        @if (indexEnEdition==idx && sousLigne.notePeriodePrecedente) {
+                        <mat-form-field class="maclasse-pleinelargeur">
+                            <mat-label>Commentaire publié</mat-label>
+                            <textarea #textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodePrecedente.commentaireEvaluationPublic"></textarea>
+                        </mat-form-field>
                         }@else {
                         <p>{{sousLigne.notePeriodePrecedente?.commentaireEvaluationPublic}}</p>
                         }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
-                        @if (indexEnEdition==idx) {
+                        @if (indexEnEdition==idx && sousLigne.notePeriodePrecedente) {
+                        <mat-form-field class="maclasse-pleinelargeur">
+                            <mat-label>Notes de travail</mat-label>
+                            <textarea #textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodePrecedente.commentaireEvaluationPrive"></textarea>
+                        </mat-form-field>
                         }@else {
                         <p>{{sousLigne.notePeriodePrecedente?.commentaireEvaluationPrive}}</p>
                         }
@@ -118,7 +134,11 @@
                     }
                     @if (modeAffichage!=2){
                     <div class="maclasse-table-case maclasse-table-case-w15">
-                        @if (indexEnEdition==idx) {
+                        @if (indexEnEdition==idx && sousLigne.notePeriodeSuivante) {
+                        <mat-form-field class="maclasse-pleinelargeur">
+                            <mat-label>Notes de travail</mat-label>
+                            <textarea #textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodeSuivante.constatEnPreparation"></textarea>
+                        </mat-form-field>
                         }@else {
                         <p>{{sousLigne.notePeriodeSuivante?.constatEnPreparation}}</p>
                         }

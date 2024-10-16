@@ -11,5 +11,5 @@ export class Note {
   public valeurEvaluation?: string;
   public commentaireEvaluationPublic?: string;
   public commentaireEvaluationPrive?: string;
-  public constatEnPreparation?: string;
+  public constatEnPreparation?: string = 'Constats : \nOutils : ';
 }
