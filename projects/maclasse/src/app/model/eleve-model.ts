@@ -1,7 +1,8 @@
-export class Eleve {
+import { AvecIdentifiant } from "./model";
+
+export class Eleve extends AvecIdentifiant {
   static readonly CODE_STATUT_DANS_LA_CLASSE = '2';
 
-  public id?: string;
   public nom?: string;
   public prenom?: string;
   public dateNaissance: Date | undefined;
@@ -19,23 +20,20 @@ export class Eleve {
   public autorisationBaignade?: string;
   public inclusion: InclusionEleve = new InclusionEleve();
 }
-
 export class CursusEleve {
   public annee: number = 0;
   public niveau?: string;
   public etablissement?: string;
   public accompagnement?: string;
 }
-
-export class ContactEleve {
+export class ContactEleve extends AvecIdentifiant {
   public type?: string;
   public nom?: string;
   public email?: string;
   public telephone?: string;
   public adressePostale?: string;
 }
-
-export class InclusionEleve {
+export class InclusionEleve extends AvecIdentifiant {
   public ecoleNom?: string;
   public ecoleAdresse?: string;
   public nomContact?: string;
@@ -45,8 +43,7 @@ export class InclusionEleve {
   public enseignant?: string;
   public telephoneEnseignant?: string;
 }
-
-export class AbsenceEleve {
+export class AbsenceEleve extends AvecIdentifiant {
   public raison?: string;
   public jour?: string;
   public frequence?: number;

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.component';
 import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
-
+import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
 
 export const routes: Routes = [
     // pour rediriger par défaut sur le dashboard
@@ -9,7 +9,7 @@ export const routes: Routes = [
     { path: 'route-accueil', component: RouteAccueilComponent },
     { path: 'route-chargerdonnees', component: RouteChargerDonneesComponent },
     { path: 'route-competence', component: RouteAccueilComponent },
-    { path: 'route-eleve', component: RouteAccueilComponent },
+    { path: 'route-eleve', component: RouteEleveComponent },
     { path: 'route-journal', component: RouteAccueilComponent },
     { path: 'route-projet', component: RouteAccueilComponent },
     { path: 'route-tableaudebord', component: RouteAccueilComponent },

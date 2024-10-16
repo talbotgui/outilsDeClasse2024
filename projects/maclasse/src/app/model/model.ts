@@ -1,51 +1,51 @@
 import { Eleve } from "./eleve-model";
 import { Journal } from "./journal-model";
+import { ModelUtil } from "./model-utils";
 import { Competence, Note } from "./note-model";
 
-export class Annee {
+export class AvecIdentifiant {
+  public id: string = ModelUtil.getUID();
+}
+export class Annee extends AvecIdentifiant {
   public anneeScolaire?: string;
-  public periodes: Periode[] = [];
-  public enteteEdition?: string;
-  public enseignant?: string;
-  public cycleNiveau?: string;
-  public libellesTypeTempsJournal: string[] = [];
-  public eleves: Eleve[] = [];
   public competences: Competence[] = [];
-  public notes: Note[] = [];
-  public journal: Journal[] = [];
+  public cycleNiveau?: string;
   public dateDerniereSauvegarde: Date | undefined;
+  public eleves: Eleve[] = [];
+  public enseignant?: string;
+  public enteteEdition?: string;
   public historique: Historique[] = [];
-  public mapLibelleStatutEleve: any;
+  public journal: Journal[] = [];
+  public libellesTypeTempsJournal: string[] = [];
   public mapLibelleNotes: any;
+  public mapLibelleStatutEleve: any;
   public mapTypeContact: any;
   public mapRaisonAbsence: any;
-  public themeSelectionne?: string;
-  public taches: Tache[] = [];
+  public notes: Note[] = [];
+  public periodes: Periode[] = [];
   public projets: Projet[] = [];
+  public taches: Tache[] = [];
+  public themeSelectionne?: string;
 }
-
-export class Periode {
-  public id: number = 0;
+export class Periode extends AvecIdentifiant {
   public nom?: string;
   public debut: Date | undefined;
   public fin: Date | undefined;
 }
-
-export class Historique {
+export class Historique extends AvecIdentifiant {
   public date: Date | undefined;
   public modification?: string;
 }
-export class Echeance {
+export class Echeance extends AvecIdentifiant {
   public termine: boolean = false;
   public nom?: string;
   public date?: Date;
 }
-export class Tache {
+export class Tache extends AvecIdentifiant {
   public titre?: string;
   public echeances: Echeance[] = [];
 }
-
-export class Projet {
+export class Projet extends AvecIdentifiant {
   public nom?: string;
   public idCompetences: string[] = [];
 }

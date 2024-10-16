@@ -4,38 +4,39 @@ export class Jdd {
 
     // Jeu de données riche
     static JDD_RICHE: Annee = {
+        id: '0',
         enteteEdition: 'Académie X<br/>Département X<br/>Circonscription X<br/>École : X<br/>Adresse : X<br/>Téléphone : 0<br/>Courriel : x@x.x',
         enseignant: 'M. Toto',
         cycleNiveau: '2 / CE1',
         anneeScolaire: '2016-2017',
-        projets: [{ nom: 'projet1', idCompetences: ['j1_268', 'j1_269'] }],
+        projets: [{ id: 'p1', nom: 'projet1', idCompetences: ['j1_268', 'j1_269'] }],
         periodes: [
             {
-                id: 1,
+                id: '1',
                 nom: 'Période 1',
                 debut: new Date('2016-09-01T00:00:00.000Z'),
                 fin: new Date('2016-10-19T00:00:00.000Z')
             },
             {
-                id: 2,
+                id: '2',
                 nom: 'Période 2',
                 debut: new Date('2016-11-03T00:00:00.000Z'),
                 fin: new Date('2016-12-17T00:00:00.000Z')
             },
             {
-                id: 3,
+                id: '3',
                 nom: 'Période 3',
                 debut: new Date('2017-01-03T00:00:00.000Z'),
                 fin: new Date('2017-02-11T00:00:00.000Z')
             },
             {
-                id: 4,
+                id: '4',
                 nom: 'Période 4',
                 debut: new Date('2017-02-27T00:00:00.000Z'),
                 fin: new Date('2017-04-08T00:00:00.000Z')
             },
             {
-                id: 5,
+                id: '5',
                 nom: 'Période 5',
                 debut: new Date('2017-04-24T00:00:00.000Z'),
                 fin: new Date('2017-07-08T00:00:00.000Z')
@@ -79,21 +80,21 @@ export class Jdd {
                 id: 'hfys3v9z',
                 nom: 'NOM0',
                 prenom: 'TOTO_HORS_ECOLE',
-                dateNaissance: new Date('2009-01-01T00:00:00.000Z'),
+                dateNaissance: new Date('2009-01-01'),
                 contacts: [
-                    { type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
-                    { type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
+                    { id: '1', type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
+                    { id: '2', type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
                 ],
                 absences: [
-                    { raison: 'I', jour: '2', heureDebut: '8h15', heureFin: '8h15' },
-                    { raison: 'O', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 0 },
-                    { raison: 'P', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 1 },
-                    { raison: 'A', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 2 },
+                    { id: '3', raison: 'I', jour: '2', heureDebut: '8h15', heureFin: '8h15' },
+                    { id: '4', raison: 'O', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 0 },
+                    { id: '5', raison: 'P', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 1 },
+                    { id: '6', raison: 'A', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 2 },
                 ],
                 statut: '0',
                 bilans: 'bla bla bla',
                 inclusion: {
-                    ecoleNom: 'Ecole du coin', ecoleAdresse: 'Le coin de la rue 999999 Maville',
+                    id: '7', ecoleNom: 'Ecole du coin', ecoleAdresse: 'Le coin de la rue 999999 Maville',
                     nomContact: 'Le directeur', emailContact: 'leDirecteur@en.fr', telContact: '0123456789',
                     niveau: 'CE1', enseignant: 'le meilleur du monde'
                 },
@@ -130,10 +131,10 @@ export class Jdd {
                     }
                 ],
                 dateAdmission: new Date('2015-09-01T00:00:00.000Z'),
-                accueil: '',
-                datesPPA: '',
-                datesPAP: '',
-                datesESS: ''
+                accueil: 'acc',
+                datesPPA: 'ppa',
+                datesPAP: 'pap',
+                datesESS: 'ess'
             },
             {
                 id: 'evnr1v6a',
@@ -141,10 +142,10 @@ export class Jdd {
                 prenom: 'PRENOM1',
                 dateNaissance: new Date('2009-01-01T00:00:00.000Z'),
                 contacts: [
-                    { type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
-                    { type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
+                    { id: '8', type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
+                    { id: '9', type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
                 ],
-                statut: '2',
+                statut: '1',
                 bilans: 'bla bla bla',
                 cursus: [
                     {
@@ -184,7 +185,7 @@ export class Jdd {
                 datesPAP: '',
                 datesESS: '',
                 absences: [],
-                inclusion: {}
+                inclusion: { id: '10' }
             },
             {
                 id: 'rvns1q6a',
@@ -192,8 +193,8 @@ export class Jdd {
                 prenom: 'PRENOM2',
                 dateNaissance: new Date('2009-01-01T00:00:00.000Z'),
                 contacts: [
-                    { type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
-                    { type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
+                    { id: '11', type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
+                    { id: '12', type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
                 ],
                 statut: '2',
                 bilans: 'bla bla bla',
@@ -235,7 +236,7 @@ export class Jdd {
                 datesPAP: '',
                 datesESS: '',
                 absences: [],
-                inclusion: {}
+                inclusion: { id: '13' }
             },
             {
                 id: 'lkjsf2d3',
@@ -243,8 +244,8 @@ export class Jdd {
                 prenom: 'PRENOM3',
                 dateNaissance: new Date('2009-01-01T00:00:00.000Z'),
                 contacts: [
-                    { type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
-                    { type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
+                    { id: '14', type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
+                    { id: '15', type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
                 ],
                 statut: '2',
                 bilans: 'bla bla bla',
@@ -286,7 +287,7 @@ export class Jdd {
                 datesPAP: '',
                 datesESS: '',
                 absences: [],
-                inclusion: {}
+                inclusion: { id: '16', }
             }
         ],
         competences: [
@@ -7248,59 +7249,58 @@ export class Jdd {
         dateDerniereSauvegarde: new Date('2017-07-03T15:57:12.878Z'),
         historique: [
             {
-                date: new Date('2016-09-15T19:30:37.231Z'),
+                id: '17', date: new Date('2016-09-15T19:30:37.231Z'),
                 modification: 'Ajout d\'une note à PRENOM1 NOM1'
             },
             {
-                date: new Date('2016-09-15T19:30:45.829Z'),
+                id: '18', date: new Date('2016-09-15T19:30:45.829Z'),
                 modification: 'Ajout d\'une note à PRENOM2 NOM2'
             },
             {
-                date: new Date('2016-09-15T19:30:49.348Z'),
+                id: '19', date: new Date('2016-09-15T19:30:49.348Z'),
                 modification: 'Sauvegarde du fichier'
             },
             {
-                date: new Date('2016-09-15T20:25:13.582Z'),
+                id: '20', date: new Date('2016-09-15T20:25:13.582Z'),
                 modification: 'Sauvegarde du fichier'
             },
             {
-                date: new Date('2016-09-15T20:36:47.171Z'),
+                id: '21', date: new Date('2016-09-15T20:36:47.171Z'),
                 modification: 'Sauvegarde du fichier'
             },
             {
-                date: new Date('2016-10-06T19:42:16.680Z'),
+                id: '22', date: new Date('2016-10-06T19:42:16.680Z'),
                 modification: 'Cahier journal du 05/10/2016'
             },
             {
-                date: new Date('2016-10-06T19:43:04.428Z'),
+                id: '23', date: new Date('2016-10-06T19:43:04.428Z'),
                 modification: 'Cahier journal du 05/10/2016'
             },
             {
-                date: new Date('2016-10-06T19:43:08.279Z'),
+                id: '24', date: new Date('2016-10-06T19:43:08.279Z'),
                 modification: 'Sauvegarde du fichier'
             },
             {
-                date: new Date('2016-10-09T16:45:57.931Z'),
+                id: '25', date: new Date('2016-10-09T16:45:57.931Z'),
                 modification: 'Cahier journal du 07/10/2016'
             },
             {
-                date: new Date('2016-10-09T16:47:07.496Z'),
+                id: '26', date: new Date('2016-10-09T16:47:07.496Z'),
                 modification: 'Sauvegarde du fichier'
             },
             {
-                date: new Date('2017-07-03T15:56:17.656Z'),
+                id: '27', date: new Date('2017-07-03T15:56:17.656Z'),
                 modification: 'Ajout d\'une note à PRENOM1 NOM1'
             }
         ],
         journal: [
             {
-                date: new Date('2021-09-01T22:00:00.000Z'),
+                id: '30', date: new Date('2021-09-01T22:00:00.000Z'),
                 remarque: 'cahier journal du 2 septembre 2021 : une belle journée studieuse',
                 temps: [
                     {
-                        debut: '9h00',
-                        fin: '9h15',
-                        nom: 'accueil',
+                        debut: '9h00', fin: '9h15',
+                        id: '28', nom: 'accueil',
                         type: 'Apprentissage',
                         commentaire: 'Temps d\'accueil : un élève en retard mais le temps a été calme',
                         eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
@@ -7309,9 +7309,8 @@ export class Jdd {
                         ]
                     },
                     {
-                        debut: '9h15',
-                        fin: '9h45',
-                        nom: 'math',
+                        debut: '9h15', fin: '9h45',
+                        id: '29', nom: 'math',
                         type: 'Apprentissage',
                         commentaire: 'début de journée',
                         eleves: ['evnr1v6a', 'rvns1q6a', 'lkjsf2d3'],
@@ -7322,13 +7321,12 @@ export class Jdd {
                 ]
             },
             {
-                date: new Date('2021-09-02T22:00:00.000Z'),
+                id: '31', date: new Date('2021-09-02T22:00:00.000Z'),
                 remarque: 'Cahier journal du 3/09/21',
                 temps: [
                     {
-                        debut: '9h00',
-                        fin: '9h15',
-                        nom: 'T1',
+                        debut: '9h00', fin: '9h15',
+                        id: '32', nom: 'T1',
                         type: 'Apprentissage',
                         commentaire: 'Comm T1',
                         eleves: [
@@ -7342,9 +7340,8 @@ export class Jdd {
                         ]
                     },
                     {
-                        debut: '9h15',
-                        fin: '9h30',
-                        nom: 'T2',
+                        debut: '9h15', fin: '9h30',
+                        id: '33', nom: 'T2',
                         type: 'Apprentissage',
                         commentaire: 'Comm T2',
                         eleves: [
@@ -7361,15 +7358,15 @@ export class Jdd {
         ],
         taches: [
             {
-                titre: 'Nouvelle Tache',
+                id: '36', titre: 'Nouvelle Tache',
                 echeances: [
                     {
-                        nom: 'Echéance 1',
+                        id: '34', nom: 'Echéance 1',
                         date: new Date('2017-09-14T22:00:00.000Z'),
                         termine: false
                     },
                     {
-                        nom: 'Echéance 2',
+                        id: '35', nom: 'Echéance 2',
                         date: new Date('2017-09-21T22:00:00.000Z'),
                         termine: false
                     }
