@@ -1,6 +1,27 @@
 // Pour importer les CSS du WYSIWYG
 @import '@wfpena/angular-wysiwyg/';
 
+/***************
+* Pleine hauteur - DEBUT
+***************/
+html,
+body,
+.maclasse-approot {
+    height: 98%;
+}
+
+div.maclasse-entete {
+    height: 40px;
+}
+
+mat-sidenav-container {
+    height: calc(100% - 50px);
+}
+
+/***************
+* Pleine hauteur - FIN
+***************/
+
 // CSS par défaut d'Angular
 body {
     margin: 0;
