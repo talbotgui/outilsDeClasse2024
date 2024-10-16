@@ -22,7 +22,12 @@ h3.maclasse-h3 {
     font-size: 1.2em;
 }
 
-// Pour réduire la taille des icônes et être cohérent avec la taille de police globale
-maclasse-fa {
-    // font-size: 16px;
+// Pour des champs de saisie pleine largeur
+mat-form-field.maclasse-pleinelargeur {
+    width: 100%;
+}
+
+// Pour des champs de saisie de largeur réduite
+mat-form-field.maclasse-petitelargeur {
+    width: 100px;
 }

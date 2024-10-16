@@ -1,0 +1,37 @@
+/* Pour créer un style d'onglet au niveau des fieldset - DEBUT */
+fieldset.tempsDeJournal {
+    border: none;
+    padding-top: 0px;
+}
+
+fieldset.tempsDeJournal>legend {
+    line-height: 40px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: yellowgreen;
+}
+
+fieldset.tempsDeJournal>div {
+    padding-top: 0.35em;
+    border: 1px solid yellowgreen;
+}
+
+/* Pour créer un style d'onglet au niveau des fieldset - FIN */
+
+/* Pour les temps de type RECREATION et TRANSPORT - DEBUT. */
+fieldset.maclasse-recreation,
+fieldset.maclasse-transport {
+    background-color: lightgray;
+}
+
+/* Pour les temps de type . */
+fieldset.maclasse-recreation>fieldset,
+fieldset.maclasse-transport>fieldset {
+    display: contents;
+}
+
+/* Pour les temps de type RECREATION et TRANSPORT - FIN. */
+
+/* Pour créer une liste d'élèves sans ponctuation. */
+span.eleve {
+    margin-left: 15px;
+}

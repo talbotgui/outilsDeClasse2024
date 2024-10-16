@@ -75,7 +75,13 @@ export class MaClasseService {
             e.absences.forEach(a => a.id = a.id ?? ModelUtil.getUID());
         });
         donnees.historique.forEach(h => h.id = h.id ?? ModelUtil.getUID());
-        donnees.journal.forEach(j => j.id = j.id ?? ModelUtil.getUID());
+        donnees.journal.forEach(j => {
+            j.id = j.id ?? ModelUtil.getUID();
+            j.temps.forEach(t => {
+                t.id = t.id ?? ModelUtil.getUID();
+                t.type = (t.type) ? t.type : 'classe';
+            });
+        });
         donnees.notes.forEach(n => n.id = n.id ?? ModelUtil.getUID());
         donnees.periodes.forEach(p => p.id = p.id ?? ModelUtil.getUID());
         donnees.projets.forEach(p => p.id = p.id ?? ModelUtil.getUID());
