@@ -43,22 +43,21 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
 
     /** Date du journal saisie dans le filtre. */
     public dateJournal: Date | undefined;
-
     /** Journal en cours d'édition. */
     public journal: Journal | undefined;
-
-    /** Liste des journaux chargée */
+    /** Liste des journaux chargée. */
     public journaux: Journal[] | undefined;
 
-    /** Index du temps en cours d'édition */
+    /** Index du temps en cours d'édition. */
     public tempsEnEdition: number | undefined;
-
-    /** Flag pour les remarques  en cours d'édition */
+    /** Flag pour les remarques  en cours d'édition. */
     public remarqueEnEdition: boolean = false;
+    /** Liste des statuts d'affichage du contenu de chaque temps. */
+    public statutsAffichage: boolean[] = [];
 
-    /** Données de référence : liste des heures pour la sélection de l'heure de début et de fin des temps */
+    /** Données de référence : liste des heures pour la sélection de l'heure de début et de fin des temps. */
     public tempsDisponibles: string[] = ModelUtil.creerListeHoraires();
-    /** Donnees de référence : liste des élèves */
+    /** Donnees de référence : liste des élèves. */
     public eleves: Eleve[] = []
 
     /** Constructeur pour injection des dépendances. */
@@ -132,6 +131,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             // Ajout du temps au bon endroit
             const temps = new Temps();
             this.journal.temps.splice(i + 1, 0, temps);
+            this.statutsAffichage.splice(i + 1, 0, true);
 
             // Initialisation des attributs communs à tous les types
             temps.type = type;
@@ -181,9 +181,18 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     /** Déplacer un temps dans le journal */
     public descendreTemps(i: number): void {
         if (this.journal && this.journal.temps && i < this.journal.temps.length) {
+
+            // Déplacement du temps
             const temps = this.journal.temps[i];
             this.journal.temps[i] = this.journal.temps[i + 1];
             this.journal.temps[i + 1] = temps;
+
+            // Déplacement du flag d'affichage
+            const affichage = this.statutsAffichage[i];
+            this.statutsAffichage[i] = this.statutsAffichage[i + 1]
+            this.statutsAffichage[i + 1] = affichage;
+
+            // Déplacement du temps en édition
             if (this.tempsEnEdition == i && i < this.journal.temps.length - 1) {
                 this.tempsEnEdition = i + 1;
             }
@@ -216,9 +225,18 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     /** Déplacer un temps dans le journal. */
     public monterTemps(i: number): void {
         if (this.journal && this.journal.temps && i < this.journal.temps.length) {
+
+            // Déplacement du temps
             const temps = this.journal.temps[i];
             this.journal.temps[i] = this.journal.temps[i - 1];
             this.journal.temps[i - 1] = temps;
+
+            // Déplacement du flag d'affichage
+            const affichage = this.statutsAffichage[i];
+            this.statutsAffichage[i] = this.statutsAffichage[i - 1]
+            this.statutsAffichage[i - 1] = affichage;
+
+            // Déplacement du temps en édition
             if (this.tempsEnEdition == i && i > 0) {
                 this.tempsEnEdition = i - 1;
             }
@@ -230,6 +248,10 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
         if (this.journaux && this.dateJournal) {
             // Recherche du journal
             this.journal = this.maclasseService.rechercherJournal(this.journaux, this.dateJournal);
+            this.statutsAffichage = [];
+            if (this.journal && this.journal.temps) {
+                this.statutsAffichage = this.journal.temps.map(t => false);
+            }
 
             // MaJ de l'URL avec la date
             const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { time: this.dateJournal.getTime() } }).toString();
@@ -286,6 +308,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
         // Suppression
         if (this.journal && this.journal.temps && i < this.journal.temps.length) {
             this.journal.temps.splice(i, 1);
+            this.statutsAffichage.splice(i, 1);
         }
 
         // Si le journal est vide, création d'un temps par défaut
