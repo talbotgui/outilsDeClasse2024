@@ -188,3 +188,8 @@ fieldset.maclasse-formulaire>div {
         height: 24px !important;
     }
 }
+
+/** Pour ne pas afficher les scrollbar au resize d'un textarea dans le corp d'un popup. */
+.mat-mdc-tab-body-content {
+    overflow: hidden !important;
+}

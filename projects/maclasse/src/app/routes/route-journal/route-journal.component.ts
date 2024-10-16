@@ -106,7 +106,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     public ajouterCompetence(groupe: GroupeSurUnTemps): void {
 
         // Ouverture du dialog avec le composant de sélection de compétence
-        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { height: '500px', width: '1000px' });
+        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
 
         // A la fermeture, ajout de la compétence (si sélectionnée)
         dialog.afterClosed().subscribe(competence => {
@@ -227,7 +227,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
 
     /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
     public dupliquerJournal(): void {
-        const dialog = this.dialog.open(DialogDuplicationComponent, { height: '300px', width: '500px' }).componentInstance;
+        const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 }).componentInstance;
         dialog.journaux = this.journaux;
         dialog.journal = this.journal;
         dialog.dateCible = this.journal?.date;
@@ -236,7 +236,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
     public dupliquerTemps(indexTemps: number): void {
         if (indexTemps > -1 && this.journal && this.journal.temps && indexTemps < this.journal.temps.length) {
-            const dialog = this.dialog.open(DialogDuplicationComponent, { height: '300px', width: '500px' }).componentInstance;
+            const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 }).componentInstance;
             dialog.journaux = this.journaux;
             dialog.temps = this.journal.temps[indexTemps];
             dialog.dateCible = this.journal?.date;

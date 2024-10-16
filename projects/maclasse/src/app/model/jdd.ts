@@ -7115,124 +7115,161 @@ export class Jdd {
         notes: [
             {
                 commentaireEvaluationPublic: 'comm bulletin note P1',
-                date: new Date('2016-09-15T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-15T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n1',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-j1_263',
-                valeurEvaluation: '1'
+                valeurEvaluation: '1',
+                constatEnPreparation: 'consta Prépa P1 e1n1'
             },
             {
                 commentaireEvaluationPublic: 'commentaire P1',
-                date: new Date('2016-09-16T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-16T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e2n1',
                 idEleve: 'bouchon-rvns1q6a',
                 idItem: 'bouchon-j1_263',
-                valeurEvaluation: 'n'
+                valeurEvaluation: 'n',
+                constatEnPreparation: 'consta Prépa P1 e2n1'
             },
             {
                 commentaireEvaluationPublic: 'commentaire seconde competence sur le domaine',
-                date: new Date('2016-09-17T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-17T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e2n2',
                 idEleve: 'bouchon-rvns1q6a',
                 idItem: 'bouchon-j1_266',
-                valeurEvaluation: '2'
+                valeurEvaluation: '2',
+                constatEnPreparation: 'consta Prépa P1 e2n2'
             },
             {
                 commentaireEvaluationPublic: 'commentaireAA',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n2',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W111',
-                valeurEvaluation: '3'
+                valeurEvaluation: '3',
+                constatEnPreparation: 'consta Prépa P1 e1n2'
             },
             {
                 commentaireEvaluationPublic: 'commentaireAA',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n3',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W113',
-                valeurEvaluation: '3'
+                valeurEvaluation: '3',
+                constatEnPreparation: 'consta Prépa P1 e1n3'
             },
             {
                 commentaireEvaluationPublic: 'commentaireAA',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n4',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W132',
-                valeurEvaluation: '3'
+                valeurEvaluation: '3',
+                constatEnPreparation: 'consta Prépa P1 e1n4'
             },
             {
                 commentaireEvaluationPublic: 'commentaireAA',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n5',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W143',
-                valeurEvaluation: '1'
+                valeurEvaluation: '1',
+                constatEnPreparation: 'consta Prépa P1 e1n5'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n6',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W611',
-                valeurEvaluation: 'a'
+                valeurEvaluation: 'a',
+                constatEnPreparation: 'consta Prépa P1 e1n6'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n7',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W612',
-                valeurEvaluation: 'a'
+                valeurEvaluation: 'a',
+                constatEnPreparation: 'consta Prépa P1 e1n7'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n8',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W651',
-                valeurEvaluation: 'a'
+                valeurEvaluation: 'a',
+                constatEnPreparation: 'consta Prépa P1 e1n8'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n9',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W421',
-                valeurEvaluation: 'a'
+                valeurEvaluation: 'a',
+                constatEnPreparation: 'consta Prépa P1 e1n9'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n10',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W422',
-                valeurEvaluation: 'n'
+                valeurEvaluation: 'n',
+                constatEnPreparation: 'consta Prépa P1 e1n10'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n11',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W211',
-                valeurEvaluation: 'n'
+                valeurEvaluation: 'n',
+                constatEnPreparation: 'consta Prépa P1 e1n11'
             },
             {
                 commentaireEvaluationPublic: 'commentaireBB',
-                date: new Date('2016-09-22T00:00:00.000Z'),
+                dateCreation: new Date('2016-09-22T00:00:00.000Z'),
+                idPeriode: 'bouchon-1',
                 id: 'bouchon-e1n12',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W522',
-                valeurEvaluation: 'n'
+                valeurEvaluation: 'n',
+                constatEnPreparation: 'consta Prépa P1 e1n12'
             },
             {
                 commentaireEvaluationPublic: 'eval P2',
-                date: new Date('2016-12-02T00:00:00.000Z'),
+                dateCreation: new Date('2016-12-02T00:00:00.000Z'),
+                idPeriode: 'bouchon-2',
                 id: 'bouchon-e1n13',
                 idEleve: 'bouchon-evnr1v6a',
                 idItem: 'bouchon-W522',
                 valeurEvaluation: '1',
-                constatEnPreparation: 'consta P2'
+                constatEnPreparation: 'consta P2 e1n13',
+            },
+            {
+                dateCreation: new Date('2016-12-02T00:00:00.000Z'),
+                idPeriode: 'bouchon-2',
+                id: 'bouchon-e1n14',
+                idEleve: 'bouchon-evnr1v6a',
+                idItem: 'bouchon-W211',
+                constatEnPreparation: 'consta P2 encore e1n14'
             }
         ],
         dateDerniereSauvegarde: new Date('2017-07-03T15:57:12.878Z'),

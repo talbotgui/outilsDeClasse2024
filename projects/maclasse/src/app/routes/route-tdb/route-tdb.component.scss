@@ -26,16 +26,22 @@
 /* Pas de marge autour des p dans les cases. */
 .maclasse-table-case p {
     margin-block: 0px;
+    text-align: center;
 }
 
-/* Case de tableau de 85% */
-.maclasse-table-case-w85 {
-    width: 85%;
+/* Case de tableau de 70% */
+.maclasse-table-case-w70 {
+    width: 70%;
 }
 
-/* Case de tableau de 55% */
-.maclasse-table-case-w55 {
-    width: 55%;
+/* Case de tableau de 60% */
+.maclasse-table-case-w60 {
+    width: 60%;
+}
+
+/* Case de tableau de 40% */
+.maclasse-table-case-w40 {
+    width: 40%;
 }
 
 /* Case de tableau de 45% */
@@ -43,9 +49,9 @@
     width: 45%;
 }
 
-/* Case de tableau de 40% */
-.maclasse-table-case-w40 {
-    width: 40%;
+/* Case de tableau de 25% */
+.maclasse-table-case-w25 {
+    width: 25%;
 }
 
 /* Case de tableau de 30% */
@@ -56,4 +62,9 @@
 /* Case de tableau de 15% */
 .maclasse-table-case-w15 {
     width: 15%;
+}
+
+/* Pour ajouter un séparateur dans les entêtes (côté gauche) */
+.maclasse-table-case-bordureDroite {
+    border-right: solid 1px white;
 }

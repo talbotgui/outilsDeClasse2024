@@ -2,6 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { tap } from 'rxjs';
+import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
@@ -25,7 +27,9 @@ import { ContexteService } from '../../service/contexte-service';
         // FontAwesome
         FontAwesomeModule,
         // Matérial
-        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatSelectModule
+        ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatSelectModule,
+        // Composant applicatif
+        DialogSelectionCompetenceComponent
     ]
 })
 export class RouteTdbComponent extends AbstractComponent implements OnInit {
@@ -57,7 +61,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     public indexEnEdition: number | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) {
+    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private dialog: MatDialog) {
         super();
     }
 
@@ -92,6 +96,85 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             })
         ).subscribe();
         super.declarerSouscription(sub);
+    }
+
+    /** Méthode d'ajout d'une note dans une sous-ligne pour laquelle la note n'existe pas pour une des deux périodes */
+    public ajouterUneNotePourPreparation(sousLigne: SousLigneDeTableauDeBord): void {
+
+        // Sélection de la période à utiliser pour la nouvelle note
+        let periodeAutiliser = this.periodeSelectionnee;
+        if (this.modeAffichage == 3 && this.periodeSelectionnee) {
+            const indexPeriode = this.periodes.indexOf(this.periodeSelectionnee);
+            if (indexPeriode + 1 < this.periodes.length) {
+                periodeAutiliser = this.periodes[indexPeriode + 1];
+            }
+        }
+
+        // Création de la note
+        const note = new Note();
+        note.dateCreation = new Date();
+        note.idPeriode = periodeAutiliser?.id;
+        note.idEleve = this.eleveSelectionne?.id;
+        note.idItem = sousLigne.competence?.id;
+
+        // Ajout aux notes
+        this.notes.push(note);
+
+        // Ajout à la sous-ligne (pour ne pas tout recalculer)
+        sousLigne.notePeriodePreparee = note;
+    }
+
+    /** Ajout d'une ligne après l'ajout d'une compétence  */
+    public ajouterUneLigne(): void {
+
+        // Ouverture du dialog avec le composant de sélection de compétence
+        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
+
+        // A la fermeture, ajout de la compétence (si sélectionnée)
+        dialog.afterClosed().subscribe(competence => {
+            const nbNotesAuDebut = this.notes.length;
+
+            // Si pas de sélection, c'est fini
+            if (!competence || !this.periodeSelectionnee) {
+                return;
+            }
+
+            // Gestion du mode d'affichage vis-à-vis de la période à modifier
+            let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
+            let periodeAutiliser = this.periodeSelectionnee;
+            if (this.modeAffichage == 1 && indexPeriodeSelectionnee + 1 < this.periodes.length) {
+                indexPeriodeSelectionnee++;
+                periodeAutiliser = this.periodes[indexPeriodeSelectionnee];
+            }
+
+            // Recherche des notes
+            const noteExistante = this.notes.find(n => n.idItem === competence.id && n.idPeriode === periodeAutiliser.id);
+
+            // création de la note
+            if (!noteExistante) {
+                const note = new Note();
+                note.dateCreation = new Date();
+                note.idPeriode = periodeAutiliser.id;
+                note.idEleve = this.eleveSelectionne?.id;
+                note.idItem = competence.id;
+                this.notes.push(note);
+                console.log('note ajoutée :', note);
+            }
+
+            //  déclenchement du traitement de MaJ des données maintenant que les notes sont ajoutées
+            const nbNotesAjoutees = this.notes.length - nbNotesAuDebut;
+            if (nbNotesAjoutees > 0) {
+                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, nbNotesAjoutees + ' notes ajoutées au tableau de bord pour la compétence "' + competence.text + "'.");
+                this.contexteService.afficherUnMessageGeneral(message);
+                this.onChangementFiltre();
+            }
+
+            // Si pas de note ajoutée, message à l'utilisateur
+            else {
+                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Avertissement, 'Aucune note ajoutée au tableau de bord pour la compétence "' + competence.text + "'.");
+                this.contexteService.afficherUnMessageGeneral(message);
+            }
+        });
     }
 
     /** Recherche de l'ascendance d'une compétence */
@@ -132,15 +215,14 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             const notesDeLeleve = this.notes.filter(n => n.idEleve == this.eleveSelectionne?.id);
 
             // Création des lignes pour les deux périodes
-            const indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
             if (this.modeAffichage == 1) {
-                if (indexPeriodeSelectionnee > 0) {
-                    this.creerLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee - 1], false, notesDeLeleve);
-                }
                 this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, notesDeLeleve);
+            } else if (this.modeAffichage == 2) {
+                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, notesDeLeleve);
             } else {
                 this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, notesDeLeleve);
-                if (indexPeriodeSelectionnee < this.periodes.length) {
+                let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
+                if (indexPeriodeSelectionnee + 1 < this.periodes.length) {
                     this.creerLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, notesDeLeleve);
                 }
             }
@@ -162,68 +244,64 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         }
     }
 
-    /** Création des lignes pour la période fournie */
+    /** Création des lignes pour la période fournie. */
     private creerLignesTableauDeBordPourUnePeriode(periode: Periode, periodePreparee: boolean, notesDeLeleve: Note[]): void {
-        if (periode && periode.debut && periode.fin) {
-            const dateDebutPeriodeSelectionnee = periode.debut;
-            const dateFinPeriodeSelectionnee = periode.fin;
+        if (!periode) {
+            return;
+        }
 
-            // Pour chaque note 
-            notesDeLeleve
-                //de la période
-                .filter(n => n.date && dateDebutPeriodeSelectionnee <= n.date && n.date <= dateFinPeriodeSelectionnee)
-                // Création des lignes correspondantes
-                .forEach(n => {
-                    // Recherche des compétences de la note
-                    const competenceParente = this.rechercherCompetenceParente(n.idItem);
+        console.log('creerLignesTableauDeBordPourUnePeriode :', { periode, periodePreparee, notesDeLeleve });
 
-                    // En cas de pb
-                    if (!competenceParente) {
-                        console.log('PROBLEME car pas de compétence parente pour la note', n);
-                        return;
-                    }
+        // Pour chaque note 
+        notesDeLeleve
+            // de la période
+            .filter(n => n.idPeriode == periode.id)
+            // Création des lignes correspondantes
+            .forEach(n => this.creerLigneTableauDeBordPourUneNote(n, periodePreparee));
 
-                    // Recherche (ou création) de la ligne pour cette compétence parente
-                    let ligne = this.lignes.find(l => l.competenceParente?.id === competenceParente.id);
-                    if (!ligne) {
-                        ligne = new LigneDeTableauDeBord();
-                        ligne.competenceParente = competenceParente;
-                        ligne.libelleCompetenceParente = this.calculerLibelleDeCompetence(ligne.competenceParente);
-                        this.lignes.push(ligne);
-                    }
+    }
 
-                    // Recherche (ou création) de la sous-ligne pour cette compétence
-                    let sousLigne = ligne.sousLignes.find(sl => sl.competence?.id == n.idItem);
-                    if (!sousLigne) {
-                        sousLigne = new SousLigneDeTableauDeBord();
-                        sousLigne.competence = this.rechercherCompetence(n.idItem);
-                        if (sousLigne.competence) {
-                            sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence, 3);
-                        }
-                        ligne.sousLignes.push(sousLigne);
-                    }
+    /** Création d'une ligne à partir d'une note. */
+    private creerLigneTableauDeBordPourUneNote(n: Note, periodePreparee: boolean) {
+        // Recherche des compétences de la note
+        const competenceParente = this.rechercherCompetenceParente(n.idItem);
 
-                    // Alimentation des champs en fonction du type de période (évaluée ou préparéek)
-                    if (periodePreparee && !sousLigne.notePeriodeSuivante) {
-                        sousLigne.notePeriodeSuivante = n;
-                    } else if (!periodePreparee && !sousLigne.notePeriodePrecedente) {
-                        sousLigne.notePeriodePrecedente = n;
-                    } else {
-                        // message de succès
-                        const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + n.idEleve + '")');
-                        this.contexteService.afficherUnMessageGeneral(message);
-                    }
-                });
+        // En cas de pb
+        if (!competenceParente) {
+            console.log('PROBLEME car pas de compétence parente pour la note', n);
+            return;
+        }
+
+        // Recherche (ou création) de la ligne pour cette compétence parente
+        const ligne = this.rechercherOuCreerLigne(competenceParente);
+
+        // Recherche (ou création) de la sous-ligne pour cette compétence
+        let sousLigne = ligne.sousLignes.find(sl => sl.competence?.id == n.idItem);
+        if (!sousLigne) {
+            sousLigne = new SousLigneDeTableauDeBord();
+            sousLigne.competence = this.rechercherCompetence(n.idItem);
+            if (sousLigne.competence) {
+                sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence, 3);
+            }
+            ligne.sousLignes.push(sousLigne);
+        }
+
+        // Alimentation des champs en fonction du type de période (évaluée ou préparéek)
+        if (periodePreparee && !sousLigne.notePeriodePreparee) {
+            sousLigne.notePeriodePreparee = n;
+        } else if (!periodePreparee && !sousLigne.notePeriodeEvaluee) {
+            sousLigne.notePeriodeEvaluee = n;
+        } else {
+            // message de succès
+            const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + n.idEleve + '")');
+            this.contexteService.afficherUnMessageGeneral(message);
         }
     }
 
+
+
     /** Au changement d'un des filtres. */
     public onChangementFiltre(): void {
-
-        // Pas de mode complet pour la dernière période
-        if (this.modeAffichage == 3 && this.periodeSelectionnee?.id == this.periodes[this.periodes.length - 1].id) {
-            this.modeAffichage = 2;
-        }
 
         // MaJ de l'URL avec les données de filtrage
         if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {
@@ -255,6 +333,18 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         } else {
             return undefined;
         }
+    }
+
+    /** Recherche ou création d'une ligne */
+    private rechercherOuCreerLigne(competenceParente: Competence): LigneDeTableauDeBord {
+        let ligne = this.lignes.find(l => l.competenceParente?.id === competenceParente.id);
+        if (!ligne) {
+            ligne = new LigneDeTableauDeBord();
+            ligne.competenceParente = competenceParente;
+            ligne.libelleCompetenceParente = this.calculerLibelleDeCompetence(ligne.competenceParente);
+            this.lignes.push(ligne);
+        }
+        return ligne;
     }
 
     /** Pour valider un temps directement via un CRTL+ENTRER */

@@ -5,7 +5,8 @@ export class Competence {
 }
 export class Note {
   public id?: string;
-  public date?: Date;
+  public dateCreation?: Date;
+  public idPeriode?: string;
   public idEleve?: string;
   public idItem?: string;
   public valeurEvaluation?: string;

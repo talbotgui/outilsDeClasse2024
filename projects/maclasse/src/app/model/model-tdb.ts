@@ -11,6 +11,6 @@ export class SousLigneDeTableauDeBord extends AvecIdentifiant {
   public competence: Competence | undefined;
   public libelleCompetence: string = '';
 
-  public notePeriodePrecedente: Note | undefined;
-  public notePeriodeSuivante: Note | undefined;
+  public notePeriodeEvaluee: Note | undefined;
+  public notePeriodePreparee: Note | undefined;
 }
