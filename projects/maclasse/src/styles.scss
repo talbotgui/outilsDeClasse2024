@@ -87,3 +87,13 @@ fieldset.maclasse-formulaire>div {
 /************************************************************
  Pour créer un style d'onglet au niveau des fieldset - FIN 
 ************************************************************/
+
+
+/** Au moment de l'impression. */
+@media print {
+
+    /** masque les contrôles. */
+    .maclasse-masquerEnModePrint {
+        display: none !important;
+    }
+}
